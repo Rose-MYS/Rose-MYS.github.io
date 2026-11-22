@@ -14,6 +14,18 @@
   }
   setLang(getLang());
 
+  // 主题：默认浅色，可切换深色；选择记在浏览器里
+  function getTheme() {
+    try { return localStorage.getItem('theme') || 'light'; } catch (e) { return 'light'; }
+  }
+  function setTheme(th) {
+    document.documentElement.setAttribute('data-theme', th);
+    try { localStorage.setItem('theme', th); } catch (e) {}
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', th === 'dark' ? '#10131c' : '#faf9f5');
+  }
+  setTheme(getTheme());
+
   // 首页精选：一次展示一个项目
   // 插画里的零件跟着进度 --phase（0→1）动：滚轮往下滚，进度往前走，走完一段就切到下一个项目；往上滚倒放。
   // 没人操作时自动慢慢播放；也可以点列表、手机左右滑、方向键切换。手机上切换时轻微震动（仅安卓浏览器支持）。
@@ -144,6 +156,11 @@
     var btn = document.querySelector('.lang-btn');
     if (btn) btn.addEventListener('click', function () {
       setLang(document.documentElement.getAttribute('data-lang') === 'en' ? 'zh' : 'en');
+    });
+    setTheme(getTheme());
+    var tb = document.querySelector('.theme-btn');
+    if (tb) tb.addEventListener('click', function () {
+      setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
     initFeature();
     initScrollArt();
