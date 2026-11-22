@@ -151,6 +151,12 @@ html:not([data-lang="en"]) .en { display: none !important; }
 .fig svg { display: block; width: 100%; height: auto; }
 .fig figcaption { margin-top: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
 
+.muted { color: var(--ink-soft); font-size: 15px; }
+.reading { list-style: none; padding: 0; }
+.reading li { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 15px; }
+.reading li a { color: var(--ink); font-weight: 600; text-decoration-color: var(--accent); }
+.reading .src { font-family: var(--mono); font-size: 12px; margin-left: 6px; }
+
 /* 页脚 */
 footer { border-top: 1px solid var(--line); margin-top: 64px; padding: 28px 0 40px; color: var(--ink-soft); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
