@@ -1,7 +1,7 @@
-// 语言切换：中文 / English，选择记在浏览器里
+// 语言切换：默认英文，可切换中文；选择记在浏览器里
 (function () {
   function getLang() {
-    try { return localStorage.getItem('lang') || 'zh'; } catch (e) { return 'zh'; }
+    try { return localStorage.getItem('lang') || 'en'; } catch (e) { return 'en'; }
   }
   function setLang(lang) {
     document.documentElement.setAttribute('data-lang', lang);

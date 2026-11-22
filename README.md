@@ -1,6 +1,6 @@
 # Rose-MYS.github.io
 
-Rose 的个人网站：纯手写 HTML / CSS / JS，用 GitHub Pages 托管，中英双语。
+Rose 的个人网站：纯手写 HTML / CSS / JS，用 GitHub Pages 托管，中英双语，默认英文。
 
 ## 结构
 
