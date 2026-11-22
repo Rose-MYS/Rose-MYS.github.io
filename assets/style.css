@@ -311,7 +311,7 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .foot a:hover { color: var(--lime); }
 
 
-/* ---------- 浅色主题（默认）：米白底 + 陶土橙 ---------- */
+/* ---------- 浅色主题（可切换）：米白底 + 陶土橙 ---------- */
 html[data-theme="light"] {
   color-scheme: light;
   --ink: #faf9f5;

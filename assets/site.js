@@ -14,9 +14,9 @@
   }
   setLang(getLang());
 
-  // 主题：默认浅色，可切换深色；选择记在浏览器里
+  // 主题：默认深色，可切换浅色；选择记在浏览器里
   function getTheme() {
-    try { return localStorage.getItem('theme') || 'light'; } catch (e) { return 'light'; }
+    try { return localStorage.getItem('theme') || 'dark'; } catch (e) { return 'dark'; }
   }
   function setTheme(th) {
     document.documentElement.setAttribute('data-theme', th);
