@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xiaogua QQ Bot · Rose</title>
+<meta name="title-zh" content="QQ 机器人「小瓜」 · Rose">
+<meta name="title-en" content="Xiaogua QQ Bot · Rose">
+<meta name="description" content="接入 DeepSeek 等大模型的 QQ 群聊机器人：有人格、有情绪、有长期记忆，会看图、会斗图，还能自己学新梗、写周记，掉线了能自愈。">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../../">Rose</a>
+    <nav class="nav"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../../projects/" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
+    <button class="lang-btn" type="button" aria-label="切换语言 / Switch language">中文</button>
+  </div>
+</header>
+<main>
+<section class="page-head"><div class="wrap">
+  <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> / <a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a> / <span class="zh">QQ 机器人「小瓜」</span><span class="en">Xiaogua QQ Bot</span></p>
+  <h1><span class="zh">QQ 机器人「小瓜」</span><span class="en">Xiaogua QQ Bot</span></h1>
+  <p class="sub"><span class="zh">接入 DeepSeek 等大模型的 QQ 群聊机器人：有人格、有情绪、有长期记忆，会看图、会斗图，还能自己学新梗、写周记，掉线了能自愈。</span><span class="en">A QQ group-chat bot powered by DeepSeek and other LLMs — with personas, moods and long-term memory. It reads images, trades memes, picks up new slang, writes a weekly diary and recovers from disconnects on its own.</span></p>
+  <div class="actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"></div>
+</div></section>
+<section class="wrap">
+  <dl class="facts"><div><dt><span class="zh">类型</span><span class="en">Type</span></dt><dd><span class="zh">QQ 群聊 AI 机器人</span><span class="en">QQ group-chat AI bot</span></dd></div><div><dt><span class="zh">架构</span><span class="en">Stack</span></dt><dd>NapCat · AstrBot · LLM API</dd></div><div><dt><span class="zh">插件</span><span class="en">Plugins</span></dt><dd><span class="zh">20 个自研插件</span><span class="en">20 custom plugins</span></dd></div><div><dt><span class="zh">状态</span><span class="en">Status</span></dt><dd><span class="zh">长期在线</span><span class="en">Always on</span></dd></div></dl>
+  
+  <div class="prose"><h2><span class="zh">架构</span><span class="en">Architecture</span></h2>
+<p><code>QQ ⇄ NapCat <span class="zh">（协议端）</span><span class="en">(protocol)</span> ⇄ AstrBot <span class="zh">（AI 框架）</span><span class="en">(AI framework)</span> ⇄ DeepSeek <span class="zh">等大模型 API</span><span class="en">and other LLM APIs</span></code></p>
+<h2><span class="zh">小瓜会做什么</span><span class="en">What Xiaogua can do</span></h2>
+<ul>
+<li><span class="zh"><b>人格系统</b>：本体人格加多套预设，可以模仿、切换人格。</span><span class="en"><b>Personas</b>: a core persona plus presets; it can switch or imitate styles.</span></li>
+<li><span class="zh"><b>情绪与节奏</b>：七种情绪，先判断该不该接话，再加冷却和每小时上限，不刷屏。</span><span class="en"><b>Mood & pacing</b>: seven moods and a “should I reply?” gate with cooldowns and hourly caps, so it never spams.</span></li>
+<li><span class="zh"><b>长期记忆</b>：按人、群、全局三层记忆，聊天中自动提炼。</span><span class="en"><b>Long-term memory</b>: per-person, per-group and global memories distilled from chats.</span></li>
+<li><span class="zh"><b>看图和斗图</b>：能看懂群友发的图片；两百多张带语义标签的表情包，可以自主斗图。</span><span class="en"><b>Images & memes</b>: understands pictures people send and picks from 200+ tagged memes on its own.</span></li>
+<li><span class="zh"><b>自我进化</b>：定时去 B 站学新梗，感知群里的氛围，调整说话口味。</span><span class="en"><b>Self-evolution</b>: periodically learns new slang from Bilibili and adapts to each group’s vibe.</span></li>
+<li><span class="zh"><b>约定追踪和周记</b>：记住聊天里的约定，到点提醒；每周日自动写一篇周记。</span><span class="en"><b>Follow-ups & diary</b>: remembers promises made in chat and checks back; writes a weekly diary every Sunday.</span></li>
+<li><span class="zh"><b>作息与自愈</b>：按作息睡觉、起床；看护脚本自动处理掉线、重连和扫码。</span><span class="en"><b>Routine & self-healing</b>: keeps a sleep schedule; a watchdog handles disconnects, reconnection and QR re-login.</span></li>
+<li><span class="zh"><b>控制台</b>：网页面板，查看各插件状态，一键暂停或恢复。</span><span class="en"><b>Dashboard</b>: a web panel showing every plugin’s status, with one-click pause and resume.</span></li>
+</ul>
+<p class="note"><span class="zh">机器人涉及账号和 API 密钥，代码不公开。</span><span class="en">The bot involves account credentials and API keys, so the code is not public.</span></p></div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Rose</span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>
