@@ -26,6 +26,44 @@
   }
   setTheme(getTheme());
 
+  // 形声插画：播放头与线条的真实交点（圆点跟着曲线走），扫过和弦竖线时竖线亮起
+  var ssCache = new WeakMap();
+  function updateShapeSound(root, phase) {
+    if (!root) return;
+    var head = root.querySelector('.ss-head');
+    if (!head) return;
+    var data = ssCache.get(root);
+    if (!data) {
+      data = { lines: [], chords: root.querySelectorAll('.ss-chord'), hits: root.querySelectorAll('.ss-hit') };
+      root.querySelectorAll('.ss-line').forEach(function (p) {
+        var len = p.getTotalLength(), pts = [], N = 160;
+        for (var i = 0; i <= N; i++) { var q = p.getPointAtLength(len * i / N); pts.push([q.x, q.y]); }
+        data.lines.push(pts);
+      });
+      ssCache.set(root, data);
+    }
+    var X = phase * 340 - 170, k = 0;
+    data.lines.forEach(function (pts) {
+      for (var i = 1; i < pts.length && k < data.hits.length; i++) {
+        var a = pts[i - 1], b = pts[i];
+        if ((a[0] - X) * (b[0] - X) <= 0 && a[0] !== b[0]) {
+          var t = (X - a[0]) / (b[0] - a[0]);
+          var h = data.hits[k++];
+          h.setAttribute('cx', X.toFixed(1));
+          h.setAttribute('cy', (a[1] + (b[1] - a[1]) * t).toFixed(1));
+          h.style.display = '';
+          break;
+        }
+      }
+    });
+    for (; k < data.hits.length; k++) data.hits[k].style.display = 'none';
+    data.chords.forEach(function (c) {
+      var on = Math.abs(X - parseFloat(c.getAttribute('data-x'))) < 7;
+      c.style.strokeWidth = on ? '10' : '';
+      c.style.stroke = on ? '#a6cf5a' : '';
+    });
+  }
+
   // 首页精选：一次展示一个项目
   // 插画里的零件跟着进度 --phase（0→1）动：滚轮往下滚，进度往前走，走完一段就切到下一个项目；往上滚倒放。
   // 没人操作时自动慢慢播放；也可以点列表、手机左右滑、方向键切换。手机上切换时轻微震动（仅安卓浏览器支持）。
@@ -122,6 +160,7 @@
       phase += (target - phase) * Math.min(1, dt / 110);
       if (Math.abs(target - phase) < 0.0005) phase = target;
       slides[active].style.setProperty('--phase', phase.toFixed(4));
+      updateShapeSound(slides[active].querySelector('.art'), phase);
       for (var k = 0; k < n; k++) {
         var f = tabs[k].querySelector('.fill');
         if (f) f.style.width = (k === active ? phase * 100 : 0).toFixed(1) + '%';
@@ -143,7 +182,9 @@
         var r = el.getBoundingClientRect();
         var p = (vh - r.top) / (vh + r.height);
         if (el.classList.contains('dh-art')) p = Math.min(1, window.scrollY / Math.max(1, r.height + 160)); // 顶部大图：从页面顶端开始算
-        el.style.setProperty('--phase', Math.min(1, Math.max(0, p)).toFixed(4));
+        p = Math.min(1, Math.max(0, p));
+        el.style.setProperty('--phase', p.toFixed(4));
+        updateShapeSound(el.querySelector('.art'), p);
       });
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
