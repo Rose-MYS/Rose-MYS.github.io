@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rose · 个人主页</title>
+<meta name="title-zh" content="Rose · 个人主页">
+<meta name="title-en" content="Rose · Personal site">
+<meta name="description" content="Rose 的个人主页：网页乐器、小游戏、交互装置与电力电子仿真项目。">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="">Rose<small>Rose-MYS</small></a>
+    <nav class="nav"><a href="" aria-current="page"><span class="zh">首页</span><span class="en">Home</span></a><a href="about/"><span class="zh">关于</span><span class="en">About</span></a><a href="projects/"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
+    <button class="lang-btn" type="button" aria-label="切换语言 / Switch language">EN</button>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="staff" aria-hidden="true"></div>
+  <svg class="stroke" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-20 120 C 120 120, 160 40, 280 60 S 430 140, 540 90 S 700 20, 820 70 S 1000 140, 1220 50"/>
+    <circle cx="280" cy="60" r="6" style="animation-delay:1.2s"/>
+    <circle cx="540" cy="90" r="6" style="animation-delay:1.8s"/>
+    <circle cx="820" cy="70" r="6" style="animation-delay:2.4s"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow"><span class="zh">个人主页 · 项目笔记本</span><span class="en">Personal site · Project notebook</span></p>
+    <h1>Rose<span class="latin">Rose-MYS</span></h1>
+    <p class="lede"><span class="zh">把线条变成声音，把电路变成仿真。这里收着我做过和正在做的东西：网页乐器、小游戏、交互装置，还有电力电子仿真。</span><span class="en">Turning lines into sound and circuits into simulations. A notebook of things I have built or am building: a web instrument, a small game, an interactive installation and power-electronics simulations.</span></p>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="num">01</span><span class="zh">项目</span><span class="en">Projects</span></h2>
+      <a href="projects/"><span class="zh">全部项目 →</span><span class="en">All projects →</span></a>
+    </div>
+    <div class="cards"><article class="card" style="--c:var(--accent)">
+  <div class="meta"><span><span class="zh">网页乐器</span><span class="en">Web instrument</span></span><span class="tag live"><span class="zh">课程项目</span><span class="en">Course project</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</span></div>
+  <h3>形声 ShapeSound<small><span class="zh">画出来的音乐</span><span class="en">Music you can draw</span></small></h3>
+  <p><span class="zh">在纸上画线，播放头扫过就发声：线越高音越高，颜色就是乐器。16 种实时合成音色、11 首示例曲，还能导入谱子、把照片描成会响的画。</span><span class="en">Draw lines on paper and a playhead turns them into sound: height is pitch, colour is instrument. 16 synthesised instruments, 11 demo songs, score import and photo-to-line tracing.</span></p>
+  <div class="actions"><a class="btn primary" href="projects/shapesound/play/"><span class="zh">在线试玩 ▶</span><span class="en">Play ▶</span></a><a class="btn" href="projects/shapesound/"><span class="zh">项目介绍</span><span class="en">Details</span></a><a class="btn" href="https://github.com/Rose-MYS/ShapeSound">GitHub</a></div>
+</article>
+<article class="card" style="--c:var(--accent-2)">
+  <div class="meta"><span><span class="zh">3D 网页游戏</span><span class="en">3D web game</span></span><span class="tag live"><span class="zh">可玩</span><span class="en">Playable</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</span></div>
+  <h3>郝哥快跑<small><span class="zh">Run Haoge Run</span><span class="en">Run Haoge Run</span></small></h3>
+  <p><span class="zh">一款可离线游玩的 3D 三车道无尽跑酷：躲障碍、收西瓜，用「保熟」技能拉开和追兵的距离，还藏着彩蛋。</span><span class="en">An offline 3D three-lane endless runner: dodge obstacles, collect watermelons, and use the “Baoshu” skill to escape the chaser. Easter eggs included.</span></p>
+  <div class="actions"><a class="btn primary" href="projects/run-haoge-run/play/"><span class="zh">在线试玩 ▶</span><span class="en">Play ▶</span></a><a class="btn" href="projects/run-haoge-run/"><span class="zh">项目介绍</span><span class="en">Details</span></a><a class="btn" href="https://github.com/Rose-MYS/run-haoge-run">GitHub</a></div>
+</article>
+<article class="card" style="--c:#8a5a2b">
+  <div class="meta"><span><span class="zh">数字交互 · 比赛</span><span class="en">Interaction · Competition</span></span><span class="tag"><span class="zh">团队项目 · 进行中</span><span class="en">Team · Ongoing</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11</span></div>
+  <h3>模拟指挥<small><span class="zh">Gesture Driven Ensemble</span><span class="en">Gesture Driven Ensemble</span></small></h3>
+  <p><span class="zh">东南大学第一届新生 AI 创客大赛参赛作品。站在摄像头前，用双手像指挥家一样控制一支乐队的速度与音量。</span><span class="en">Our entry for the 1st SEU Freshman AI Maker Competition. Stand in front of a camera and conduct a band with your hands — tempo and volume follow your gestures.</span></p>
+  <div class="actions"><a class="btn" href="projects/gesture-conductor/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
+</article>
+<article class="card" style="--c:#3b4f7a">
+  <div class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="tag"><span class="zh">进行中</span><span class="en">In progress</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11</span></div>
+  <h3>航空起动/发电系统仿真<small><span class="zh">Aircraft starter/generator · Simulink</span><span class="en">Aircraft starter/generator · Simulink</span></small></h3>
+  <p><span class="zh">在 MATLAB/Simulink 中搭建航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。</span><span class="en">A MATLAB/Simulink model of a high-power aircraft starter/generator system, with a three-phase two-level six-switch active front end (AFE) on the grid side.</span></p>
+  <div class="actions"><a class="btn" href="projects/starter-generator/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
+</article></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2><span class="num">02</span><span class="zh">去别处看看</span><span class="en">Elsewhere</span></h2></div>
+    <div class="dests">
+      <a class="dest" href="about/"><span class="num">A</span><h3><span class="zh">关于我</span><span class="en">About</span></h3><p><span class="zh">我是谁、在学什么、对什么感兴趣。</span><span class="en">Who I am and what I am into.</span></p></a>
+      <a class="dest" href="projects/"><span class="num">B</span><h3><span class="zh">项目目录</span><span class="en">Project directory</span></h3><p><span class="zh">每个项目的介绍、试玩入口和代码仓库。</span><span class="en">Write-ups, demos and repositories.</span></p></a>
+      <a class="dest" href="https://github.com/Rose-MYS"><span class="num">C</span><h3>GitHub</h3><p><span class="zh">源代码都在这里。</span><span class="en">Where the code lives.</span></p></a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Rose</span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>
