@@ -7,8 +7,8 @@
     document.documentElement.setAttribute('data-lang', lang);
     document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
     try { localStorage.setItem('lang', lang); } catch (e) {}
-    var btn = document.querySelector('.lang-btn');
-    if (btn) btn.textContent = lang === 'en' ? '中文' : 'EN';
+    var code = document.querySelector('.lang-code');
+    if (code) code.textContent = lang === 'en' ? 'EN' : 'ZH';
     var t = document.querySelector('meta[name="title-' + lang + '"]');
     if (t) document.title = t.content;
   }

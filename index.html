@@ -7,7 +7,7 @@
 <meta name="title-zh" content="Rose · 个人主页">
 <meta name="title-en" content="Rose · Personal site">
 <meta name="description" content="Rose 的个人主页：网页乐器、小游戏、交互装置、自动扒谱、AI 聊天机器人与电力电子仿真。">
-<meta name="theme-color" content="#0f1915">
+<meta name="theme-color" content="#10131c">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/site.js"></script>
@@ -17,23 +17,34 @@
   <div class="wrap">
     <a class="brand" href=""><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21 C9 21 10 9 16 11 S 23 24 29 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="11" r="2.6" fill="currentColor"/></svg>Rose</a>
     <nav class="nav"><a href="" aria-current="page"><span class="zh">首页</span><span class="en">Home</span></a><a href="about/"><span class="zh">关于</span><span class="en">About</span></a><a href="projects/"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
-    <button class="lang-btn" type="button" aria-label="切换语言 / Switch language">中文</button>
+    <button class="lang-btn" type="button" aria-label="Switch language" title="Switch language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9M12 3c-2.6 2.6-3.8 5.6-3.8 9s1.2 6.4 3.8 9"/></svg><span class="lang-code">EN</span></button>
   </div>
 </header>
 <main>
-<section class="showcase" id="showcase" style="--n:6">
-  <div class="sc-sticky">
-    <div class="wrap sc-top">
-      <span class="kicker"><i></i><span class="zh">项目笔记本</span><span class="en">Project notebook</span></span>
-      <span class="sc-right"><span class="sc-count"><b class="sc-cur">01</b> / 06</span><a class="sc-skip" href="#explore"><span class="zh">跳过展台 ↓</span><span class="en">Skip showcase ↓</span></a></span>
-    </div>
-    <div class="sc-slides">
-      <article class="slide is-active" style="--accent:#f2b880" data-i="0" aria-hidden="false">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">网页乐器</span><span class="en">Web instrument</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><h2 class="slide-title"><span class="zh">形声 <em>ShapeSound</em></span><span class="en">Shape<em>Sound</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</p>
+<section class="hero">
+  <div class="staff" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <svg class="stroke" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-20 170 C 120 170, 170 60, 300 80 S 450 190, 580 120 S 760 30, 880 90 S 1060 180, 1220 60"/>
+    <circle cx="300" cy="80" r="7" style="--d:1.1s"/><circle cx="580" cy="120" r="7" style="--d:1.7s"/><circle cx="880" cy="90" r="7" style="--d:2.3s"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <p class="kicker"><i></i><span class="zh">项目笔记本 · 2026</span><span class="en">Project notebook · 2026</span></p>
+    <h1><span class="zh">你好，我是 <em>Rose</em>。</span><span class="en">Hi, I’m <em>Rose</em>.</span></h1>
+    <p class="lede"><span class="zh">东南大学计算机专业大一学生。我喜欢把线条变成声音、把手势变成指挥、把录音变成乐谱——这里收着我做过和正在做的东西。</span><span class="en">A first-year CS student at Southeast University. I turn lines into sound, gestures into conducting and recordings into sheet music — this is where I keep what I build.</span></p>
+    <div class="hero-cta"><a class="btn solid" href="#work"><span class="zh">看看项目</span><span class="en">See my work</span> <i>↓</i></a><a class="btn" href="https://github.com/Rose-MYS">GitHub <i>↗</i></a></div>
+    <dl class="stats">
+      <div><dt><span class="zh">项目</span><span class="en">Projects</span></dt><dd>06</dd></div>
+      <div><dt><span class="zh">可在线玩</span><span class="en">Playable</span></dt><dd>02</dd></div>
+      <div><dt><span class="zh">进行中</span><span class="en">In progress</span></dt><dd>02</dd></div>
+    </dl>
   </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="ShapeSound" xmlns="http://www.w3.org/2000/svg">
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head"><h2><span class="zh">精选<em>作品</em></span><span class="en">Selected <em>work</em></span></h2><span class="rule"></span><a class="kicker-s" href="projects/"><span class="zh">全部项目 →</span><span class="en">All projects →</span></a></div>
+    <div class="bento"><article class="tile big" style="--accent:#f2b880">
+  <a class="tile-art" href="projects/shapesound/" aria-label="ShapeSound"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="ShapeSound" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <g transform="translate(300 175) skewX(-14) rotate(-4)">
   <rect x="-210" y="-120" width="420" height="250" rx="10" fill="#e9e3cf"/>
@@ -58,17 +69,15 @@
 <g fill="var(--accent)" opacity=".8">
   <path d="M500 70 q10 -20 20 0 v28 a8 8 0 1 1 -4 -7 v-17" />
   <path d="M80 250 q8 -16 16 0 v22 a7 7 0 1 1 -4 -6 v-12"/>
-</g></svg></div>
-  <div class="wrap slide-foot">
+</g></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">网页乐器</span><span class="en">Web instrument</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><span class="idx">01</span></div>
+    <a class="tile-link" href="projects/shapesound/"><h3><span class="zh">形声 <em>ShapeSound</em></span><span class="en">Shape<em>Sound</em></span></h3></a>
     <p><span class="zh">画线即作曲的网页乐器，点开就能在浏览器里玩。</span><span class="en">A web instrument where drawing a line writes music — playable right in your browser.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/shapesound/play/"><span class="zh">在线试玩</span><span class="en">Play ShapeSound</span> <i>↗</i></a><a class="btn" href="projects/shapesound/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
+    <div class="actions"><a class="btn solid" href="projects/shapesound/play/"><span class="zh">在线试玩</span><span class="en">Play</span> <i>↗</i></a><a class="btn" href="projects/shapesound/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article><article class="slide" style="--accent:#ef8a7f" data-i="1" aria-hidden="true">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">3D 网页游戏</span><span class="en">3D web game</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><h2 class="slide-title"><span class="zh">郝哥<em>快跑</em></span><span class="en">Run Haoge <em>Run</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</p>
-  </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Run Haoge Run" xmlns="http://www.w3.org/2000/svg">
+</article><article class="tile" style="--accent:#ef8a7f">
+  <a class="tile-art" href="projects/run-haoge-run/" aria-label="Run Haoge Run"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Run Haoge Run" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <path d="M250 70 H350 L560 320 H40 Z" fill="#3a3530"/>
 <path d="M250 70 H350 L560 320 H40 Z" fill="none" stroke="#5a5048" stroke-width="3"/>
@@ -88,17 +97,15 @@
 </g>
 <g stroke="var(--accent)" stroke-width="4" stroke-linecap="round" opacity=".7">
   <path d="M470 120 H540"/><path d="M490 145 H570"/><path d="M60 140 H120"/><path d="M40 165 H100"/>
-</g></svg></div>
-  <div class="wrap slide-foot">
+</g></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">3D 网页游戏</span><span class="en">3D web game</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><span class="idx">02</span></div>
+    <a class="tile-link" href="projects/run-haoge-run/"><h3><span class="zh">郝哥<em>快跑</em></span><span class="en">Run Haoge <em>Run</em></span></h3></a>
     <p><span class="zh">3D 三车道无尽跑酷：躲障碍、收西瓜、放「保熟」技能。</span><span class="en">A 3D three-lane endless runner: dodge, collect watermelons, unleash “Baoshu”.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/run-haoge-run/play/"><span class="zh">在线试玩</span><span class="en">Play Run Haoge Run</span> <i>↗</i></a><a class="btn" href="projects/run-haoge-run/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
+    <div class="actions"><a class="btn solid" href="projects/run-haoge-run/play/"><span class="zh">在线试玩</span><span class="en">Play</span> <i>↗</i></a><a class="btn" href="projects/run-haoge-run/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article><article class="slide" style="--accent:#c9b2ff" data-i="2" aria-hidden="true">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">数字交互 · 比赛</span><span class="en">Interaction · Competition</span></span><span class="sep"></span><span class="st"><span class="zh">团队项目 · 进行中</span><span class="en">Team · Ongoing</span></span></p><h2 class="slide-title"><span class="zh">模拟<em>指挥</em></span><span class="en">Gesture <em>Ensemble</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
-  </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Gesture Driven Ensemble" xmlns="http://www.w3.org/2000/svg">
+</article><article class="tile" style="--accent:#c9b2ff">
+  <a class="tile-art" href="projects/gesture-conductor/" aria-label="Gesture Driven Ensemble"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Gesture Driven Ensemble" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <rect x="90" y="40" width="420" height="250" rx="16" fill="#18241f" stroke="#3a4a40" stroke-width="2"/>
 <g stroke="#eceee0" stroke-width="4" fill="none" stroke-linecap="round">
@@ -128,17 +135,15 @@
   <rect x="215" y="300" width="14" height="16" rx="2"/><rect x="237" y="290" width="14" height="26" rx="2"/><rect x="259" y="278" width="14" height="38" rx="2"/>
   <rect x="281" y="270" width="14" height="46" rx="2"/><rect x="303" y="282" width="14" height="34" rx="2"/><rect x="325" y="292" width="14" height="24" rx="2"/>
   <rect x="347" y="286" width="14" height="30" rx="2"/><rect x="369" y="298" width="14" height="18" rx="2"/>
-</g></svg></div>
-  <div class="wrap slide-foot">
+</g></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">数字交互 · 比赛</span><span class="en">Interaction · Competition</span></span><span class="sep"></span><span class="st"><span class="zh">团队项目 · 进行中</span><span class="en">Team · Ongoing</span></span></p><span class="idx">03</span></div>
+    <a class="tile-link" href="projects/gesture-conductor/"><h3><span class="zh">模拟<em>指挥</em></span><span class="en">Gesture <em>Ensemble</em></span></h3></a>
     <p><span class="zh">站在摄像头前，用双手指挥一支乐队。东南大学新生 AI 创客大赛参赛作品。</span><span class="en">Conduct a band with your hands in front of a camera. Our SEU Freshman AI Maker Competition entry.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/gesture-conductor/"><span class="zh">查看项目</span><span class="en">Explore Gesture Driven Ensemble</span> <i>↗</i></a></div>
+    <div class="actions"><a class="btn" href="projects/gesture-conductor/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article><article class="slide" style="--accent:#9fd3e8" data-i="3" aria-hidden="true">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">音频 AI · 扒谱</span><span class="en">Audio AI · Transcription</span></span><span class="sep"></span><span class="st"><span class="zh">进行中</span><span class="en">In progress</span></span></p><h2 class="slide-title"><span class="zh">全自动<em>扒谱</em></span><span class="en">Auto <em>Transcription</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-22</p>
-  </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Auto Transcription" xmlns="http://www.w3.org/2000/svg">
+</article><article class="tile" style="--accent:#9fd3e8">
+  <a class="tile-art" href="projects/auto-transcription/" aria-label="Auto Transcription"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Auto Transcription" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <rect x="40" y="110" width="160" height="130" rx="12" fill="#18241f" stroke="#3a4a40" stroke-width="2"/>
 <path d="M60 175 L60 142 L64 179.8 L68 165.4 L72 199 L76 173.4 L80 159.0 L84 187 L88 167.0 L92 189.4 L96 175 L100 160.6 L104 183.0 L108 163 L112 191.0 L116 176.6 L120 151 L124 184.6 L128 170.2 L132 208 L136 178.2 L140 163.8 L144 196 L148 171.8 L152 157.4 L156 184 L160 165.4 L164 187.8 L168 172 L172 159.0 L176 181.4 L180 160 L184 189.4 L188 175.0 L192 148 L196 183.0 L200 168.6" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
@@ -161,17 +166,15 @@
     <ellipse cx="104" cy="150" rx="6" ry="4.5" transform="rotate(-20 104 150)"/><path d="M109.5 149 V123" stroke="#1c2230" stroke-width="1.6"/>
   </g>
   <text x="80" y="28" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#1c2230">MusicXML</text>
-</g></svg></div>
-  <div class="wrap slide-foot">
+</g></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">音频 AI · 扒谱</span><span class="en">Audio AI · Transcription</span></span><span class="sep"></span><span class="st"><span class="zh">进行中</span><span class="en">In progress</span></span></p><span class="idx">04</span></div>
+    <a class="tile-link" href="projects/auto-transcription/"><h3><span class="zh">全自动<em>扒谱</em></span><span class="en">Auto <em>Transcription</em></span></h3></a>
     <p><span class="zh">录音进去，五线谱、MIDI 和简谱出来。</span><span class="en">Audio in — sheet music, MIDI and numbered notation out.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/auto-transcription/"><span class="zh">查看项目</span><span class="en">Explore Auto Transcription</span> <i>↗</i></a></div>
+    <div class="actions"><a class="btn" href="projects/auto-transcription/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article><article class="slide" style="--accent:#a6e3a1" data-i="4" aria-hidden="true">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">AI 应用 · 聊天机器人</span><span class="en">AI app · Chatbot</span></span><span class="sep"></span><span class="st"><span class="zh">长期运行</span><span class="en">Running</span></span></p><h2 class="slide-title"><span class="zh">QQ 机器人<em>「小瓜」</em></span><span class="en">Xiaogua <em>QQ Bot</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
-  </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Xiaogua QQ bot" xmlns="http://www.w3.org/2000/svg">
+</article><article class="tile" style="--accent:#a6e3a1">
+  <a class="tile-art" href="projects/qq-bot/" aria-label="Xiaogua QQ Bot"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Xiaogua QQ bot" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <g transform="translate(300 235)">
   <path d="M-110 0 A110 110 0 0 0 110 0 Z" fill="#2f7d4f"/>
@@ -190,17 +193,15 @@
   <path d="M380 50 h140 a14 14 0 0 1 14 14 v44 a14 14 0 0 1 -14 14 h-18 v18 l-22 -18 h-100 a14 14 0 0 1 -14 -14 v-44 a14 14 0 0 1 14 -14z" fill="var(--accent)"/>
   <path d="M412 78 h92 M412 96 h60" stroke="#10201a" stroke-width="6" stroke-linecap="round"/>
   <path d="M470 175 l10 -10 a8 8 0 0 1 12 12 l-22 22 l-22 -22 a8 8 0 0 1 12 -12z" fill="#e8736b"/>
-</g></svg></div>
-  <div class="wrap slide-foot">
+</g></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">AI 应用 · 聊天机器人</span><span class="en">AI app · Chatbot</span></span><span class="sep"></span><span class="st"><span class="zh">长期运行</span><span class="en">Running</span></span></p><span class="idx">05</span></div>
+    <a class="tile-link" href="projects/qq-bot/"><h3><span class="zh">QQ 机器人<em>「小瓜」</em></span><span class="en">Xiaogua <em>QQ Bot</em></span></h3></a>
     <p><span class="zh">有人格、有情绪、会记事、会斗图的 QQ 群聊 AI 机器人。</span><span class="en">A QQ group-chat AI with personas, moods, memory and a meme habit.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/qq-bot/"><span class="zh">查看项目</span><span class="en">Explore Xiaogua QQ Bot</span> <i>↗</i></a></div>
+    <div class="actions"><a class="btn" href="projects/qq-bot/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article><article class="slide" style="--accent:#f0d36b" data-i="5" aria-hidden="true">
-  <div class="wrap slide-head">
-    <div><p class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="sep"></span><span class="st"><span class="zh">已完成</span><span class="en">Completed</span></span></p><h2 class="slide-title"><span class="zh">航空起动/<em>发电系统</em></span><span class="en">Starter/<em>Generator</em></span></h2></div>
-    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
-  </div>
-  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Aircraft starter/generator" xmlns="http://www.w3.org/2000/svg">
+</article><article class="tile" style="--accent:#f0d36b">
+  <a class="tile-art" href="projects/starter-generator/" aria-label="Aircraft Starter/Generator Simulation"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Aircraft starter/generator" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
 <g transform="translate(200 180)">
   <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="#3b4a44"/>
@@ -215,32 +216,28 @@
 <rect x="420" y="130" width="130" height="90" rx="10" fill="#18241f" stroke="var(--accent)" stroke-width="2.5"/>
 <path d="M436 160 q10 -16 20 0 t20 0 t20 0" fill="none" stroke="#eceee0" stroke-width="3"/>
 <path d="M436 196 H530" stroke="var(--accent)" stroke-width="3"/><path d="M436 206 H530" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>
-<path d="M400 175 H418" stroke="#eceee0" stroke-width="3"/></svg></div>
-  <div class="wrap slide-foot">
+<path d="M400 175 H418" stroke="#eceee0" stroke-width="3"/></svg></a>
+  <div class="tile-body">
+    <div class="tile-top"><p class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="sep"></span><span class="st"><span class="zh">已完成</span><span class="en">Completed</span></span></p><span class="idx">06</span></div>
+    <a class="tile-link" href="projects/starter-generator/"><h3><span class="zh">航空起动/<em>发电系统</em></span><span class="en">Starter/<em>Generator</em></span></h3></a>
     <p><span class="zh">Simulink 中的航空大功率起动/发电系统模型，网侧为两电平 AFE。已完成。</span><span class="en">A Simulink model of a high-power aircraft starter/generator with a two-level AFE. Completed.</span></p>
-    <div class="slide-cta"><a class="btn solid" href="projects/starter-generator/"><span class="zh">查看项目</span><span class="en">Explore Aircraft Starter/Generator Simulation</span> <i>↗</i></a></div>
+    <div class="actions"><a class="btn" href="projects/starter-generator/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
   </div>
-</article>
-    </div>
-    <div class="wrap sc-bottom">
-      <div class="sc-tabs" role="tablist"><button class="tab is-active" type="button" data-i="0" style="--accent:#f2b880"><span class="bar"><span class="fill"></span></span><span class="num">01</span> <span class="zh">形声</span><span class="en">ShapeSound</span></button><button class="tab" type="button" data-i="1" style="--accent:#ef8a7f"><span class="bar"><span class="fill"></span></span><span class="num">02</span> <span class="zh">郝哥快跑</span><span class="en">Run Haoge Run</span></button><button class="tab" type="button" data-i="2" style="--accent:#c9b2ff"><span class="bar"><span class="fill"></span></span><span class="num">03</span> <span class="zh">模拟指挥</span><span class="en">Gesture Driven Ensemble</span></button><button class="tab" type="button" data-i="3" style="--accent:#9fd3e8"><span class="bar"><span class="fill"></span></span><span class="num">04</span> <span class="zh">全自动扒谱</span><span class="en">Auto Transcription</span></button><button class="tab" type="button" data-i="4" style="--accent:#a6e3a1"><span class="bar"><span class="fill"></span></span><span class="num">05</span> <span class="zh">小瓜</span><span class="en">Xiaogua QQ Bot</span></button><button class="tab" type="button" data-i="5" style="--accent:#f0d36b"><span class="bar"><span class="fill"></span></span><span class="num">06</span> <span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span></button></div>
-      <p class="sc-hint">⇕ <span class="zh">滚动切换项目</span><span class="en">Scroll to switch projects</span></p>
-    </div>
+</article></div>
   </div>
 </section>
 
 <section class="explore" id="explore">
   <div class="wrap">
-    <div class="sec-head"><h2><span class="zh">翻翻这本<em>笔记</em></span><span class="en">Explore the <em>notebook</em></span></h2><span class="rule"></span><span class="kicker-s">03 <span class="zh">个入口</span><span class="en">destinations</span></span></div>
-    <p class="intro"><span class="zh">我是 Rose，东南大学计算机专业大一学生。把线条变成声音、把手势变成指挥、把电路变成仿真——这里收着我做过和正在做的东西。</span><span class="en">I’m Rose, a first-year CS student at Southeast University. Turning lines into sound, gestures into conducting and circuits into simulations — this is where I keep what I build.</span></p>
+    <div class="sec-head"><h2><span class="zh">去别处<em>看看</em></span><span class="en">Elsewhere</span></h2><span class="rule"></span><span class="kicker-s">03 <span class="zh">个入口</span><span class="en">links</span></span></div>
     <div class="dests">
-      <a class="dest" href="about/" style="--accent:#cfe89a">
+      <a class="dest" href="about/" style="--accent:#f2b880">
         <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="num">01 / <span class="zh">关于</span><span class="en">About</span></span><span class="arr">↗</span></span>
         <h3><span class="zh">关于我</span><span class="en">About me</span></h3><p><span class="zh">我是谁、在学什么、对什么感兴趣。</span><span class="en">Who I am, what I study and what I’m into.</span></p></a>
       <a class="dest" href="projects/" style="--accent:#9fd3e8">
         <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="1.5"/><rect x="13" y="4" width="8" height="7" rx="1.5"/><rect x="3" y="13" width="8" height="7" rx="1.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/></svg></span><span class="num">02 / <span class="zh">项目</span><span class="en">Projects</span></span><span class="arr">↗</span></span>
         <h3><span class="zh">项目目录</span><span class="en">Project directory</span></h3><p><span class="zh">六个项目的介绍、试玩入口和代码仓库。</span><span class="en">Write-ups, live demos and repositories for all six projects.</span></p></a>
-      <a class="dest" href="https://github.com/Rose-MYS" style="--accent:#f2b880">
+      <a class="dest" href="https://github.com/Rose-MYS" style="--accent:#c9b2ff">
         <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="num">03 / GitHub</span><span class="arr">↗</span></span>
         <h3><span class="zh">源代码</span><span class="en">Source code</span></h3><p><span class="zh">公开项目的代码都在这里。</span><span class="en">Where the code for public projects lives.</span></p></a>
     </div>
