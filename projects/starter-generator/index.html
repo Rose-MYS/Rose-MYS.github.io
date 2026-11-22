@@ -7,26 +7,46 @@
 <meta name="title-zh" content="航空起动/发电系统仿真 · Rose">
 <meta name="title-en" content="Aircraft Starter/Generator Simulation · Rose">
 <meta name="description" content="在 MATLAB/Simulink 中搭建的航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。项目已完成并交付。">
+<meta name="theme-color" content="#0f1915">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/style.css">
 <script src="../../assets/site.js"></script>
 </head>
-<body>
-<header class="topbar">
+<body class="">
+<header class="mast">
   <div class="wrap">
-    <a class="brand" href="../../">Rose</a>
+    <a class="brand" href="../../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21 C9 21 10 9 16 11 S 23 24 29 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="11" r="2.6" fill="currentColor"/></svg>Rose</a>
     <nav class="nav"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../../projects/" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
     <button class="lang-btn" type="button" aria-label="切换语言 / Switch language">中文</button>
   </div>
 </header>
 <main>
-<section class="page-head"><div class="wrap">
-  <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> / <a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a> / <span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span></p>
-  <h1><span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span></h1>
-  <p class="sub"><span class="zh">在 MATLAB/Simulink 中搭建的航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。项目已完成并交付。</span><span class="en">A MATLAB/Simulink model of a high-power aircraft starter/generator system, with a three-phase two-level six-switch active front end (AFE) on the grid side. Completed and delivered.</span></p>
-  <div class="actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"></div>
+<section class="phead detail-head" style="--accent:#f0d36b"><div class="wrap dh-grid">
+  <div>
+    <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> <span>/</span> <a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a> <span>/</span> <span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span></p>
+    <p class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="sep"></span><span class="st"><span class="zh">已完成</span><span class="en">Completed</span></span></p>
+    <h1><span class="zh">航空起动/<em>发电系统</em></span><span class="en">Starter/<em>Generator</em></span></h1>
+    <p class="sub"><span class="zh">在 MATLAB/Simulink 中搭建的航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。项目已完成并交付。</span><span class="en">A MATLAB/Simulink model of a high-power aircraft starter/generator system, with a three-phase two-level six-switch active front end (AFE) on the grid side. Completed and delivered.</span></p>
+    <div class="actions"></div>
+  </div>
+  <div class="dh-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Aircraft starter/generator" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(200 180)">
+  <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="#3b4a44"/>
+  <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="none" stroke="#56685f" stroke-width="3"/>
+  <ellipse cx="0" cy="0" rx="40" ry="90" fill="#26322d" stroke="#6d8077" stroke-width="4"/>
+  <g stroke="#9fb1a6" stroke-width="5" stroke-linecap="round">
+    <path d="M0 0 L-6 -78"/><path d="M0 0 L22 -62"/><path d="M0 0 L32 -10"/><path d="M0 0 L24 56"/><path d="M0 0 L-4 80"/><path d="M0 0 L-28 48"/><path d="M0 0 L-34 -8"/><path d="M0 0 L-26 -62"/>
+  </g>
+  <circle r="12" fill="var(--accent)"/>
+</g>
+<path d="M330 60 l-26 52 h22 l-16 46 l44 -62 h-22 l18 -36z" fill="var(--accent)"/>
+<rect x="420" y="130" width="130" height="90" rx="10" fill="#18241f" stroke="var(--accent)" stroke-width="2.5"/>
+<path d="M436 160 q10 -16 20 0 t20 0 t20 0" fill="none" stroke="#eceee0" stroke-width="3"/>
+<path d="M436 196 H530" stroke="var(--accent)" stroke-width="3"/><path d="M436 206 H530" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M400 175 H418" stroke="#eceee0" stroke-width="3"/></svg></div>
 </div></section>
-<section class="wrap">
+<section class="wrap" style="--accent:#f0d36b">
   <dl class="facts"><div><dt><span class="zh">工具</span><span class="en">Tools</span></dt><dd>MATLAB / Simulink</dd></div><div><dt><span class="zh">对象</span><span class="en">System</span></dt><dd><span class="zh">航空大功率起动/发电系统</span><span class="en">High-power aircraft starter/generator</span></dd></div><div><dt><span class="zh">网侧</span><span class="en">Grid side</span></dt><dd><span class="zh">三相两电平六开关 AFE</span><span class="en">3-phase 2-level 6-switch AFE</span></dd></div><div><dt><span class="zh">状态</span><span class="en">Status</span></dt><dd><span class="zh">已完成并交付</span><span class="en">Completed & delivered</span></dd></div></dl>
   
   <div class="prose"><h2><span class="zh">简介</span><span class="en">Overview</span></h2>
@@ -76,10 +96,10 @@
 <h2><span class="zh">延伸阅读</span><span class="en">Further reading</span></h2><p class="muted"><span class="zh">以下是公开的外部资料，供了解相关背景，与本项目的模型无直接关联。</span><span class="en">Public external resources for background; they are not part of this project’s model.</span></p><ul class="reading"><li><a href="https://imperix.com/doc/TN166" target="_blank" rel="noopener">Active Front End (AFE)</a> <span class="src">imperix · Technical note</span><br><span class="zh">AFE 的工作原理、典型拓扑和直流母线预充电。</span><span class="en">How an AFE works, its typical topology and DC-bus pre-charging.</span></li><li><a href="https://www.mathworks.com/help/sps/ug/grid-connected-rectifier.html" target="_blank" rel="noopener">Three-Phase Grid-Connected Rectifier Control</a> <span class="src">MathWorks · Simscape example</span><br><span class="zh">用 PI 级联控制稳定直流母线电压的 Simulink 示例。</span><span class="en">A Simulink example that regulates the DC-link voltage with cascaded PI control.</span></li><li><a href="https://www.mathworks.com/help/sps/ref/pfcrectifiercontrollerthreephase.html" target="_blank" rel="noopener">PFC Rectifier Controller (Three-Phase)</a> <span class="src">MathWorks · Block reference</span><br><span class="zh">三相 PFC 整流控制器模块：内置锁相环，dq 轴电流控制。</span><span class="en">Three-phase PFC rectifier controller block with a built-in PLL and dq-axis current control.</span></li><li><a href="https://doi.org/10.3384/ecp11063388" target="_blank" rel="noopener">Modeling a Mains Connected PWM Converter with Voltage-Oriented Control</a> <span class="src">Haumer & Kral · Modelica Conference 2011</span><br><span class="zh">讲解电压定向控制（VOC）下 AFE 的建模与参数设计。</span><span class="en">Modelling and tuning an AFE under voltage-oriented control (VOC).</span></li><li><a href="https://doi.org/10.1109/ACCESS.2020.3007791" target="_blank" rel="noopener">High-Power Machines and Starter-Generator Topologies for More Electric Aircraft</a> <span class="src">Nøland et al. · IEEE Access 2020 (open access)</span><br><span class="zh">多电飞机中大功率电机与起动/发电机拓扑的综述。</span><span class="en">A review of high-power machines and starter/generator topologies for more-electric aircraft.</span></li><li><a href="https://aperta.ulakbim.gov.tr/record/260281" target="_blank" rel="noopener">A Review of Conventional and New-Generation Aircraft Starter/Generators</a> <span class="src">Oksuztepe, Kaya & Kurum · open access</span><br><span class="zh">从电驱动角度对比传统与新一代飞机起动/发电机。</span><span class="en">Compares conventional and new-generation aircraft starter/generators from an electric-drive perspective.</span></li></ul></div>
 </section>
 </main>
-<footer>
+<footer class="foot">
   <div class="wrap">
     <span>© 2026 Rose</span>
-    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub</a></span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub ↗</a></span>
   </div>
 </footer>
 </body>

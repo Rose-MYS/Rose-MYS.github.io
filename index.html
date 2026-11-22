@@ -6,95 +6,251 @@
 <title>Rose · Personal site</title>
 <meta name="title-zh" content="Rose · 个人主页">
 <meta name="title-en" content="Rose · Personal site">
-<meta name="description" content="Rose 的个人主页：网页乐器、小游戏、交互装置与电力电子仿真项目。">
+<meta name="description" content="Rose 的个人主页：网页乐器、小游戏、交互装置、自动扒谱、AI 聊天机器人与电力电子仿真。">
+<meta name="theme-color" content="#0f1915">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/site.js"></script>
 </head>
-<body>
-<header class="topbar">
+<body class="is-home">
+<header class="mast">
   <div class="wrap">
-    <a class="brand" href="">Rose</a>
+    <a class="brand" href=""><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21 C9 21 10 9 16 11 S 23 24 29 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="11" r="2.6" fill="currentColor"/></svg>Rose</a>
     <nav class="nav"><a href="" aria-current="page"><span class="zh">首页</span><span class="en">Home</span></a><a href="about/"><span class="zh">关于</span><span class="en">About</span></a><a href="projects/"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
     <button class="lang-btn" type="button" aria-label="切换语言 / Switch language">中文</button>
   </div>
 </header>
 <main>
-<section class="hero">
-  <div class="staff" aria-hidden="true"></div>
-  <svg class="stroke" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M-20 120 C 120 120, 160 40, 280 60 S 430 140, 540 90 S 700 20, 820 70 S 1000 140, 1220 50"/>
-    <circle cx="280" cy="60" r="6" style="animation-delay:1.2s"/>
-    <circle cx="540" cy="90" r="6" style="animation-delay:1.8s"/>
-    <circle cx="820" cy="70" r="6" style="animation-delay:2.4s"/>
-  </svg>
-  <div class="wrap">
-    <p class="eyebrow"><span class="zh">个人主页 · 项目笔记本</span><span class="en">Personal site · Project notebook</span></p>
-    <h1>Rose</h1>
-    <p class="lede"><span class="zh">把线条变成声音，把电路变成仿真。这里收着我做过和正在做的东西：网页乐器、小游戏、交互装置、自动扒谱、AI 聊天机器人，还有电力电子仿真。</span><span class="en">Turning lines into sound and circuits into simulations. A notebook of things I have built or am building: a web instrument, a small game, an interactive installation, automatic music transcription, an AI chatbot and power-electronics simulations.</span></p>
-  </div>
-</section>
-
-<section class="section" id="projects">
-  <div class="wrap">
-    <div class="section-head">
-      <h2><span class="num">01</span><span class="zh">项目</span><span class="en">Projects</span></h2>
-      <a href="projects/"><span class="zh">全部项目 →</span><span class="en">All projects →</span></a>
+<section class="showcase" id="showcase" style="--n:6">
+  <div class="sc-sticky">
+    <div class="wrap sc-top">
+      <span class="kicker"><i></i><span class="zh">项目笔记本</span><span class="en">Project notebook</span></span>
+      <span class="sc-right"><span class="sc-count"><b class="sc-cur">01</b> / 06</span><a class="sc-skip" href="#explore"><span class="zh">跳过展台 ↓</span><span class="en">Skip showcase ↓</span></a></span>
     </div>
-    <div class="cards"><article class="card" style="--c:var(--accent)">
-  <div class="meta"><span><span class="zh">网页乐器</span><span class="en">Web instrument</span></span><span class="tag live"><span class="zh">可玩</span><span class="en">Playable</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</span></div>
-  <h3><span class="zh">形声 ShapeSound</span><span class="en">ShapeSound</span><small><span class="zh">画出来的音乐</span><span class="en">形声 · Music you can draw</span></small></h3>
-  <p><span class="zh">在纸上画线，播放头扫过就发声：线越高音越高，颜色就是乐器。16 种实时合成音色、11 首示例曲，还能导入谱子、把照片描成会响的画。</span><span class="en">Draw lines on paper and a playhead turns them into sound: height is pitch, colour is instrument. 16 synthesised instruments, 11 demo songs, score import and photo-to-line tracing.</span></p>
-  <div class="actions"><a class="btn primary" href="projects/shapesound/play/"><span class="zh">在线试玩 ▶</span><span class="en">Play ▶</span></a><a class="btn" href="projects/shapesound/"><span class="zh">项目介绍</span><span class="en">Details</span></a><a class="btn" href="https://github.com/Rose-MYS/ShapeSound">GitHub</a></div>
+    <div class="sc-slides">
+      <article class="slide is-active" style="--accent:#f2b880" data-i="0" aria-hidden="false">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">网页乐器</span><span class="en">Web instrument</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><h2 class="slide-title"><span class="zh">形声 <em>ShapeSound</em></span><span class="en">Shape<em>Sound</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="ShapeSound" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(300 175) skewX(-14) rotate(-4)">
+  <rect x="-210" y="-120" width="420" height="250" rx="10" fill="#e9e3cf"/>
+  <rect x="-210" y="-120" width="420" height="250" rx="10" fill="none" stroke="#c9bf9f" stroke-width="2"/>
+  <g stroke="#d3caae" stroke-width="1">
+    <path d="M-210 -70H210M-210 -20H210M-210 30H210M-210 80H210"/>
+    <path d="M-140 -120V130M-70 -120V130M0 -120V130M70 -120V130M140 -120V130"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-width="7">
+    <path d="M-185 60 C-140 60 -120 -40 -70 -40 S 10 40 60 10 S 140 -80 190 -60" stroke="#e8875b"/>
+    <path d="M-180 -85 H-60" stroke="#3f8f8a"/>
+    <path d="M-30 95 L40 -5" stroke="#c45b8a"/>
+    <path d="M90 100 V20" stroke="#7a9b3c"/>
+    <path d="M110 100 V40" stroke="#7a9b3c"/>
+    <path d="M130 100 V10" stroke="#7a9b3c"/>
+  </g>
+  <rect x="-8" y="-128" width="16" height="266" rx="8" fill="var(--accent)" opacity=".35"/>
+  <rect x="-2" y="-128" width="4" height="266" fill="var(--accent)"/>
+  <circle cx="0" cy="22" r="9" fill="#fff" stroke="var(--accent)" stroke-width="4"/>
+  <circle cx="0" cy="-44" r="7" fill="#fff" stroke="var(--accent)" stroke-width="3"/>
+</g>
+<g fill="var(--accent)" opacity=".8">
+  <path d="M500 70 q10 -20 20 0 v28 a8 8 0 1 1 -4 -7 v-17" />
+  <path d="M80 250 q8 -16 16 0 v22 a7 7 0 1 1 -4 -6 v-12"/>
+</g></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">画线即作曲的网页乐器，点开就能在浏览器里玩。</span><span class="en">A web instrument where drawing a line writes music — playable right in your browser.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/shapesound/play/"><span class="zh">在线试玩</span><span class="en">Play ShapeSound</span> <i>↗</i></a><a class="btn" href="projects/shapesound/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
+  </div>
+</article><article class="slide" style="--accent:#ef8a7f" data-i="1" aria-hidden="true">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">3D 网页游戏</span><span class="en">3D web game</span></span><span class="sep"></span><span class="st"><span class="zh">可玩</span><span class="en">Playable</span></span></p><h2 class="slide-title"><span class="zh">郝哥<em>快跑</em></span><span class="en">Run Haoge <em>Run</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Run Haoge Run" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<path d="M250 70 H350 L560 320 H40 Z" fill="#3a3530"/>
+<path d="M250 70 H350 L560 320 H40 Z" fill="none" stroke="#5a5048" stroke-width="3"/>
+<g stroke="#e9e3cf" stroke-width="4" stroke-dasharray="18 16" opacity=".7">
+  <path d="M283 72 L180 318"/><path d="M317 72 L420 318"/>
+</g>
+<g>
+  <rect x="268" y="120" width="30" height="22" rx="3" fill="#8a6d4f"/>
+  <rect x="380" y="200" width="56" height="40" rx="4" fill="#8a6d4f"/><rect x="380" y="200" width="56" height="10" fill="#a8875f"/>
+  <rect x="120" y="230" width="70" height="20" rx="4" fill="#c4432b"/>
+</g>
+<g transform="translate(300 255)">
+  <path d="M-62 0 A62 62 0 0 0 62 0 Z" fill="#2f7d4f"/>
+  <path d="M-52 0 A52 52 0 0 0 52 0 Z" fill="#e9f0d0"/>
+  <path d="M-46 0 A46 46 0 0 0 46 0 Z" fill="var(--accent)"/>
+  <g fill="#1c2230"><ellipse cx="-22" cy="14" rx="3" ry="5"/><ellipse cx="0" cy="24" rx="3" ry="5"/><ellipse cx="22" cy="14" rx="3" ry="5"/><ellipse cx="-10" cy="34" rx="3" ry="5"/><ellipse cx="12" cy="34" rx="3" ry="5"/></g>
+</g>
+<g stroke="var(--accent)" stroke-width="4" stroke-linecap="round" opacity=".7">
+  <path d="M470 120 H540"/><path d="M490 145 H570"/><path d="M60 140 H120"/><path d="M40 165 H100"/>
+</g></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">3D 三车道无尽跑酷：躲障碍、收西瓜、放「保熟」技能。</span><span class="en">A 3D three-lane endless runner: dodge, collect watermelons, unleash “Baoshu”.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/run-haoge-run/play/"><span class="zh">在线试玩</span><span class="en">Play Run Haoge Run</span> <i>↗</i></a><a class="btn" href="projects/run-haoge-run/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a></div>
+  </div>
+</article><article class="slide" style="--accent:#c9b2ff" data-i="2" aria-hidden="true">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">数字交互 · 比赛</span><span class="en">Interaction · Competition</span></span><span class="sep"></span><span class="st"><span class="zh">团队项目 · 进行中</span><span class="en">Team · Ongoing</span></span></p><h2 class="slide-title"><span class="zh">模拟<em>指挥</em></span><span class="en">Gesture <em>Ensemble</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Gesture Driven Ensemble" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<rect x="90" y="40" width="420" height="250" rx="16" fill="#18241f" stroke="#3a4a40" stroke-width="2"/>
+<g stroke="#eceee0" stroke-width="4" fill="none" stroke-linecap="round">
+  <path d="M110 80 V60 H130"/><path d="M470 60 H490 V80"/><path d="M110 250 V270 H130"/><path d="M470 270 H490 V250"/>
+</g>
+<circle cx="490" cy="54" r="5" fill="#e8736b"/>
+
+<g transform="translate(200 175) scale(1 1)" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round">
+  <path d="M0 60 L0 10 M0 10 L-22 -30 M0 10 L-6 -46 M0 10 L10 -44 M0 10 L24 -34 M0 40 L-30 20"/>
+  <g fill="#eceee0" stroke="none">
+    <circle cx="0" cy="60" r="6"/><circle cx="0" cy="10" r="6"/><circle cx="-22" cy="-30" r="5"/><circle cx="-6" cy="-46" r="5"/>
+    <circle cx="10" cy="-44" r="5"/><circle cx="24" cy="-34" r="5"/><circle cx="-30" cy="20" r="5"/>
+  </g>
+</g>
+
+<g transform="translate(400 175) scale(-1 1)" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round">
+  <path d="M0 60 L0 10 M0 10 L-22 -30 M0 10 L-6 -46 M0 10 L10 -44 M0 10 L24 -34 M0 40 L-30 20"/>
+  <g fill="#eceee0" stroke="none">
+    <circle cx="0" cy="60" r="6"/><circle cx="0" cy="10" r="6"/><circle cx="-22" cy="-30" r="5"/><circle cx="-6" cy="-46" r="5"/>
+    <circle cx="10" cy="-44" r="5"/><circle cx="24" cy="-34" r="5"/><circle cx="-30" cy="20" r="5"/>
+  </g>
+</g>
+<g fill="none" stroke="var(--accent)" stroke-width="2.5" opacity=".6">
+  <path d="M260 120 q40 -40 80 0"/><path d="M245 100 q55 -60 110 0"/><path d="M230 80 q70 -80 140 0"/>
+</g>
+<g fill="var(--accent)">
+  <rect x="215" y="300" width="14" height="16" rx="2"/><rect x="237" y="290" width="14" height="26" rx="2"/><rect x="259" y="278" width="14" height="38" rx="2"/>
+  <rect x="281" y="270" width="14" height="46" rx="2"/><rect x="303" y="282" width="14" height="34" rx="2"/><rect x="325" y="292" width="14" height="24" rx="2"/>
+  <rect x="347" y="286" width="14" height="30" rx="2"/><rect x="369" y="298" width="14" height="18" rx="2"/>
+</g></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">站在摄像头前，用双手指挥一支乐队。东南大学新生 AI 创客大赛参赛作品。</span><span class="en">Conduct a band with your hands in front of a camera. Our SEU Freshman AI Maker Competition entry.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/gesture-conductor/"><span class="zh">查看项目</span><span class="en">Explore Gesture Driven Ensemble</span> <i>↗</i></a></div>
+  </div>
+</article><article class="slide" style="--accent:#9fd3e8" data-i="3" aria-hidden="true">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">音频 AI · 扒谱</span><span class="en">Audio AI · Transcription</span></span><span class="sep"></span><span class="st"><span class="zh">进行中</span><span class="en">In progress</span></span></p><h2 class="slide-title"><span class="zh">全自动<em>扒谱</em></span><span class="en">Auto <em>Transcription</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11-22</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Auto Transcription" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<rect x="40" y="110" width="160" height="130" rx="12" fill="#18241f" stroke="#3a4a40" stroke-width="2"/>
+<path d="M60 175 L60 142 L64 179.8 L68 165.4 L72 199 L76 173.4 L80 159.0 L84 187 L88 167.0 L92 189.4 L96 175 L100 160.6 L104 183.0 L108 163 L112 191.0 L116 176.6 L120 151 L124 184.6 L128 170.2 L132 208 L136 178.2 L140 163.8 L144 196 L148 171.8 L152 157.4 L156 184 L160 165.4 L164 187.8 L168 172 L172 159.0 L176 181.4 L180 160 L184 189.4 L188 175.0 L192 148 L196 183.0 L200 168.6" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M210 175 H236" stroke="#eceee0" stroke-width="3" stroke-linecap="round"/><path d="M230 167 L240 175 L230 183" fill="none" stroke="#eceee0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="250" y="110" width="110" height="130" rx="12" fill="#18241f" stroke="#3a4a40" stroke-width="2"/>
+<g fill="var(--accent)" opacity=".9">
+  <rect x="262" y="128" width="30" height="9" rx="2"/><rect x="296" y="146" width="24" height="9" rx="2"/><rect x="270" y="164" width="40" height="9" rx="2"/>
+  <rect x="316" y="182" width="32" height="9" rx="2"/><rect x="262" y="200" width="22" height="9" rx="2"/><rect x="290" y="218" width="44" height="9" rx="2"/>
+</g>
+<path d="M370 175 H396" stroke="#eceee0" stroke-width="3" stroke-linecap="round"/><path d="M390 167 L400 175 L390 183" fill="none" stroke="#eceee0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(410 90) rotate(3)">
+  <rect width="160" height="180" rx="6" fill="#e9e3cf"/>
+  <g stroke="#6b6450" stroke-width="1.4"><path d="M14 50H146M14 60H146M14 70H146M14 80H146M14 90H146"/><path d="M14 120H146M14 130H146M14 140H146M14 150H146M14 160H146"/></g>
+  <g fill="#1c2230">
+    <ellipse cx="40" cy="85" rx="6" ry="4.5" transform="rotate(-20 40 85)"/><path d="M45.5 84 V58" stroke="#1c2230" stroke-width="1.6"/>
+    <ellipse cx="66" cy="75" rx="6" ry="4.5" transform="rotate(-20 66 75)"/><path d="M71.5 74 V48" stroke="#1c2230" stroke-width="1.6"/>
+    <ellipse cx="92" cy="70" rx="6" ry="4.5" transform="rotate(-20 92 70)"/><path d="M97.5 69 V43" stroke="#1c2230" stroke-width="1.6"/>
+    <ellipse cx="118" cy="80" rx="6" ry="4.5" transform="rotate(-20 118 80)"/><path d="M123.5 79 V53" stroke="#1c2230" stroke-width="1.6"/>
+    <ellipse cx="52" cy="155" rx="6" ry="4.5" transform="rotate(-20 52 155)"/><path d="M57.5 154 V128" stroke="#1c2230" stroke-width="1.6"/>
+    <ellipse cx="104" cy="150" rx="6" ry="4.5" transform="rotate(-20 104 150)"/><path d="M109.5 149 V123" stroke="#1c2230" stroke-width="1.6"/>
+  </g>
+  <text x="80" y="28" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#1c2230">MusicXML</text>
+</g></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">录音进去，五线谱、MIDI 和简谱出来。</span><span class="en">Audio in — sheet music, MIDI and numbered notation out.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/auto-transcription/"><span class="zh">查看项目</span><span class="en">Explore Auto Transcription</span> <i>↗</i></a></div>
+  </div>
+</article><article class="slide" style="--accent:#a6e3a1" data-i="4" aria-hidden="true">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">AI 应用 · 聊天机器人</span><span class="en">AI app · Chatbot</span></span><span class="sep"></span><span class="st"><span class="zh">长期运行</span><span class="en">Running</span></span></p><h2 class="slide-title"><span class="zh">QQ 机器人<em>「小瓜」</em></span><span class="en">Xiaogua <em>QQ Bot</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Xiaogua QQ bot" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(300 235)">
+  <path d="M-110 0 A110 110 0 0 0 110 0 Z" fill="#2f7d4f"/>
+  <path d="M-96 0 A96 96 0 0 0 96 0 Z" fill="#e9f0d0"/>
+  <path d="M-86 0 A86 86 0 0 0 86 0 Z" fill="#e8736b"/>
+  <path d="M-110 0 H110" stroke="#24603c" stroke-width="4"/>
+  <g fill="#1c2230"><circle cx="-30" cy="26" r="9"/><circle cx="30" cy="26" r="9"/></g>
+  <g fill="#fff"><circle cx="-27" cy="23" r="3"/><circle cx="33" cy="23" r="3"/></g>
+  <path d="M-12 46 q12 12 24 0" fill="none" stroke="#1c2230" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#1c2230" opacity=".8"><ellipse cx="-56" cy="40" rx="3" ry="5"/><ellipse cx="56" cy="40" rx="3" ry="5"/><ellipse cx="-40" cy="64" rx="3" ry="5"/><ellipse cx="40" cy="64" rx="3" ry="5"/></g>
+  <g fill="#f4a6a0" opacity=".8"><ellipse cx="-58" cy="18" rx="10" ry="5"/><ellipse cx="58" cy="18" rx="10" ry="5"/></g>
+</g>
+<g>
+  <path d="M70 70 h150 a14 14 0 0 1 14 14 v40 a14 14 0 0 1 -14 14 h-110 l-22 18 v-18 h-18 a14 14 0 0 1 -14 -14 v-40 a14 14 0 0 1 14 -14z" fill="#eceee0"/>
+  <g fill="#1c2230"><circle cx="120" cy="104" r="6"/><circle cx="145" cy="104" r="6"/><circle cx="170" cy="104" r="6"/></g>
+  <path d="M380 50 h140 a14 14 0 0 1 14 14 v44 a14 14 0 0 1 -14 14 h-18 v18 l-22 -18 h-100 a14 14 0 0 1 -14 -14 v-44 a14 14 0 0 1 14 -14z" fill="var(--accent)"/>
+  <path d="M412 78 h92 M412 96 h60" stroke="#10201a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M470 175 l10 -10 a8 8 0 0 1 12 12 l-22 22 l-22 -22 a8 8 0 0 1 12 -12z" fill="#e8736b"/>
+</g></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">有人格、有情绪、会记事、会斗图的 QQ 群聊 AI 机器人。</span><span class="en">A QQ group-chat AI with personas, moods, memory and a meme habit.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/qq-bot/"><span class="zh">查看项目</span><span class="en">Explore Xiaogua QQ Bot</span> <i>↗</i></a></div>
+  </div>
+</article><article class="slide" style="--accent:#f0d36b" data-i="5" aria-hidden="true">
+  <div class="wrap slide-head">
+    <div><p class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="sep"></span><span class="st"><span class="zh">已完成</span><span class="en">Completed</span></span></p><h2 class="slide-title"><span class="zh">航空起动/<em>发电系统</em></span><span class="en">Starter/<em>Generator</em></span></h2></div>
+    <p class="slide-date"><span class="zh">更新</span><span class="en">Updated</span> 2026-11</p>
+  </div>
+  <div class="slide-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Aircraft starter/generator" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(200 180)">
+  <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="#3b4a44"/>
+  <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="none" stroke="#56685f" stroke-width="3"/>
+  <ellipse cx="0" cy="0" rx="40" ry="90" fill="#26322d" stroke="#6d8077" stroke-width="4"/>
+  <g stroke="#9fb1a6" stroke-width="5" stroke-linecap="round">
+    <path d="M0 0 L-6 -78"/><path d="M0 0 L22 -62"/><path d="M0 0 L32 -10"/><path d="M0 0 L24 56"/><path d="M0 0 L-4 80"/><path d="M0 0 L-28 48"/><path d="M0 0 L-34 -8"/><path d="M0 0 L-26 -62"/>
+  </g>
+  <circle r="12" fill="var(--accent)"/>
+</g>
+<path d="M330 60 l-26 52 h22 l-16 46 l44 -62 h-22 l18 -36z" fill="var(--accent)"/>
+<rect x="420" y="130" width="130" height="90" rx="10" fill="#18241f" stroke="var(--accent)" stroke-width="2.5"/>
+<path d="M436 160 q10 -16 20 0 t20 0 t20 0" fill="none" stroke="#eceee0" stroke-width="3"/>
+<path d="M436 196 H530" stroke="var(--accent)" stroke-width="3"/><path d="M436 206 H530" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M400 175 H418" stroke="#eceee0" stroke-width="3"/></svg></div>
+  <div class="wrap slide-foot">
+    <p><span class="zh">Simulink 中的航空大功率起动/发电系统模型，网侧为两电平 AFE。已完成。</span><span class="en">A Simulink model of a high-power aircraft starter/generator with a two-level AFE. Completed.</span></p>
+    <div class="slide-cta"><a class="btn solid" href="projects/starter-generator/"><span class="zh">查看项目</span><span class="en">Explore Aircraft Starter/Generator Simulation</span> <i>↗</i></a></div>
+  </div>
 </article>
-<article class="card" style="--c:var(--accent-2)">
-  <div class="meta"><span><span class="zh">3D 网页游戏</span><span class="en">3D web game</span></span><span class="tag live"><span class="zh">可玩</span><span class="en">Playable</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11-21</span></div>
-  <h3><span class="zh">郝哥快跑</span><span class="en">Run Haoge Run</span><small><span class="zh">Run Haoge Run</span><span class="en">郝哥快跑</span></small></h3>
-  <p><span class="zh">一款可离线游玩的 3D 三车道无尽跑酷：躲障碍、收西瓜，用「保熟」技能拉开和追兵的距离，还藏着彩蛋。</span><span class="en">An offline 3D three-lane endless runner: dodge obstacles, collect watermelons, and use the “Baoshu” skill to escape the chaser. Easter eggs included.</span></p>
-  <div class="actions"><a class="btn primary" href="projects/run-haoge-run/play/"><span class="zh">在线试玩 ▶</span><span class="en">Play ▶</span></a><a class="btn" href="projects/run-haoge-run/"><span class="zh">项目介绍</span><span class="en">Details</span></a><a class="btn" href="https://github.com/Rose-MYS/run-haoge-run">GitHub</a></div>
-</article>
-<article class="card" style="--c:#8a5a2b">
-  <div class="meta"><span><span class="zh">数字交互 · 比赛</span><span class="en">Interaction · Competition</span></span><span class="tag"><span class="zh">团队项目 · 进行中</span><span class="en">Team · Ongoing</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11</span></div>
-  <h3><span class="zh">模拟指挥</span><span class="en">Gesture Driven Ensemble</span><small><span class="zh">Gesture Driven Ensemble</span><span class="en">模拟指挥</span></small></h3>
-  <p><span class="zh">东南大学第一届新生 AI 创客大赛参赛作品。站在摄像头前，用双手像指挥家一样控制一支乐队的速度与音量。</span><span class="en">Our entry for the 1st SEU Freshman AI Maker Competition. Stand in front of a camera and conduct a band with your hands — tempo and volume follow your gestures.</span></p>
-  <div class="actions"><a class="btn" href="projects/gesture-conductor/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
-</article>
-<article class="card" style="--c:#6a4c93">
-  <div class="meta"><span><span class="zh">音频 AI · 扒谱</span><span class="en">Audio AI · Transcription</span></span><span class="tag"><span class="zh">进行中</span><span class="en">In progress</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11-22</span></div>
-  <h3><span class="zh">全自动扒谱</span><span class="en">Auto Transcription</span><small><span class="zh">录音 → 五线谱 + 简谱</span><span class="en">全自动扒谱 · Audio to sheet music</span></small></h3>
-  <p><span class="zh">把钢琴曲或单旋律录音自动转成能直接导入打谱软件的五线谱（MusicXML）、量化 MIDI 和简谱。在 16 首测试曲上调号与拍号全部识别正确。</span><span class="en">Turns piano or single-melody recordings into clean sheet music (MusicXML), quantised MIDI and numbered notation. Key and time signatures are correct on all 16 test pieces.</span></p>
-  <div class="actions"><a class="btn" href="projects/auto-transcription/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
-</article>
-<article class="card" style="--c:#2f7d4f">
-  <div class="meta"><span><span class="zh">AI 应用 · 聊天机器人</span><span class="en">AI app · Chatbot</span></span><span class="tag"><span class="zh">长期运行</span><span class="en">Running</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11</span></div>
-  <h3><span class="zh">QQ 机器人「小瓜」</span><span class="en">Xiaogua QQ Bot</span><small><span class="zh">DeepSeek 接入 QQ</span><span class="en">小瓜 · DeepSeek on QQ</span></small></h3>
-  <p><span class="zh">接入 DeepSeek 等大模型的 QQ 群聊机器人：有人格、有情绪、有长期记忆，会看图、会斗图，还能自己学新梗、写周记，掉线了能自愈。</span><span class="en">A QQ group-chat bot powered by DeepSeek and other LLMs — with personas, moods and long-term memory. It reads images, trades memes, picks up new slang, writes a weekly diary and recovers from disconnects on its own.</span></p>
-  <div class="actions"><a class="btn" href="projects/qq-bot/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
-</article>
-<article class="card" style="--c:#3b4f7a">
-  <div class="meta"><span><span class="zh">电力电子仿真</span><span class="en">Power electronics</span></span><span class="tag"><span class="zh">已完成</span><span class="en">Completed</span></span><span><span class="zh">更新</span><span class="en">Updated</span> 2026-11</span></div>
-  <h3><span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span><small><span class="zh">Aircraft starter/generator · Simulink</span><span class="en">航空起动/发电系统仿真 · Simulink</span></small></h3>
-  <p><span class="zh">在 MATLAB/Simulink 中搭建的航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。项目已完成并交付。</span><span class="en">A MATLAB/Simulink model of a high-power aircraft starter/generator system, with a three-phase two-level six-switch active front end (AFE) on the grid side. Completed and delivered.</span></p>
-  <div class="actions"><a class="btn" href="projects/starter-generator/"><span class="zh">项目介绍</span><span class="en">Details</span></a></div>
-</article></div>
+    </div>
+    <div class="wrap sc-bottom">
+      <div class="sc-tabs" role="tablist"><button class="tab is-active" type="button" data-i="0" style="--accent:#f2b880"><span class="bar"><span class="fill"></span></span><span class="num">01</span> <span class="zh">形声</span><span class="en">ShapeSound</span></button><button class="tab" type="button" data-i="1" style="--accent:#ef8a7f"><span class="bar"><span class="fill"></span></span><span class="num">02</span> <span class="zh">郝哥快跑</span><span class="en">Run Haoge Run</span></button><button class="tab" type="button" data-i="2" style="--accent:#c9b2ff"><span class="bar"><span class="fill"></span></span><span class="num">03</span> <span class="zh">模拟指挥</span><span class="en">Gesture Driven Ensemble</span></button><button class="tab" type="button" data-i="3" style="--accent:#9fd3e8"><span class="bar"><span class="fill"></span></span><span class="num">04</span> <span class="zh">全自动扒谱</span><span class="en">Auto Transcription</span></button><button class="tab" type="button" data-i="4" style="--accent:#a6e3a1"><span class="bar"><span class="fill"></span></span><span class="num">05</span> <span class="zh">小瓜</span><span class="en">Xiaogua QQ Bot</span></button><button class="tab" type="button" data-i="5" style="--accent:#f0d36b"><span class="bar"><span class="fill"></span></span><span class="num">06</span> <span class="zh">航空起动/发电系统仿真</span><span class="en">Aircraft Starter/Generator Simulation</span></button></div>
+      <p class="sc-hint">⇕ <span class="zh">滚动切换项目</span><span class="en">Scroll to switch projects</span></p>
+    </div>
   </div>
 </section>
 
-<section class="section">
+<section class="explore" id="explore">
   <div class="wrap">
-    <div class="section-head"><h2><span class="num">02</span><span class="zh">去别处看看</span><span class="en">Elsewhere</span></h2></div>
+    <div class="sec-head"><h2><span class="zh">翻翻这本<em>笔记</em></span><span class="en">Explore the <em>notebook</em></span></h2><span class="rule"></span><span class="kicker-s">03 <span class="zh">个入口</span><span class="en">destinations</span></span></div>
+    <p class="intro"><span class="zh">我是 Rose，东南大学计算机专业大一学生。把线条变成声音、把手势变成指挥、把电路变成仿真——这里收着我做过和正在做的东西。</span><span class="en">I’m Rose, a first-year CS student at Southeast University. Turning lines into sound, gestures into conducting and circuits into simulations — this is where I keep what I build.</span></p>
     <div class="dests">
-      <a class="dest" href="about/"><span class="num">A</span><h3><span class="zh">关于我</span><span class="en">About</span></h3><p><span class="zh">我是谁、在学什么、对什么感兴趣。</span><span class="en">Who I am and what I am into.</span></p></a>
-      <a class="dest" href="projects/"><span class="num">B</span><h3><span class="zh">项目目录</span><span class="en">Project directory</span></h3><p><span class="zh">每个项目的介绍、试玩入口和代码仓库。</span><span class="en">Write-ups, demos and repositories.</span></p></a>
-      <a class="dest" href="https://github.com/Rose-MYS"><span class="num">C</span><h3>GitHub</h3><p><span class="zh">源代码都在这里。</span><span class="en">Where the code lives.</span></p></a>
+      <a class="dest" href="about/" style="--accent:#cfe89a">
+        <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="num">01 / <span class="zh">关于</span><span class="en">About</span></span><span class="arr">↗</span></span>
+        <h3><span class="zh">关于我</span><span class="en">About me</span></h3><p><span class="zh">我是谁、在学什么、对什么感兴趣。</span><span class="en">Who I am, what I study and what I’m into.</span></p></a>
+      <a class="dest" href="projects/" style="--accent:#9fd3e8">
+        <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="1.5"/><rect x="13" y="4" width="8" height="7" rx="1.5"/><rect x="3" y="13" width="8" height="7" rx="1.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/></svg></span><span class="num">02 / <span class="zh">项目</span><span class="en">Projects</span></span><span class="arr">↗</span></span>
+        <h3><span class="zh">项目目录</span><span class="en">Project directory</span></h3><p><span class="zh">六个项目的介绍、试玩入口和代码仓库。</span><span class="en">Write-ups, live demos and repositories for all six projects.</span></p></a>
+      <a class="dest" href="https://github.com/Rose-MYS" style="--accent:#f2b880">
+        <span class="dest-top"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="num">03 / GitHub</span><span class="arr">↗</span></span>
+        <h3><span class="zh">源代码</span><span class="en">Source code</span></h3><p><span class="zh">公开项目的代码都在这里。</span><span class="en">Where the code for public projects lives.</span></p></a>
     </div>
   </div>
 </section>
 </main>
-<footer>
+<footer class="foot">
   <div class="wrap">
     <span>© 2026 Rose</span>
-    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub</a></span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub ↗</a></span>
   </div>
 </footer>
 </body>
