@@ -135,9 +135,6 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .ftab-bar { grid-column: 1 / -1; display: block; height: 2px; margin-top: 8px; background: transparent; border-radius: 2px; overflow: hidden; }
 .ftab.is-active .ftab-bar { background: var(--line); }
 .ftab .fill { display: block; height: 100%; width: 0; background: var(--accent); }
-.feature.playing .ftab.is-active .fill { animation: fill var(--dur, 6s) linear forwards; }
-.feature.paused .ftab.is-active .fill { animation-play-state: paused; }
-@keyframes fill { from { width: 0; } to { width: 100%; } }
 
 .fstage { position: relative; min-height: 560px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--panel); }
 .fslide {
@@ -152,7 +149,7 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
   background-size: auto, 18px 18px; border-bottom: 1px solid var(--line);
 }
 .fslide-art .art { width: 100%; height: 100%; max-height: 360px; }
-.fslide.is-active .art { animation: rise .8s cubic-bezier(.2, .8, .2, 1) both, bob 6s ease-in-out .8s infinite; }
+.fslide.is-active .art { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
 @keyframes rise { from { transform: translateY(var(--from, 26px)) scale(.94) rotate(var(--tilt, -1.5deg)); opacity: 0; } to { transform: none; opacity: 1; } }
 .fstage.dir-up { --from: -60px; --tilt: 1.5deg; }
 .fstage.dir-down { --from: 60px; --tilt: -1.5deg; }
@@ -163,7 +160,7 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .fslide.leaving .art { animation: leave .45s ease forwards; }
 @keyframes leave { to { transform: translateY(calc(var(--from, 26px) * -1)) scale(.96); opacity: 0; } }
 .fhint {
-  position: absolute; right: 16px; top: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 9px;
+  position: absolute; right: 16px; top: 16px; pointer-events: none; z-index: 3; display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper);
   padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(16, 19, 28, .72); backdrop-filter: blur(6px);
   transition: opacity .5s;
@@ -175,7 +172,6 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .fcount { position: absolute; left: 18px; top: 18px; z-index: 3; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--muted); }
 .fcount b { color: var(--paper); font-weight: 400; }
 @media (hover: none) { .fhint .mouse { display: none; } }
-@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .fslide-body { padding: 22px 26px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "meta meta" "title actions" "desc actions"; gap: 6px 24px; align-items: end; }
 .fslide-body .meta { grid-area: meta; }
 .fslide-body h3 { grid-area: title; font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.08; margin: 6px 0 0; }

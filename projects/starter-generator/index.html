@@ -8,9 +8,9 @@
 <meta name="title-en" content="Aircraft Starter/Generator Simulation · Rose">
 <meta name="description" content="在 MATLAB/Simulink 中搭建的航空大功率起动/发电系统模型，网侧采用三相两电平六开关 AFE 变流器。项目已完成并交付。">
 <meta name="theme-color" content="#10131c">
-<link rel="icon" href="../../assets/favicon.svg?v=202611222302" type="image/svg+xml">
-<link rel="stylesheet" href="../../assets/style.css?v=202611222302">
-<script src="../../assets/site.js?v=202611222302"></script>
+<link rel="icon" href="../../assets/favicon.svg?v=202611222307" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css?v=202611222307">
+<script src="../../assets/site.js?v=202611222307"></script>
 </head>
 <body class="">
 <header class="mast">
@@ -36,14 +36,14 @@
   <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="#3b4a44"/>
   <path d="M0 -90 H150 Q200 -90 200 0 Q200 90 150 90 H0 Z" fill="none" stroke="#56685f" stroke-width="3"/>
   <ellipse cx="0" cy="0" rx="40" ry="90" fill="#26322d" stroke="#6d8077" stroke-width="4"/>
-  <g stroke="#9fb1a6" stroke-width="5" stroke-linecap="round">
+  <g stroke="#9fb1a6" stroke-width="5" stroke-linecap="round" style="transform:rotate(calc(var(--phase,0) * 540deg));transform-origin:0 0">
     <path d="M0 0 L-6 -78"/><path d="M0 0 L22 -62"/><path d="M0 0 L32 -10"/><path d="M0 0 L24 56"/><path d="M0 0 L-4 80"/><path d="M0 0 L-28 48"/><path d="M0 0 L-34 -8"/><path d="M0 0 L-26 -62"/>
   </g>
   <circle r="12" fill="var(--accent)"/>
 </g>
-<path d="M330 60 l-26 52 h22 l-16 46 l44 -62 h-22 l18 -36z" fill="var(--accent)"/>
+<path d="M330 60 l-26 52 h22 l-16 46 l44 -62 h-22 l18 -36z" fill="var(--accent)" style="opacity:calc(.45 + ((1 - cos(var(--phase,0) * 6.283rad * 4)) / 2) * .55);transform:scale(calc(.9 + ((1 - cos(var(--phase,0) * 6.283rad * 4)) / 2) * .15));transform-box:fill-box;transform-origin:center;"/>
 <rect x="420" y="130" width="130" height="90" rx="10" fill="#18241f" stroke="var(--accent)" stroke-width="2.5"/>
-<path d="M436 160 q10 -16 20 0 t20 0 t20 0" fill="none" stroke="#eceee0" stroke-width="3"/>
+<clipPath id="sclip"><rect x="432" y="140" width="104" height="40"/></clipPath><g clip-path="url(#sclip)"><path style="transform:translateX(calc(var(--phase,0) * -40px))" d="M436 160 q10 -16 20 0 t20 0 t20 0 t20 0 t20 0 t20 0" fill="none" stroke="#eceee0" stroke-width="3"/></g>
 <path d="M436 196 H530" stroke="var(--accent)" stroke-width="3"/><path d="M436 206 H530" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>
 <path d="M400 175 H418" stroke="#eceee0" stroke-width="3"/></svg></div>
 </div></section>
