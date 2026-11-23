@@ -99,6 +99,10 @@
       }
       if (cur) cur.textContent = (active + 1 < 10 ? '0' : '') + (active + 1);
       lockUntil = now() + 450;
+      var row = box.querySelector('.ftabs');
+      if (row && row.scrollWidth > row.clientWidth + 4) {
+        try { row.scrollTo({ left: Math.max(0, tabs[active].offsetLeft - 16), behavior: 'smooth' }); } catch (e) { row.scrollLeft = tabs[active].offsetLeft - 16; }
+      }
     }
 
     function userTouched() { lastUser = now(); box.classList.add('used'); }
@@ -132,13 +136,38 @@
       t.addEventListener('click', function () { userTouched(); switchTo(k, k > active ? 1 : -1, 0); });
     });
 
-    var sx = 0, sy = 0, st = 0;
-    stage.addEventListener('touchstart', function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = Date.now(); }, { passive: true });
-    stage.addEventListener('touchend', function (e) {
-      var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
-      if (Date.now() - st > 600) return;
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) { if (jump(dx < 0 ? 1 : -1)) buzz(); }
-    }, { passive: true });
+    // 手机/触控笔：左右拖动插画来播放动画，拖过一个项目的长度就切换；上下滑照常滚动页面
+    var drag = null, justDragged = false;
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse') return;
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, base: target, on: false };
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.on) {
+        if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(dy)) return;
+        drag.on = true; userTouched();
+        try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      var w = stage.clientWidth || 300;
+      var t = drag.base - dx / (w * 0.9);
+      lastUser = now();
+      if (t > 1) {
+        if (active < n - 1) { switchTo(active + 1, 1, 0); buzz(); drag.x = e.clientX; drag.base = 0; t = 0; } else t = 1;
+      } else if (t < 0) {
+        if (active > 0) { switchTo(active - 1, -1, 1); buzz(); drag.x = e.clientX; drag.base = 1; t = 1; } else t = 0;
+      }
+      target = t;
+    });
+    function endDrag(e) {
+      if (!drag || (e && e.pointerId !== drag.id)) return;
+      if (drag.on) { justDragged = true; setTimeout(function () { justDragged = false; }, 50); }
+      drag = null;
+    }
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
+    stage.addEventListener('click', function (e) { if (justDragged) { e.preventDefault(); e.stopPropagation(); } }, true);
 
     function onKey(e) {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { if (jump(1)) e.preventDefault(); }
@@ -157,7 +186,7 @@
         target += dt / AUTO_MS;
         if (target >= 1) switchTo(active + 1, 1, 0);
       }
-      phase += (target - phase) * Math.min(1, dt / 110);
+      phase += (target - phase) * Math.min(1, dt / (drag && drag.on ? 40 : 110));
       if (Math.abs(target - phase) < 0.0005) phase = target;
       slides[active].style.setProperty('--phase', phase.toFixed(4));
       updateShapeSound(slides[active].querySelector('.art'), phase);

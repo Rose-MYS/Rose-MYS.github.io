@@ -183,7 +183,16 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .feature.used .fhint { opacity: .45; }
 .fcount { position: absolute; left: 18px; top: 18px; z-index: 3; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--muted); }
 .fcount b { color: var(--paper); font-weight: 400; }
-@media (hover: none) { .fhint .mouse { display: none; } }
+.fstage { touch-action: pan-y; }
+.fhint .finger { display: none; position: relative; width: 18px; height: 12px; }
+.fhint .finger i { position: absolute; top: 3px; left: 2px; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); animation: swipe 1.6s ease-in-out infinite; }
+@keyframes swipe { 0% { transform: translateX(10px); opacity: 0; } 25% { opacity: 1; } 80% { transform: translateX(-2px); opacity: 1; } 100% { transform: translateX(-2px); opacity: 0; } }
+.fhint .h-touch { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .fhint .mouse, .fhint .h-mouse { display: none; }
+  .fhint .finger { display: inline-block; }
+  .fhint .h-touch { display: inline; }
+}
 .fslide-body { padding: 22px 26px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "meta meta" "title actions" "desc actions"; gap: 6px 24px; align-items: end; }
 .fslide-body .meta { grid-area: meta; }
 .fslide-body h3 { grid-area: title; font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.08; margin: 6px 0 0; }
