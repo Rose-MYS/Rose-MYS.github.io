@@ -9,7 +9,7 @@ index.html                 首页（项目卡片）
 about/                     关于我
 projects/                  项目目录
   shapesound/              形声：介绍页 + play/ 在线试玩（来自 Rose-MYS/ShapeSound 的单文件成品）
-  run-haoge-run/           郝哥快跑：介绍页 + play/ 在线试玩（来自 Rose-MYS/run-haoge-run）
+  run-haoge-run/           郝哥快跑：介绍页（试玩嵌入游戏自己的 GitHub Pages：rose-mys.github.io/run-haoge-run/）
   gesture-conductor/       模拟指挥（东南大学第一届新生 AI 创客大赛，团队项目）
   starter-generator/       航空起动/发电系统 Simulink 仿真
 assets/style.css           全站样式
