@@ -1,5 +1,6 @@
 // 语言切换：默认英文，可切换中文；选择记在浏览器里
 (function () {
+  var BASE = ((document.currentScript && document.currentScript.src) || '').replace(/site\.js.*$/, '');
   function getLang() {
     try { return localStorage.getItem('lang') || 'en'; } catch (e) { return 'en'; }
   }
@@ -258,21 +259,56 @@
       stars.forEach(function (s) { if (!s.x) { var h = home(s, 0); s.x = h[0]; s.y = h[1]; } });
     }
 
-    // 声音
-    var ac = null;
+    // 声音：真钢琴采样（Salamander Grand Piano，CC BY 3.0），首次靠近星图时预加载
+    var ac = null, master = null, bufs = {}, loading = false;
+    var MAP = [['C5', 0], ['C5', 2], ['Ds5', 1], ['Fs5', 1], ['A5', 0], ['C6', 0], ['C6', 2]]; // C D E G A C D
+    function audio() {
+      if (!ac) {
+        ac = new (window.AudioContext || window.webkitAudioContext)();
+        master = ac.createDynamicsCompressor(); master.threshold.value = -14; master.ratio.value = 4;
+        var out = ac.createGain(); out.gain.value = 0.9; master.connect(out); out.connect(ac.destination);
+        // 简单的房间混响：衰减噪声做冲激响应
+        var len = Math.round(ac.sampleRate * 2.2), ir = ac.createBuffer(2, len, ac.sampleRate);
+        for (var c = 0; c < 2; c++) { var d = ir.getChannelData(c); for (var k = 0; k < len; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / len, 3.2); }
+        var rev = ac.createConvolver(); rev.buffer = ir;
+        var wet = ac.createGain(); wet.gain.value = 0.22; rev.connect(wet); wet.connect(master);
+        master.rev = rev;
+      }
+      return ac;
+    }
+    function preload() {
+      if (loading || muted) return; loading = true;
+      try { audio(); } catch (e) { return; }
+      ['C5', 'Ds5', 'Fs5', 'A5', 'C6'].forEach(function (n) {
+        fetch(BASE + 'piano/' + n + '.mp3').then(function (r) { return r.arrayBuffer(); }).then(function (ab) {
+          ac.decodeAudioData(ab, function (b) { bufs[n] = b; }, function () {});
+        }).catch(function () {});
+      });
+    }
+    function voice(m, vel) {
+      var b = bufs[m[0]]; if (!b) return false;
+      var t = ac.currentTime, src = ac.createBufferSource(), g = ac.createGain();
+      src.buffer = b; src.playbackRate.value = Math.pow(2, m[1] / 12);
+      g.gain.setValueAtTime(vel, t); g.gain.setValueAtTime(vel, t + 1.8); g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
+      src.connect(g); g.connect(master); g.connect(master.rev);
+      src.start(t); src.stop(t + 3.3);
+      return true;
+    }
     function pluck(i) {
       if (muted) return;
       try {
-        ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+        audio(); preload();
         if (ac.state === 'suspended') ac.resume();
-        var t = ac.currentTime, o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain();
-        o.type = 'triangle'; o2.type = 'sine';
-        o.frequency.value = notes[i % notes.length]; o2.frequency.value = notes[i % notes.length] * 2;
-        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.18, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
-        o.connect(g); o2.connect(g); g.connect(ac.destination);
-        o.start(t); o2.start(t); o.stop(t + 1.25); o2.stop(t + 1.25);
+        var m = MAP[i % MAP.length], vel = 0.5 + Math.random() * 0.15, t0 = Date.now();
+        if (!voice(m, vel)) {
+          // 采样还没下载好：等一下再弹，太久就放弃
+          var tries = setInterval(function () { if (voice(m, vel) || Date.now() - t0 > 500) clearInterval(tries); }, 40);
+        }
       } catch (e) {}
     }
+
+    sky.addEventListener('pointerenter', preload, { once: true });
+    sky.addEventListener('touchstart', preload, { passive: true, once: true });
 
     function pick(x, y) {
       var best = -1, bd = 30 * 30;
