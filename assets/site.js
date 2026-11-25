@@ -592,6 +592,26 @@
     update();
   }
 
+
+  // 训练过程：滚到可见时播放图表/时间线动画；对比滑块
+  function initTraining() {
+    var els = document.querySelectorAll('.tl-chart, .tl-item');
+    if (els.length) {
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.25 });
+        els.forEach(function (el) { io.observe(el); });
+      } else els.forEach(function (el) { el.classList.add('in'); });
+    }
+    document.querySelectorAll('.cmp').forEach(function (c) {
+      var r = c.querySelector('.cmp-range');
+      if (!r) return;
+      var set = function () { c.style.setProperty('--pos', r.value + '%'); };
+      r.addEventListener('input', set); set();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     setLang(getLang());
     var btn = document.querySelector('.lang-btn');
@@ -607,6 +627,7 @@
     initConstellation();
     initFeature();
     initScrollArt();
+    initTraining();
     // 返回按钮：从本站页面进来就退回上一页，否则去链接指定的页面
     document.querySelectorAll('[data-back]').forEach(function (b) {
       b.addEventListener('click', function (e) {
