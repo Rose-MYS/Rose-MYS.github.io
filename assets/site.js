@@ -64,32 +64,47 @@
     });
   }
 
-  // 全站星空背景：鼠标附近的星星变亮变大、暗星显现（"变浓"），并有跟随鼠标的光晕；
-  // 两团星云缓慢漂移，颜色在陶土橙 / 紫罗兰 / 青绿 / 金色之间定时渐变。
+  // 全站星空背景（炫酷版）：
+  //  · 密集的星点 + 少量带四角星芒的亮星 + 一条斜穿屏幕的银河星带
+  //  · 鼠标附近星星变亮变大、暗星显现，并自动用细线连成"临时星座"，跟随光晕
+  //  · 两团星云和银河的颜色在陶土橙 / 紫罗兰 / 青绿 / 金色之间定时渐变
+  //  · 不时划过彩色流星；在空白处点击会荡开一圈光波
   function initStarfield() {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var cv = document.createElement('canvas');
     cv.className = 'bg-sky'; cv.setAttribute('aria-hidden', 'true');
     document.body.insertBefore(cv, document.body.firstChild);
     document.documentElement.classList.add('sky-on');
-    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, stars = [];
+    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, stars = [], bright = [];
     var mouse = { x: -9999, y: -9999, sx: -9999, sy: -9999 };
     var palette = [[217, 119, 87], [155, 135, 245], [94, 196, 196], [232, 182, 90]];
-    var CYCLE = 24000;
+    var CYCLE = 24000, BAND = -0.38, meteors = [], nextMeteor = 0, ripples = [];
 
+    function gauss() { return (Math.random() + Math.random() + Math.random() - 1.5) / 1.5; }
     function build() {
       dpr = Math.min(1.5, window.devicePixelRatio || 1);
       W = window.innerWidth; H = window.innerHeight;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.min(520, Math.round(W * H / 3600));
+      var n = Math.min(1100, Math.round(W * H / 1700));
       stars = [];
-      for (var i = 0; i < n; i++) {
-        var hidden = Math.random() < 0.45;                  // 暗星：平时几乎看不见，鼠标靠近才显现
-        stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.1 + 0.35,
-          a: hidden ? 0.03 : Math.random() * 0.45 + 0.12, ph: Math.random() * 6.28, sp: Math.random() * 0.8 + 0.4,
-          z: Math.random() * 0.8 + 0.2, tint: Math.random() < 0.12 });
+      function add(x, y, inBand) {
+        var hidden = Math.random() < (inBand ? 0.25 : 0.38);
+        stars.push({ x: x, y: y, r: Math.random() * (inBand ? 0.9 : 1.15) + 0.3,
+          a: hidden ? 0.035 : Math.random() * 0.55 + (inBand ? 0.2 : 0.16), ph: Math.random() * 6.28, sp: Math.random() * 0.9 + 0.35,
+          z: Math.random() * 0.8 + 0.2, tint: Math.random() < 0.12, kick: 0 });
       }
+      for (var i = 0; i < n; i++) add(Math.random() * W, Math.random() * H, false);
+      // 银河：沿一条斜线高斯分布的额外星点
+      var cx = W / 2, cy = H / 2, ca = Math.cos(BAND), sa = Math.sin(BAND), L = Math.hypot(W, H);
+      for (var k = 0; k < n * 0.55; k++) {
+        var u = (Math.random() - 0.5) * L, v = gauss() * H * 0.11;
+        var x = cx + u * ca - v * sa, y = cy + u * sa + v * ca;
+        if (x > -10 && x < W + 10 && y > -10 && y < H + 10) add(x, y, true);
+      }
+      bright = [];
+      for (var b = 0; b < Math.max(6, Math.round(W * H / 90000)); b++)
+        bright.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.4 + 1.6, ph: Math.random() * 6.28, z: Math.random() * 0.6 + 0.4 });
     }
     function cycleColor(t, off) {
       var k = ((t + off) % CYCLE) / CYCLE * palette.length, i = Math.floor(k), f = k - i;
@@ -98,50 +113,109 @@
       return [Math.round(a[0] + (b[0] - a[0]) * f), Math.round(a[1] + (b[1] - a[1]) * f), Math.round(a[2] + (b[2] - a[2]) * f)];
     }
     function rgb(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+    function spark(x, y, R) {
+      ctx.beginPath();
+      for (var q = 0; q < 8; q++) { var ang = -Math.PI / 2 + q * Math.PI / 4, rr = q % 2 === 0 ? R : R * 0.22; ctx.lineTo(x + Math.cos(ang) * rr, y + Math.sin(ang) * rr); }
+      ctx.closePath(); ctx.fill();
+    }
 
     window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
     document.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
     window.addEventListener('resize', build);
+    window.addEventListener('pointerdown', function (e) {
+      if (reduce) return;
+      if (e.target.closest && e.target.closest('a, button, input, textarea, select, iframe, canvas, .fstage, .ftabs, .pcard, .dest, .demo')) return;
+      ripples.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+    }, { passive: true });
 
+    var slow = 0, frames = 0, budgetCut = false;
     function frame(t) {
       if (document.hidden) { requestAnimationFrame(frame); return; }
+      var f0 = performance.now();
       var light = document.documentElement.getAttribute('data-theme') === 'light';
-      var tt = reduce ? 0 : t;
+      var tt = reduce ? 0 : t, A = light ? 0.55 : 1;
       if (mouse.sx < -9000) { mouse.sx = mouse.x; mouse.sy = mouse.y; }
       mouse.sx += (mouse.x - mouse.sx) * 0.12; mouse.sy += (mouse.y - mouse.sy) * 0.12;
+      var on = mouse.sx > -9000 && mouse.x > -9000;
       ctx.clearRect(0, 0, W, H);
-      var c1 = cycleColor(tt, 0), c2 = cycleColor(tt, CYCLE / 2), A = light ? 0.55 : 1;
+      var c1 = cycleColor(tt, 0), c2 = cycleColor(tt, CYCLE / 2), c3 = cycleColor(tt, CYCLE / 4);
+      var base = light ? [90, 70, 40] : [236, 232, 222];
       // 星云
       var nx = W * (0.22 + 0.06 * Math.sin(tt / 9000)), ny = H * (0.28 + 0.05 * Math.cos(tt / 11000));
       var g = ctx.createRadialGradient(nx, ny, 0, nx, ny, Math.max(W, H) * 0.55);
-      g.addColorStop(0, rgb(c1, 0.10 * A)); g.addColorStop(1, rgb(c1, 0));
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      g.addColorStop(0, rgb(c1, 0.13 * A)); g.addColorStop(1, rgb(c1, 0)); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
       var mx2 = W * (0.80 + 0.05 * Math.cos(tt / 10000)), my2 = H * (0.75 + 0.06 * Math.sin(tt / 12000));
       g = ctx.createRadialGradient(mx2, my2, 0, mx2, my2, Math.max(W, H) * 0.5);
-      g.addColorStop(0, rgb(c2, 0.08 * A)); g.addColorStop(1, rgb(c2, 0));
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      g.addColorStop(0, rgb(c2, 0.10 * A)); g.addColorStop(1, rgb(c2, 0)); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      // 银河光带
+      ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(BAND); ctx.scale(1, 0.16);
+      g = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.hypot(W, H) * 0.6);
+      g.addColorStop(0, rgb(c3, 0.10 * A)); g.addColorStop(0.5, rgb(c3, 0.04 * A)); g.addColorStop(1, rgb(c3, 0));
+      ctx.fillStyle = g; ctx.fillRect(-W * 2, -H * 4, W * 4, H * 8); ctx.restore();
       // 鼠标光晕
-      var on = mouse.sx > -9000;
       if (on) {
-        g = ctx.createRadialGradient(mouse.sx, mouse.sy, 0, mouse.sx, mouse.sy, 240);
-        g.addColorStop(0, rgb(c1, 0.10 * A)); g.addColorStop(1, rgb(c1, 0));
-        ctx.fillStyle = g; ctx.fillRect(mouse.sx - 240, mouse.sy - 240, 480, 480);
+        g = ctx.createRadialGradient(mouse.sx, mouse.sy, 0, mouse.sx, mouse.sy, 260);
+        g.addColorStop(0, rgb(c1, 0.14 * A)); g.addColorStop(1, rgb(c1, 0));
+        ctx.fillStyle = g; ctx.fillRect(mouse.sx - 260, mouse.sy - 260, 520, 520);
+      }
+      // 涟漪
+      for (var ri = ripples.length - 1; ri >= 0; ri--) {
+        var rp = ripples[ri], age = (t - rp.t) / 1400;
+        if (age > 1) { ripples.splice(ri, 1); continue; }
+        rp.R = age * 520;
+        ctx.strokeStyle = rgb(c1, (1 - age) * 0.55 * A); ctx.lineWidth = 2 * (1 - age) + 0.5;
+        ctx.beginPath(); ctx.arc(rp.x, rp.y, rp.R, 0, 6.283); ctx.stroke();
       }
       // 星星
-      var px = on ? (mouse.sx / W - 0.5) : 0, py = on ? (mouse.sy / H - 0.5) : 0;
+      var px = on ? (mouse.sx / W - 0.5) : 0, py = on ? (mouse.sy / H - 0.5) : 0, near = [];
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        var x = s.x - px * 14 * s.z, y = s.y - py * 10 * s.z;
-        var boost = 0;
-        if (on) { var dx = x - mouse.sx, dy = y - mouse.sy, d2 = dx * dx + dy * dy; if (d2 < 48400) boost = 1 - Math.sqrt(d2) / 220; }
+        var x = s.x - px * 16 * s.z, y = s.y - py * 12 * s.z, boost = 0;
+        if (on) { var dx = x - mouse.sx, dy = y - mouse.sy, d2 = dx * dx + dy * dy; if (d2 < 52900) { boost = 1 - Math.sqrt(d2) / 230; if (d2 < 22500 && s.a > 0.1) near.push([x, y, boost]); } }
+        for (var rj = 0; rj < ripples.length; rj++) { var r2 = ripples[rj], dd = Math.abs(Math.hypot(x - r2.x, y - r2.y) - r2.R); if (dd < 30) s.kick = Math.max(s.kick, 1 - dd / 30); }
+        s.kick *= 0.93;
         var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(tt / 1000 * s.sp + s.ph);
-        var a = s.a * tw + boost * boost * 0.85;
+        var a = s.a * tw + boost * boost * 0.9 + s.kick * 0.8;
         if (a < 0.02) continue;
-        var r = s.r * (1 + boost * 1.1);
-        var col = s.tint ? c2 : (light ? [90, 70, 40] : [236, 232, 222]);
-        ctx.fillStyle = rgb(col, Math.min(1, a) * (light ? 0.6 : 1));
+        var r = s.r * (1 + boost * 1.2 + s.kick);
+        ctx.fillStyle = rgb(s.tint || s.kick > .3 ? c2 : base, Math.min(1, a) * (light ? 0.6 : 1));
         ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
       }
+      // 鼠标附近自动连成临时星座
+      if (near.length > 1) {
+        near.sort(function (p, q) { return q[2] - p[2]; }); near = near.slice(0, 22);
+        ctx.lineWidth = 0.8;
+        for (var m = 0; m < near.length; m++) for (var nn = m + 1; nn < near.length; nn++) {
+          var p1 = near[m], p2 = near[nn], dl = Math.hypot(p1[0] - p2[0], p1[1] - p2[1]);
+          if (dl < 75) { ctx.strokeStyle = rgb(c1, Math.min(p1[2], p2[2]) * (1 - dl / 75) * 0.9 * A); ctx.beginPath(); ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke(); }
+        }
+      }
+      // 亮星（四角星芒）
+      for (var bi = 0; bi < bright.length; bi++) {
+        var bs = bright[bi], bx = bs.x - px * 20 * bs.z, by = bs.y - py * 15 * bs.z;
+        var tw2 = reduce ? 0.8 : 0.6 + 0.4 * Math.sin(tt / 1300 + bs.ph);
+        var gl = ctx.createRadialGradient(bx, by, 0, bx, by, bs.r * 6);
+        gl.addColorStop(0, rgb(base, 0.25 * tw2 * A)); gl.addColorStop(1, rgb(base, 0)); ctx.fillStyle = gl;
+        ctx.beginPath(); ctx.arc(bx, by, bs.r * 6, 0, 6.283); ctx.fill();
+        ctx.fillStyle = rgb(base, (0.55 + 0.4 * tw2) * (light ? 0.7 : 1)); spark(bx, by, bs.r * (3 + tw2));
+      }
+      // 流星
+      if (!reduce && t > nextMeteor) {
+        var fromLeft = Math.random() < 0.5;
+        meteors.push({ x: fromLeft ? Math.random() * W * 0.5 : W * (0.5 + Math.random() * 0.5), y: -20, vx: (fromLeft ? 1 : -1) * (6 + Math.random() * 4), vy: 3.5 + Math.random() * 2.5, life: 0 });
+        nextMeteor = t + 3500 + Math.random() * 5000;
+      }
+      for (var mi = meteors.length - 1; mi >= 0; mi--) {
+        var me = meteors[mi]; me.x += me.vx; me.y += me.vy; me.life++;
+        if (me.y > H + 40 || me.x < -60 || me.x > W + 60) { meteors.splice(mi, 1); continue; }
+        var tx = me.x - me.vx * 14, ty = me.y - me.vy * 14, lg = ctx.createLinearGradient(me.x, me.y, tx, ty);
+        lg.addColorStop(0, rgb([255, 255, 255], 0.9 * A)); lg.addColorStop(0.25, rgb(c2, 0.6 * A)); lg.addColorStop(1, rgb(c2, 0));
+        ctx.strokeStyle = lg; ctx.lineWidth = 1.8; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(me.x, me.y); ctx.lineTo(tx, ty); ctx.stroke();
+      }
+      // 自动降级：设备画得太慢就减少星星数量
+      frames++; if (performance.now() - f0 > 14) slow++;
+      if (frames === 90) { if (!budgetCut && slow > 45) { budgetCut = true; stars = stars.filter(function (_, i) { return i % 2 === 0; }); } frames = slow = 0; }
       requestAnimationFrame(frame);
     }
     build();
