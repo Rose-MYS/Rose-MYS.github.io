@@ -612,6 +612,32 @@
     });
   }
 
+
+  // 详情页左侧目录：从正文标题生成，滚动时高亮当前小节
+  function initToc() {
+    var toc = document.querySelector('.toc'), prose = document.querySelector('.dlayout .prose');
+    if (!toc || !prose) return;
+    var hs = prose.querySelectorAll(':scope > h2, :scope > h3.tl-sub');
+    if (hs.length < 3) { toc.parentNode.classList.add('notoc'); return; }
+    var ol = toc.querySelector('ol'), links = [];
+    hs.forEach(function (h, i) {
+      if (!h.id) h.id = 'sec-' + (i + 1);
+      var li = document.createElement('li'); if (h.tagName === 'H3') li.className = 'sub';
+      var a = document.createElement('a'); a.href = '#' + h.id;
+      var c = h.cloneNode(true); c.querySelectorAll('small').forEach(function (s) { s.remove(); });
+      a.innerHTML = c.innerHTML; li.appendChild(a); ol.appendChild(li); links.push(a);
+    });
+    var tick = false;
+    function spy() {
+      tick = false; var cur = 0, y = 120;
+      hs.forEach(function (h, i) { if (h.getBoundingClientRect().top < y) cur = i; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = hs.length - 1;
+      links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     setLang(getLang());
     var btn = document.querySelector('.lang-btn');
@@ -628,6 +654,7 @@
     initFeature();
     initScrollArt();
     initTraining();
+    initToc();
     // 返回按钮：从本站页面进来就退回上一页，否则去链接指定的页面
     document.querySelectorAll('[data-back]').forEach(function (b) {
       b.addEventListener('click', function (e) {

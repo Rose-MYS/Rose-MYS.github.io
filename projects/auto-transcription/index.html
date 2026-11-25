@@ -8,9 +8,9 @@
 <meta name="title-en" content="Auto Transcription · Rose">
 <meta name="description" content="把钢琴曲或单旋律录音自动转成能直接导入打谱软件的五线谱（MusicXML）、量化 MIDI 和简谱。在 16 首测试曲上调号与拍号全部识别正确。">
 <meta name="theme-color" content="#10131c">
-<link rel="icon" href="../../assets/favicon.svg?v=202611251135" type="image/svg+xml">
-<link rel="stylesheet" href="../../assets/style.css?v=202611251135">
-<script src="../../assets/site.js?v=202611251135"></script>
+<link rel="icon" href="../../assets/favicon.svg?v=202611251150" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css?v=202611251150">
+<script src="../../assets/site.js?v=202611251150"></script>
 </head>
 <body class="">
 <header class="mast">
@@ -58,6 +58,7 @@
 <section class="wrap" style="--accent:#9fd3e8">
   <dl class="facts"><div><dt><span class="zh">类型</span><span class="en">Type</span></dt><dd><span class="zh">音频转谱流水线</span><span class="en">Audio-to-score pipeline</span></dd></div><div><dt><span class="zh">语言</span><span class="en">Language</span></dt><dd>Python</dd></div><div><dt><span class="zh">输出</span><span class="en">Output</span></dt><dd><span class="zh">MusicXML · MIDI · 简谱 · SVG</span><span class="en">MusicXML · MIDI · Jianpu · SVG</span></dd></div><div><dt><span class="zh">版本</span><span class="en">Version</span></dt><dd>v4 (2026-11-23)</dd></div></dl>
   
+  <div class="dlayout"><nav class="toc" aria-label="On this page"><p class="toc-h"><span class="zh">本页目录</span><span class="en">On this page</span></p><ol></ol></nav>
   <div class="prose"><h2><span class="zh">流程</span><span class="en">Pipeline</span></h2>
 <ol>
 <li><span class="zh"><b>音频 → MIDI</b>：自动判断类型，钢琴用 Transkun v2，长笛、小提琴、人声等单旋律用 pYIN 音高跟踪。</span><span class="en"><b>Audio → MIDI</b>: detects the source automatically — Transkun v2 for piano, pYIN pitch tracking for single melodies such as flute, violin or voice.</span></li>
@@ -110,7 +111,7 @@
 <span class="cmp-tag l">v4-test</span><span class="cmp-tag r">v4</span><div class="cmp-handle" aria-hidden="true"><i>⇆</i></div>
 <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after"></div></figure>
 <p class="note"><span class="zh">分数可能偏乐观：Transkun 和 beat_this 的训练数据可能包含部分测试曲（MAESTRO / ASAP），所以 v4-test 起专门加入了训练集外的录音来检验。</span><span class="en">Scores may be optimistic: Transkun and beat_this may have seen some test pieces (MAESTRO / ASAP) during training, which is why held-out recordings were added from v4-test on.</span></p>
-<p class="note"><span class="zh">用到的开源工具：Transkun、librosa、music21、mir_eval、verovio。部分测试音频来自 MAESTRO 数据集（CC BY-NC-SA）。项目还在继续。</span><span class="en">Built on Transkun, librosa, music21, mir_eval and verovio. Part of the test audio comes from the MAESTRO dataset (CC BY-NC-SA). Still in progress.</span></p></div>
+<p class="note"><span class="zh">用到的开源工具：Transkun、librosa、music21、mir_eval、verovio。部分测试音频来自 MAESTRO 数据集（CC BY-NC-SA）。项目还在继续。</span><span class="en">Built on Transkun, librosa, music21, mir_eval and verovio. Part of the test audio comes from the MAESTRO dataset (CC BY-NC-SA). Still in progress.</span></p></div></div>
 </section>
 </main>
 <footer class="foot">
