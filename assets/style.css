@@ -23,7 +23,8 @@
   --foot-bg: rgba(10, 12, 19, .6);
   --btn-bg: rgba(255, 255, 255, .03);
   --ico-bg: rgba(0, 0, 0, .25);
-  --staff: rgba(214, 220, 240, .16);
+  --star: rgba(236, 232, 222, .55);
+  --star-dim: rgba(236, 232, 222, .28);
   --dots: rgba(214, 220, 240, .09);
   --prose: #d7d8de;
   --on-accent: #141826;
@@ -37,9 +38,17 @@ html { scroll-behavior: smooth; scroll-padding-top: var(--mast); }
 body {
   margin: 0;
   background-color: var(--ink);
+  /* 淡淡的星空：三层不同间距的小星点平铺，错开就不会显得规律 */
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -10%, rgba(var(--lime-rgb), .10), transparent 60%),
-    repeating-linear-gradient(to bottom, var(--line-soft) 0 1px, transparent 1px 12px, var(--line-soft) 12px 13px, transparent 13px 24px, var(--line-soft) 24px 25px, transparent 25px 36px, var(--line-soft) 36px 37px, transparent 37px 48px, var(--line-soft) 48px 49px, transparent 49px 120px);
+    radial-gradient(1px 1px at 23px 41px, var(--star) 50%, transparent 52%),
+    radial-gradient(1px 1px at 131px 87px, var(--star) 50%, transparent 52%),
+    radial-gradient(1.4px 1.4px at 67px 151px, var(--star) 50%, transparent 52%),
+    radial-gradient(1px 1px at 201px 19px, var(--star-dim) 50%, transparent 52%),
+    radial-gradient(1px 1px at 97px 233px, var(--star-dim) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 311px 173px, var(--star) 50%, transparent 52%),
+    radial-gradient(1px 1px at 257px 291px, var(--star-dim) 50%, transparent 52%);
+  background-size: auto, 223px 223px, 223px 223px, 223px 223px, 307px 307px, 307px 307px, 389px 389px, 389px 389px;
   background-attachment: fixed;
   color: var(--paper);
   font-family: var(--sans);
@@ -49,6 +58,22 @@ body {
 }
 a { color: inherit; }
 img { max-width: 100%; }
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 12% 22%, var(--star) 50%, transparent 55%),
+    radial-gradient(1.6px 1.6px at 78% 14%, var(--star) 50%, transparent 55%),
+    radial-gradient(2px 2px at 63% 71%, var(--star) 50%, transparent 55%),
+    radial-gradient(1.6px 1.6px at 31% 83%, var(--star) 50%, transparent 55%),
+    radial-gradient(1.8px 1.8px at 91% 52%, var(--star) 50%, transparent 55%);
+  animation: twinkle 4.5s ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: .15; } to { opacity: .9; } }
+@media (prefers-reduced-motion: reduce) { body::before { animation: none; opacity: .5; } }
+/* 星空画布接管背景后，关掉静态星点 */
+.bg-sky { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: block; }
+html.sky-on body { background-image: none; }
+html.sky-on body::before { display: none; }
 ::selection { background: var(--lime); color: #fff; }
 
 /* 中英切换 */
@@ -347,7 +372,8 @@ html[data-theme="light"] {
   --foot-bg: rgba(242, 239, 230, .7);
   --btn-bg: rgba(60, 45, 20, .03);
   --ico-bg: rgba(255, 255, 255, .8);
-  --staff: rgba(80, 64, 40, .2);
+  --star: rgba(90, 70, 40, .35);
+  --star-dim: rgba(90, 70, 40, .18);
   --dots: rgba(80, 64, 40, .13);
   --prose: #3a3833;
   --on-accent: #ffffff;

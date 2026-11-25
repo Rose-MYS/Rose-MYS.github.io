@@ -64,6 +64,90 @@
     });
   }
 
+  // 全站星空背景：鼠标附近的星星变亮变大、暗星显现（"变浓"），并有跟随鼠标的光晕；
+  // 两团星云缓慢漂移，颜色在陶土橙 / 紫罗兰 / 青绿 / 金色之间定时渐变。
+  function initStarfield() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cv = document.createElement('canvas');
+    cv.className = 'bg-sky'; cv.setAttribute('aria-hidden', 'true');
+    document.body.insertBefore(cv, document.body.firstChild);
+    document.documentElement.classList.add('sky-on');
+    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, stars = [];
+    var mouse = { x: -9999, y: -9999, sx: -9999, sy: -9999 };
+    var palette = [[217, 119, 87], [155, 135, 245], [94, 196, 196], [232, 182, 90]];
+    var CYCLE = 24000;
+
+    function build() {
+      dpr = Math.min(1.5, window.devicePixelRatio || 1);
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.min(520, Math.round(W * H / 3600));
+      stars = [];
+      for (var i = 0; i < n; i++) {
+        var hidden = Math.random() < 0.45;                  // 暗星：平时几乎看不见，鼠标靠近才显现
+        stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.1 + 0.35,
+          a: hidden ? 0.03 : Math.random() * 0.45 + 0.12, ph: Math.random() * 6.28, sp: Math.random() * 0.8 + 0.4,
+          z: Math.random() * 0.8 + 0.2, tint: Math.random() < 0.12 });
+      }
+    }
+    function cycleColor(t, off) {
+      var k = ((t + off) % CYCLE) / CYCLE * palette.length, i = Math.floor(k), f = k - i;
+      f = f * f * (3 - 2 * f);
+      var a = palette[i % palette.length], b = palette[(i + 1) % palette.length];
+      return [Math.round(a[0] + (b[0] - a[0]) * f), Math.round(a[1] + (b[1] - a[1]) * f), Math.round(a[2] + (b[2] - a[2]) * f)];
+    }
+    function rgb(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+
+    window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    document.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
+    window.addEventListener('resize', build);
+
+    function frame(t) {
+      if (document.hidden) { requestAnimationFrame(frame); return; }
+      var light = document.documentElement.getAttribute('data-theme') === 'light';
+      var tt = reduce ? 0 : t;
+      if (mouse.sx < -9000) { mouse.sx = mouse.x; mouse.sy = mouse.y; }
+      mouse.sx += (mouse.x - mouse.sx) * 0.12; mouse.sy += (mouse.y - mouse.sy) * 0.12;
+      ctx.clearRect(0, 0, W, H);
+      var c1 = cycleColor(tt, 0), c2 = cycleColor(tt, CYCLE / 2), A = light ? 0.55 : 1;
+      // 星云
+      var nx = W * (0.22 + 0.06 * Math.sin(tt / 9000)), ny = H * (0.28 + 0.05 * Math.cos(tt / 11000));
+      var g = ctx.createRadialGradient(nx, ny, 0, nx, ny, Math.max(W, H) * 0.55);
+      g.addColorStop(0, rgb(c1, 0.10 * A)); g.addColorStop(1, rgb(c1, 0));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      var mx2 = W * (0.80 + 0.05 * Math.cos(tt / 10000)), my2 = H * (0.75 + 0.06 * Math.sin(tt / 12000));
+      g = ctx.createRadialGradient(mx2, my2, 0, mx2, my2, Math.max(W, H) * 0.5);
+      g.addColorStop(0, rgb(c2, 0.08 * A)); g.addColorStop(1, rgb(c2, 0));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      // 鼠标光晕
+      var on = mouse.sx > -9000;
+      if (on) {
+        g = ctx.createRadialGradient(mouse.sx, mouse.sy, 0, mouse.sx, mouse.sy, 240);
+        g.addColorStop(0, rgb(c1, 0.10 * A)); g.addColorStop(1, rgb(c1, 0));
+        ctx.fillStyle = g; ctx.fillRect(mouse.sx - 240, mouse.sy - 240, 480, 480);
+      }
+      // 星星
+      var px = on ? (mouse.sx / W - 0.5) : 0, py = on ? (mouse.sy / H - 0.5) : 0;
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var x = s.x - px * 14 * s.z, y = s.y - py * 10 * s.z;
+        var boost = 0;
+        if (on) { var dx = x - mouse.sx, dy = y - mouse.sy, d2 = dx * dx + dy * dy; if (d2 < 48400) boost = 1 - Math.sqrt(d2) / 220; }
+        var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(tt / 1000 * s.sp + s.ph);
+        var a = s.a * tw + boost * boost * 0.85;
+        if (a < 0.02) continue;
+        var r = s.r * (1 + boost * 1.1);
+        var col = s.tint ? c2 : (light ? [90, 70, 40] : [236, 232, 222]);
+        ctx.fillStyle = rgb(col, Math.min(1, a) * (light ? 0.6 : 1));
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    build();
+    requestAnimationFrame(frame);
+  }
+
   // 首页项目星座：六颗星代表六个项目。可以抓起、甩出（弹簧拉回）；靠近会被吸引并显示名字；点击进入项目页；
   // 抓起/点击时按五声音阶发声；背景小星点随鼠标视差闪烁，偶尔划过流星。
   function initConstellation() {
@@ -445,6 +529,7 @@
     if (tb) tb.addEventListener('click', function () {
       setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
+    initStarfield();
     initConstellation();
     initFeature();
     initScrollArt();
