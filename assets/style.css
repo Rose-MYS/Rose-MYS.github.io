@@ -546,22 +546,19 @@ html[data-theme="light"] .ch-fill.before + .ch-in { fill: #fff; }
 html[data-theme="light"] .tl-loop .lp-n, html[data-theme="light"] .tl-loop li::after { color: var(--accent-ink); }
 html[data-theme="light"] .tl-chip { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 
-/* ---------- 详情页：左侧目录 + 宽幅图表 ---------- */
-.dlayout { display: grid; grid-template-columns: 172px minmax(0, 1fr); gap: 56px; align-items: start; }
+/* ---------- 详情页：正文居中，目录悬浮在左侧留白 ---------- */
+.dlayout { position: relative; max-width: 860px; margin: 0 auto; }
 .dlayout .prose { max-width: none; min-width: 0; }
-.dlayout .prose > :is(p, ul, h2, h3, .note), .dlayout .prose > ol:not(.tl):not(.tl-loop) { max-width: 760px; }
+.dlayout .prose > :is(p, ul, h2, h3, .note), .dlayout .prose > ol:not(.tl):not(.tl-loop) { max-width: 760px; margin-left: auto; margin-right: auto; }
 .prose h2, .prose h3 { scroll-margin-top: 96px; }
-.toc { position: sticky; top: 92px; padding-top: 52px; max-height: calc(100vh - 110px); overflow: auto; }
+.toc { position: absolute; top: 0; bottom: 0; right: calc(100% + 40px); width: 168px; }
+.toc-in { position: sticky; top: 92px; padding-top: 52px; max-height: calc(100vh - 110px); overflow: auto; }
 .toc-h { margin: 0 0 12px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
 .toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
 .toc li { margin: 0; }
-.toc a { display: block; position: relative; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; font-size: 14px; line-height: 1.35; color: var(--muted); text-decoration: none; transition: color .2s, border-color .2s; }
+.toc a { display: block; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; font-size: 14px; line-height: 1.35; color: var(--muted); text-decoration: none; transition: color .2s, border-color .2s; }
 .toc li.sub a { padding-left: 26px; font-size: 12.5px; color: var(--dim); }
 .toc a:hover { color: var(--paper); }
 .toc a.on { color: var(--accent-ink, var(--accent)); border-left-color: var(--accent); }
-.dlayout.notoc { grid-template-columns: minmax(0, 1fr); gap: 0; }
 .dlayout.notoc .toc { display: none; }
-@media (max-width: 1000px) {
-  .dlayout { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .toc { display: none; }
-}
+@media (max-width: 1290px) { .toc { display: none; } }
