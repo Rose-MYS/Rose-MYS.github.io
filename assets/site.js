@@ -340,12 +340,18 @@
       try { cv.setPointerCapture(e.pointerId); } catch (err) {}
       if (e.pointerType !== 'mouse') e.preventDefault();
     });
+    var lastClick = { i: -1, t: 0 };
     function release(e) {
       if (!grab) return;
       var s = stars[grab.i];
       if (!grab.moved) {
-        if (e && e.pointerType !== 'mouse' && grab.prev !== grab.i) { hover = grab.i; }   // 手机第一次点：先显示名字，再点才进入
-        else { var href = s.d.href; setTimeout(function () { location.href = href; }, 160); }
+        var now = Date.now(), href = s.d.href;
+        if (e && e.pointerType === 'mouse') {
+          // 电脑：单击弹一个音，双击进入项目
+          if (lastClick.i === grab.i && now - lastClick.t < 420) { lastClick = { i: -1, t: 0 }; setTimeout(function () { location.href = href; }, 120); }
+          else lastClick = { i: grab.i, t: now };
+        } else if (grab.prev !== grab.i) { hover = grab.i; }   // 手机第一次点：弹音并显示名字，再点才进入
+        else { setTimeout(function () { location.href = href; }, 160); }
       } else { s.vx = grab.vx * 0.9; s.vy = grab.vy * 0.9; }
       grab = null; cv.classList.remove('grabbing');
     }
