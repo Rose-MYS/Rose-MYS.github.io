@@ -321,6 +321,10 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .prose a { color: var(--lime); text-decoration-color: rgba(var(--lime-rgb), .45); }
 .prose code { font-family: var(--mono); font-size: .88em; background: var(--panel-2); border: 1px solid var(--line); padding: 2px 7px; border-radius: 4px; color: var(--paper); }
 
+.contact { list-style: none; padding: 0; margin: 12px 0 0; }
+.contact li { display: flex; gap: 18px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.contact li::marker { content: none; }
+.contact span { min-width: 70px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin: 0 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
 .facts div { padding: 16px 20px; border-right: 1px solid var(--line); }
 .facts div:last-child { border-right: 0; }
