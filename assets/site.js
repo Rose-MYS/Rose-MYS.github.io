@@ -229,18 +229,18 @@
     var sky = document.getElementById('sky');
     if (!sky) return;
     var cv = sky.querySelector('canvas'), ctx = cv.getContext('2d');
-    var data = JSON.parse(document.getElementById('stars-data').textContent);
+    var SKY = JSON.parse(document.getElementById('stars-data').textContent), data = SKY.stars;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // 北斗七星（按真实星图的相对位置）：天枢 天璇 天玑 天权 玉衡 开阳 瑶光
-    var homes = [[0.86, 0.30], [0.84, 0.60], [0.62, 0.66], [0.58, 0.40], [0.42, 0.36], [0.26, 0.33], [0.09, 0.48]];
-    var edges = [[6, 5], [5, 4], [4, 3], [3, 0], [0, 1], [1, 2], [2, 3]];
+    // 北斗七星（按真实星图的相对位置）：天枢 天璇 天玑 天权 玉衡 开阳 瑶光；再沿天璇→天枢的指极线找到北极星
+    var homes = data.map(function (d) { return [d.x, d.y]; }), edges = SKY.edges, pointer = SKY.pointer || [], groups = SKY.groups || [];
+    var MIZAR = data.findIndex ? data.findIndex(function (d) { return d.star_en === 'Mizar'; }) : 5;
     var notes = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 1174.66]; // 五声音阶 C D E G A C D
     var W = 0, H = 0, dpr = 1, mouse = { x: -999, y: -999, in: false }, grab = null, hover = -1, t0 = performance.now();
     var muted = false; try { muted = localStorage.getItem('skyMuted') === '1'; } catch (e) {}
     sky.classList.toggle('muted', muted);
 
     var stars = data.map(function (d, i) {
-      return { d: d, i: i, x: 0, y: 0, vx: 0, vy: 0, r: 4 + (3.6 - d.mag) * 4.2, ph: Math.random() * 6.28, pulse: 0 };
+      return { d: d, i: i, x: 0, y: 0, vx: 0, vy: 0, r: d.unlit ? 3 + (3.8 - d.mag) * 1.8 : 4 + (3.6 - d.mag) * 4.2, ph: Math.random() * 6.28, pulse: 0 };
     });
     var dust = [];
     for (var k = 0; k < 90; k++) dust.push({ x: Math.random(), y: Math.random(), r: Math.random() * 1.3 + .3, z: Math.random() * .8 + .2, ph: Math.random() * 6.28 });
@@ -261,7 +261,7 @@
 
     // 声音：真钢琴采样（Salamander Grand Piano，CC BY 3.0），首次靠近星图时预加载
     var ac = null, master = null, bufs = {}, loading = false;
-    var MAP = [['C5', 0], ['C5', 2], ['Ds5', 1], ['Fs5', 1], ['A5', 0], ['C6', 0], ['C6', 2]]; // C D E G A C D
+    var MAP = [['C5', 0], ['C5', 2], ['Ds5', 1], ['Fs5', 1], ['A5', 0], ['C6', 0], ['C6', 2], ['Ds6', 1]]; // C D E G A C D E
     function audio() {
       if (!ac) {
         ac = new (window.AudioContext || window.webkitAudioContext)();
@@ -279,7 +279,7 @@
     function preload() {
       if (loading || muted) return; loading = true;
       try { audio(); } catch (e) { return; }
-      ['C5', 'Ds5', 'Fs5', 'A5', 'C6'].forEach(function (n) {
+      ['C5', 'Ds5', 'Fs5', 'A5', 'C6', 'Ds6'].forEach(function (n) {
         fetch(BASE + 'piano/' + n + '.mp3').then(function (r) { return r.arrayBuffer(); }).then(function (ab) {
           ac.decodeAudioData(ab, function (b) { bufs[n] = b; }, function () {});
         }).catch(function () {});
@@ -332,6 +332,7 @@
     });
     cv.addEventListener('pointerleave', function () { mouse.in = false; if (!grab) hover = -1; });
     cv.addEventListener('pointerdown', function (e) {
+      lastTouch = e.pointerType !== 'mouse';
       var p = pos(e), i = pick(p.x, p.y);
       if (i < 0) return;
       grab = { i: i, sx: p.x, sy: p.y, lx: p.x, ly: p.y, vx: 0, vy: 0, moved: false, id: e.pointerId, prev: hover };
@@ -340,13 +341,14 @@
       try { cv.setPointerCapture(e.pointerId); } catch (err) {}
       if (e.pointerType !== 'mouse') e.preventDefault();
     });
-    var lastClick = { i: -1, t: 0 };
+    var lastClick = { i: -1, t: 0 }, lastTouch = false;
     function release(e) {
       if (!grab) return;
       var s = stars[grab.i];
       if (!grab.moved) {
         var now = Date.now(), href = s.d.href;
-        if (e && e.pointerType === 'mouse') {
+        if (!href) { hover = grab.i; }
+        else if (e && e.pointerType === 'mouse') {
           // 电脑：单击弹一个音，双击进入项目
           if (lastClick.i === grab.i && now - lastClick.t < 420) { lastClick = { i: -1, t: 0 }; setTimeout(function () { location.href = href; }, 120); }
           else lastClick = { i: grab.i, t: now };
@@ -413,13 +415,25 @@
           ctx.strokeStyle = g; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx + 70, sy - 46); ctx.stroke();
         }
       }
+      // 指极线：天璇→天枢延长到北极星（淡淡的点线）
+      pointer.forEach(function (e) {
+        var a = stars[e[0]], b = stars[e[1]];
+        ctx.strokeStyle = c.light ? 'rgba(80,64,40,.22)' : 'rgba(239,235,225,.18)'; ctx.lineWidth = 1; ctx.setLineDash([1.5, 5]);
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      // 星座名
+      ctx.font = '500 9px "Cascadia Mono", Consolas, monospace';
+      ctx.fillStyle = c.light ? 'rgba(80,64,40,.42)' : 'rgba(214,220,240,.32)';
+      groups.forEach(function (g) { ctx.fillText(lang === 'zh' ? g.zh : g.en, g.x * W - px * 4, g.y * H - py * 4); });
       // 连线：拉得越长越亮
       edges.forEach(function (e) {
         var a = stars[e[0]], b = stars[e[1]], ha = homes[e[0]], hb = homes[e[1]];
         var d = Math.hypot(a.x - b.x, a.y - b.y), d0 = Math.hypot((ha[0] - hb[0]) * W, (ha[1] - hb[1]) * H);
         var stretch = Math.max(0, Math.min(1, (d - d0) / 120));
         var g = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-        g.addColorStop(0, rgba(a.d.color, .35 + stretch * .5)); g.addColorStop(1, rgba(b.d.color, .35 + stretch * .5));
+        var la = (a.d.unlit ? .24 : .35) + stretch * .5, lb = (b.d.unlit ? .24 : .35) + stretch * .5;
+        g.addColorStop(0, rgba(a.d.color, la)); g.addColorStop(1, rgba(b.d.color, lb));
         ctx.strokeStyle = g; ctx.lineWidth = 1.2 + stretch * 1.6;
         ctx.setLineDash(stretch > .05 ? [] : [4, 5]);
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
@@ -436,6 +450,7 @@
       }
       stars.forEach(function (s, i) {
         var on = i === hover || (grab && grab.i === i);
+        ctx.globalAlpha = s.d.unlit && !on ? .72 : 1;
         var tw = 0.5 + 0.5 * Math.sin(t / 700 + s.ph);
         var R = s.r * (on ? 1.35 : 1) + s.pulse * 6;
         var gl = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, R * 3.2);
@@ -443,22 +458,23 @@
         ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(s.x, s.y, R * 3.2, 0, 6.283); ctx.fill();
         var len = R * (2.1 + tw * .35);
         ctx.fillStyle = s.d.color; spark(s.x, s.y, len, -Math.PI / 2); ctx.fill();               // 长星芒（上下左右）
-        ctx.globalAlpha = .55; spark(s.x, s.y, len * .55, -Math.PI / 4); ctx.fill(); ctx.globalAlpha = 1; // 短星芒（斜向）
+        var ga = ctx.globalAlpha; ctx.globalAlpha = ga * .55; spark(s.x, s.y, len * .55, -Math.PI / 4); ctx.fill(); ctx.globalAlpha = ga; // 短星芒（斜向）
         ctx.fillStyle = rgba('#ffffff', .95); ctx.beginPath(); ctx.arc(s.x, s.y, Math.max(1.6, R * .34), 0, 6.283); ctx.fill();
         if (s.pulse > .05) { ctx.strokeStyle = rgba(s.d.color, s.pulse); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s.x, s.y, R + (1 - s.pulse) * 26, 0, 6.283); ctx.stroke(); }
         // 小字星名（像星图上的标注）
         ctx.font = '500 9.5px "Cascadia Mono", Consolas, monospace';
         ctx.fillStyle = on ? s.d.color : c.dim;
-        ctx.fillText((lang === 'zh' ? s.d.star_zh : s.d.star_en).toUpperCase(), s.x + len * .6 + 4, s.y + len * .6 + 10);
+        if (!s.d.unlit || on) ctx.fillText((lang === 'zh' ? s.d.star_zh : s.d.star_en).toUpperCase(), s.x + len * .6 + 4, s.y + len * .6 + 10);
+        ctx.globalAlpha = 1;
       });
       // 开阳旁边的辅星 Alcor
-      var mz = stars[5];
+      var mz = stars[MIZAR >= 0 ? MIZAR : 5];
       ctx.fillStyle = c.light ? 'rgba(80,64,40,.55)' : 'rgba(239,235,225,.75)';
       spark(mz.x + 13, mz.y - 9, 4.2, -Math.PI / 2); ctx.fill();
       // 标签
       var li = grab ? grab.i : hover;
       if (li >= 0) {
-        var s = stars[li], name = s.d[lang], cat = (lang === 'zh' ? s.d.star_zh + ' · ' + s.d.czh : s.d.star_en + ' · ' + s.d.cen), sub = lang === 'zh' ? '点击进入 →' : 'Click to open →';
+        var s = stars[li], name = s.d[lang], cat = (lang === 'zh' ? s.d.star_zh + ' · ' + s.d.czh : s.d.star_en + ' · ' + s.d.cen), sub = !s.d.href ? (lang === 'zh' ? '这里会是下一个项目' : 'A future project goes here') : (lastTouch ? (lang === 'zh' ? '再点一下进入 →' : 'Tap again to open →') : (lang === 'zh' ? '双击进入 →' : 'Double-click to open →'));
         ctx.font = '400 17px Georgia, "Noto Serif SC", serif'; var w1 = ctx.measureText(name).width;
         ctx.font = '500 10px "Cascadia Mono", Consolas, monospace'; var w2 = ctx.measureText(cat.toUpperCase()).width, w3 = ctx.measureText(sub).width;
         var bw = Math.max(w1, w2, w3) + 24, bh = 64, bx = s.x + 18, by = s.y - bh - 10;
