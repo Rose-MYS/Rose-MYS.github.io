@@ -8,9 +8,9 @@
 <meta name="title-en" content="Rose · Personal site">
 <meta name="description" content="Rose 的个人主页：网页乐器、小游戏、交互装置、自动扒谱、AI 聊天机器人与电力电子仿真。">
 <meta name="theme-color" content="#10131c">
-<link rel="icon" href="assets/favicon.svg?v=202611250940" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=202611250940">
-<script src="assets/site.js?v=202611250940"></script>
+<link rel="icon" href="assets/favicon.svg?v=202611250956" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=202611250956">
+<script src="assets/site.js?v=202611250956"></script>
 </head>
 <body class="is-home">
 <header class="mast">
@@ -22,21 +22,27 @@
 </header>
 <main>
 <section class="hero">
-  <div class="staff" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-  <svg class="stroke" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M-20 170 C 120 170, 170 60, 300 80 S 450 190, 580 120 S 760 30, 880 90 S 1060 180, 1220 60"/>
-    <circle cx="300" cy="80" r="7" style="--d:1.1s"/><circle cx="580" cy="120" r="7" style="--d:1.7s"/><circle cx="880" cy="90" r="7" style="--d:2.3s"/>
-  </svg>
-  <div class="wrap hero-inner">
-    <p class="kicker"><i></i><span class="zh">项目笔记本 · 2026</span><span class="en">Project notebook · 2026</span></p>
-    <h1><span class="zh">你好，我是 <em>Rose</em>。</span><span class="en">Hi, I’m <em>Rose</em>.</span></h1>
-    <p class="lede"><span class="zh">东南大学计算机专业大一学生。我喜欢把线条变成声音、把手势变成指挥、把录音变成乐谱——这里收着我做过和正在做的东西。</span><span class="en">A first-year CS student at Southeast University. I turn lines into sound, gestures into conducting and recordings into sheet music — this is where I keep what I build.</span></p>
-    <div class="hero-cta"><a class="btn solid" href="#work"><span class="zh">看看项目</span><span class="en">See my work</span> <i>↓</i></a><a class="btn" href="https://github.com/Rose-MYS">GitHub <i>↗</i></a></div>
-    <dl class="stats">
-      <div><dt><span class="zh">项目</span><span class="en">Projects</span></dt><dd>06</dd></div>
-      <div><dt><span class="zh">可在线玩</span><span class="en">Playable</span></dt><dd>02</dd></div>
-      <div><dt><span class="zh">进行中</span><span class="en">In progress</span></dt><dd>02</dd></div>
-    </dl>
+  <div class="wrap hero-grid">
+    <div class="hero-inner">
+      <p class="kicker"><i></i><span class="zh">项目笔记本 · 2026</span><span class="en">Project notebook · 2026</span></p>
+      <h1><span class="zh">你好，我是 <em>Rose</em>。</span><span class="en">Hi, I’m <em>Rose</em>.</span></h1>
+      <p class="lede"><span class="zh">东南大学计算机专业大一学生。我喜欢把线条变成声音、把手势变成指挥、把录音变成乐谱——这里收着我做过和正在做的东西。</span><span class="en">A first-year CS student at Southeast University. I turn lines into sound, gestures into conducting and recordings into sheet music — this is where I keep what I build.</span></p>
+      <div class="hero-cta"><a class="btn solid" href="#work"><span class="zh">看看项目</span><span class="en">See my work</span> <i>↓</i></a><a class="btn" href="https://github.com/Rose-MYS">GitHub <i>↗</i></a></div>
+      <dl class="stats">
+        <div><dt><span class="zh">项目</span><span class="en">Projects</span></dt><dd>06</dd></div>
+        <div><dt><span class="zh">可在线玩</span><span class="en">Playable</span></dt><dd>02</dd></div>
+        <div><dt><span class="zh">进行中</span><span class="en">In progress</span></dt><dd>02</dd></div>
+      </dl>
+    </div>
+    <div class="sky" id="sky">
+      <canvas aria-label="Big Dipper constellation: six stars are projects, one is the About page. Drag them around; click one to open it." role="img"></canvas>
+      <div class="sky-ui">
+        <span class="sky-hint"><span class="zh">北斗七星 · 拖动星星，点击进入</span><span class="en">Ursa Major · drag the stars, click to open</span></span>
+        <button class="sky-mute" type="button" aria-label="Mute or unmute star sounds" title="Sound"><svg class="on" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg><svg class="off" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg></button>
+      </div>
+      <noscript><ul><li><a href="projects/shapesound/">ShapeSound</a></li><li><a href="projects/run-haoge-run/">Run Haoge Run</a></li><li><a href="projects/gesture-conductor/">Gesture Driven Ensemble</a></li><li><a href="projects/auto-transcription/">Auto Transcription</a></li><li><a href="projects/qq-bot/">Xiaogua QQ Bot</a></li><li><a href="projects/starter-generator/">Aircraft Starter/Generator Simulation</a></li></ul></noscript>
+      <script type="application/json" id="stars-data">[{"slug": "shapesound", "href": "projects/shapesound/", "zh": "形声 ShapeSound", "en": "ShapeSound", "czh": "网页乐器", "cen": "Web instrument", "color": "#f2b880", "star_en": "Dubhe", "star_zh": "天枢", "mag": 1.8}, {"slug": "run-haoge-run", "href": "projects/run-haoge-run/", "zh": "郝哥快跑", "en": "Run Haoge Run", "czh": "3D 网页游戏", "cen": "3D web game", "color": "#ef8a7f", "star_en": "Merak", "star_zh": "天璇", "mag": 2.4}, {"slug": "gesture-conductor", "href": "projects/gesture-conductor/", "zh": "模拟指挥", "en": "Gesture Driven Ensemble", "czh": "数字交互 · 比赛", "cen": "Interaction · Competition", "color": "#c9b2ff", "star_en": "Phecda", "star_zh": "天玑", "mag": 2.4}, {"slug": "about", "href": "about/", "zh": "关于我", "en": "About me", "czh": "Rose", "cen": "Rose", "color": "#efebe1", "star_en": "Megrez", "star_zh": "天权", "mag": 3.3}, {"slug": "auto-transcription", "href": "projects/auto-transcription/", "zh": "全自动扒谱", "en": "Auto Transcription", "czh": "音频 AI · 扒谱", "cen": "Audio AI · Transcription", "color": "#9fd3e8", "star_en": "Alioth", "star_zh": "玉衡", "mag": 1.8}, {"slug": "qq-bot", "href": "projects/qq-bot/", "zh": "QQ 机器人「小瓜」", "en": "Xiaogua QQ Bot", "czh": "AI 应用 · 聊天机器人", "cen": "AI app · Chatbot", "color": "#a6e3a1", "star_en": "Mizar", "star_zh": "开阳", "mag": 2.2}, {"slug": "starter-generator", "href": "projects/starter-generator/", "zh": "航空起动/发电系统仿真", "en": "Aircraft Starter/Generator Simulation", "czh": "电力电子仿真", "cen": "Power electronics", "color": "#f0d36b", "star_en": "Alkaid", "star_zh": "瑶光", "mag": 1.9}]</script>
+    </div>
   </div>
 </section>
 

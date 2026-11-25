@@ -107,26 +107,34 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .btn.solid:hover { color: var(--on-accent); filter: brightness(1.06); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* ---------- 首页大标题：五线谱上画一笔 ---------- */
-.hero { position: relative; overflow: hidden; padding: 96px 0 84px; border-bottom: 1px solid var(--line); }
-.staff { position: absolute; left: 0; right: 0; bottom: 72px; height: 132px; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
-.staff i { display: block; height: 1px; background: linear-gradient(90deg, transparent, var(--staff) 12%, var(--staff) 88%, transparent); }
-.stroke { position: absolute; left: 0; right: 0; bottom: 34px; width: 100%; height: 210px; pointer-events: none; }
-.stroke path { fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2600; stroke-dashoffset: 2600; animation: draw 3s cubic-bezier(.4, .1, .2, 1) .2s forwards; filter: drop-shadow(0 0 8px rgba(var(--lime-rgb), .5)); }
-.stroke circle { fill: var(--paper); stroke: var(--lime); stroke-width: 3; opacity: 0; animation: pop .35s ease-out var(--d) forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes pop { from { opacity: 0; transform: scale(.4); transform-origin: center; transform-box: fill-box; } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .stroke path { animation: none; stroke-dashoffset: 0; } .stroke circle { animation: none; opacity: 1; } }
+/* ---------- 首页大标题 + 项目星座 ---------- */
+.hero { position: relative; overflow: hidden; padding: 64px 0 56px; border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px; align-items: center; }
 .hero-inner { position: relative; z-index: 1; }
-.hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 8.4vw, 104px); line-height: 1; letter-spacing: -.02em; margin: 22px 0 22px; }
+.hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7.4vw, 96px); line-height: 1; letter-spacing: -.02em; margin: 22px 0 22px; }
 .hero h1 em { color: var(--lime); }
-.lede { max-width: 620px; font-size: 18px; color: var(--muted); margin: 0 0 30px; }
-.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 170px; }
-.stats { position: absolute; right: 32px; top: 8px; display: flex; gap: 0; margin: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--glass-2); backdrop-filter: blur(6px); }
-.stats div { padding: 12px 20px; border-right: 1px solid var(--line); text-align: right; }
+.lede { max-width: 560px; font-size: 18px; color: var(--muted); margin: 0 0 28px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+.stats { display: inline-flex; margin: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--glass-2); }
+.stats div { padding: 12px 20px; border-right: 1px solid var(--line); }
 .stats div:last-child { border-right: 0; }
 .stats dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
 .stats dd { margin: 2px 0 0; font-family: var(--serif); font-size: 30px; line-height: 1.1; color: var(--paper); }
+
+.sky { position: relative; height: 480px; border-radius: 18px; overflow: hidden;
+  background: radial-gradient(ellipse at 55% 45%, rgba(var(--lime-rgb), .10), transparent 65%); }
+.sky canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: grab; }
+.sky canvas.grabbing { cursor: grabbing; }
+.sky canvas.pointing { cursor: pointer; }
+.sky-ui { position: absolute; left: 0; right: 0; bottom: 10px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; pointer-events: none; }
+.sky-hint { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); transition: opacity .6s; }
+.sky.used .sky-hint { opacity: .35; }
+.sky-mute { pointer-events: auto; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--glass-2); color: var(--muted); cursor: pointer; }
+.sky-mute:hover { color: var(--lime); border-color: var(--lime); }
+.sky-mute svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sky-mute .off { display: none; }
+.sky.muted .sky-mute .on { display: none; }
+.sky.muted .sky-mute .off { display: block; }
 
 /* ---------- 精选作品：一次展示一个，自动轮播 ---------- */
 .work { padding: 72px 0 8px; }
@@ -346,8 +354,6 @@ html[data-theme="light"] {
   --shadow: rgba(80, 60, 30, .35);
   --shadow-soft: rgba(80, 60, 30, .18);
 }
-html[data-theme="light"] .stroke path { filter: none; }
-html[data-theme="light"] .stroke circle { fill: #fff; }
 html[data-theme="light"] .tile-art, html[data-theme="light"] .fslide-art, html[data-theme="light"] .pcard-art, html[data-theme="light"] .dh-art { background-color: #f1ede3; }
 html[data-theme="light"] .demo-bar .dot { box-shadow: none; }
 html[data-theme="light"] { --accent-ink: color-mix(in srgb, var(--accent) 58%, #2b1a0c); }
@@ -387,8 +393,8 @@ html[data-theme="light"] .theme-btn .sun { display: block; }
   .ftab { flex: 0 0 auto; grid-template-columns: auto; padding: 10px 12px 12px; }
   .ftab-txt small { display: none; }
   .ftab-txt b { font-size: 15px; white-space: nowrap; }
-  .stats { position: static; display: inline-flex; margin: 0 0 160px; }
-  .hero-cta { margin-bottom: 26px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .sky { height: 360px; }
 }
 @media (max-width: 760px) {
   .wrap { padding: 0 18px; }
@@ -403,5 +409,7 @@ html[data-theme="light"] .theme-btn .sun { display: block; }
   .fslide-body { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "desc" "actions"; }
   .fslide-body .actions { justify-content: flex-start; margin-top: 8px; }
   .ftab-num { display: none; }
-  .hero { padding-top: 60px; }
+  .hero { padding-top: 40px; }
+  .sky { height: 320px; }
+  .stats div { padding: 10px 14px; }
 }
