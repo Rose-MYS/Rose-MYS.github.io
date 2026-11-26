@@ -564,3 +564,15 @@ html[data-theme="light"] .tl-chip { background: color-mix(in srgb, var(--accent)
 @media (max-width: 1290px) { .toc { display: none; } }
 
 .credit { margin-top: 28px; font-size: 12.5px; color: var(--dim); }
+
+/* writing (articles) */
+.prose > h3:not([class]) { font-family: var(--serif); font-weight: 400; font-size: 21px; margin: 32px 0 10px; scroll-margin-top: 96px; }
+.prose blockquote { margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent); background: var(--panel-2); border-radius: 0 10px 10px 0; }
+.prose blockquote p { margin: 0; }
+.prose ol.refs li { font-size: 14px; overflow-wrap: anywhere; }
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { padding: 22px 0; border-bottom: 1px solid var(--line); margin: 0; }
+.post-list h2 { margin: 4px 0 8px; font-size: 24px; }
+.post-list h2 a { color: var(--paper); text-decoration: none; }
+.post-list h2 a:hover { color: var(--lime); }
+.post-date { margin: 0; font-family: var(--mono); font-size: 13px; color: var(--dim); }
