@@ -248,7 +248,8 @@ h1 em, h2 em, h3 em { color: var(--accent); font-weight: 400; }
 .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
 .kicker-s { color: var(--muted); white-space: nowrap; }
 .intro { color: var(--muted); max-width: 720px; margin: 0 0 30px; }
-.dests { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.dests { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 1100px) { .dests { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .dest {
   position: relative; display: block; text-decoration: none; padding: 22px 22px 26px;
   border: 1px solid var(--line); border-radius: 10px;
