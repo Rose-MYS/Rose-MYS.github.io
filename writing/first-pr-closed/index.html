@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My first open-source PR got closed · Rose</title>
+<meta name="title-zh" content="我的第一个开源 PR 被关掉了 · Rose">
+<meta name="title-en" content="My first open-source PR got closed · Rose">
+<meta name="description" content="一个大一学生和 AI 一起给开源项目提 PR 被关闭后的反思：用 AI 做项目，重要的是使用者自己的判断。">
+<meta name="theme-color" content="#10131c">
+<link rel="icon" href="../../assets/favicon.svg?v=202611262145" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css?v=202611262145">
+<script src="../../assets/site.js?v=202611262145"></script>
+</head>
+<body class="">
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="../../"><svg class="brand-mark" width="30" height="30" viewBox="10 8 44 50" aria-hidden="true"><path d="M32 33 c3 0 4 -3 2 -5 c-3 -3 -8 0 -8 4 c0 6 7 9 12 6 c6 -4 5 -13 -1 -16 c-8 -4 -17 2 -17 10 c0 10 9 16 18 14" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path d="M32 46 V56" stroke="#7fbf8a" stroke-width="3.6" stroke-linecap="round"/><path d="M32 52 q-6 -1 -8 -6 q6 0 8 6z" fill="#7fbf8a"/></svg>Rose</a>
+    <nav class="nav"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a><a href="../../writing/" aria-current="page"><span class="zh">文章</span><span class="en">Writing</span></a></nav>
+    <div class="mast-tools"><button class="theme-btn" type="button" aria-label="Switch light or dark theme" title="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><button class="lang-btn" type="button" aria-label="Switch language" title="Switch language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9M12 3c-2.6 2.6-3.8 5.6-3.8 9s1.2 6.4 3.8 9"/></svg><span class="lang-code">EN</span></button></div>
+  </div>
+</header>
+<main>
+<section class="phead"><div class="wrap">
+  <a class="back" href="../../writing/" data-back><i>←</i> <span class="zh">返回</span><span class="en">Back</span></a>
+  <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> <span>/</span> <a href="../../writing/"><span class="zh">文章</span><span class="en">Writing</span></a></p>
+  <p class="meta"><span><span class="zh">AI + 开源</span><span class="en">AI &amp; open source</span></span><span class="sep"></span><span class="st since">2026-11-26</span></p>
+  <h1><span class="zh">我的第一个开源 PR <em>被关掉了</em></span><span class="en">My first open-source PR <em>got closed</em></span></h1>
+  <p class="sub"><span class="zh">我和 AI 一起给一个开源项目提了 PR，当晚就被维护者关掉了。回头看，问题不在 AI 会不会写代码，而在我自己有没有判断。</span><span class="en">I opened a pull request on an open-source project together with an AI, and the maintainer closed it the same evening. Looking back, the problem wasn’t whether the AI could write code — it was whether I had any judgement of my own.</span></p>
+</div></section>
+<section class="wrap">
+  <div class="dlayout"><nav class="toc" aria-label="On this page"><div class="toc-in"><p class="toc-h"><span class="zh">本页目录</span><span class="en">On this page</span></p><ol></ol></div></nav>
+  <div class="prose">
+
+<h2><span class="zh">发生了什么</span><span class="en">What happened</span></h2>
+<p><span class="zh">我想找一个项目和 AI 一起做。在 IF.Lab 的项目广场上，我选中了 <a href="https://github.com/LiuMengxuan04/vibe-resume">Vibe-Resume</a>：一个用 HTML/CSS 写简历、再让 AI 帮你改的开源工作流，在 GitHub 上有 700 多颗星。</span><span class="en">I wanted to find a project to work on with AI. On the IF.Lab project board I picked <a href="https://github.com/LiuMengxuan04/vibe-resume">Vibe-Resume</a>: an open-source workflow where you keep your résumé in HTML/CSS and let an AI edit it, with 700+ stars on GitHub.</span></p>
+<p><span class="zh">我和 Claude 一起提了两个 PR：</span><span class="en">Together with Claude, I opened two pull requests:</span></p>
+<ul>
+  <li><span class="zh"><a href="https://github.com/LiuMengxuan04/vibe-resume/pull/7">PR #7</a>：新增一个英文单页简历模板。项目里原有的模板都是中文的，我觉得补一个英文版会有用。</span><span class="en"><a href="https://github.com/LiuMengxuan04/vibe-resume/pull/7">PR #7</a>: a new English one-page résumé template. All the existing templates were Chinese, so I thought an English one would be useful.</span></li>
+  <li><span class="zh"><a href="https://github.com/LiuMengxuan04/vibe-resume/pull/8">PR #8</a>：加上 GitHub Actions 自动测试。</span><span class="en"><a href="https://github.com/LiuMengxuan04/vibe-resume/pull/8">PR #8</a>: a GitHub Actions workflow that runs the tests automatically.</span></li>
+</ul>
+<p><span class="zh">维护者先在 PR #7 下让我补截图。我补上了。当天晚上，维护者把 PR #7 关掉了，意见大意是：作为英文模板，它不符合美学设计，英文简历不适合这样的排版和密度；我只是把原来的模板翻译成了英文，是一次没有价值的增量更新。维护者建议我去看看海外名校硕博申请时用的英文简历。</span><span class="en">The maintainer first asked me to add screenshots to PR #7, and I did. That evening they closed it. Their point, roughly: as an English template it didn’t meet the design bar — English résumés don’t suit that layout or density; I had simply translated the original template into English, which added nothing of value. They suggested I look at the English CVs that applicants to top overseas master’s and PhD programmes actually use.</span></p>
+
+<h2><span class="zh">回头看，问题出在哪</span><span class="en">Looking back: what went wrong</span></h2>
+<p><span class="zh">维护者说得对。我把模板和真正的英文简历放在一起比，差别一眼就能看出来：</span><span class="en">They were right. Put the template next to real English CVs and the difference is obvious:</span></p>
+<ul>
+  <li><span class="zh">我的模板沿用了中文模板的视觉风格：每个章节都有图标和渐变色横线，教育经历放在带底色的方框里，联系方式做成一个个小按钮。</span><span class="en">My template kept the Chinese template’s visual style: an icon and a gradient rule for every section, education in a shaded box, contact details as little pill buttons.</span></li>
+  <li><span class="zh">常见的英文简历恰恰相反：单栏，黑白为主，几乎不用图标和色块，章节之间只有一条细线，行距更紧，一页里装的信息更多。</span><span class="en">Typical English CVs are the opposite: a single column, mostly black and white, almost no icons or colour blocks, a thin line between sections, tighter spacing and much more on one page.</span></li>
+</ul>
+<p><span class="zh">我改动的只是“去掉照片”“日期右对齐”这样的小地方，没有回答最核心的问题：<b>一份好的英文简历应该长什么样？</b>而这个问题，我自己在提交之前根本没有想过。</span><span class="en">All I changed were small things like dropping the photo and right-aligning dates. I never answered the central question: <b>what does a good English CV look like?</b> And I hadn’t even asked myself that before submitting.</span></p>
+
+<h2><span class="zh">我的感悟</span><span class="en">What I took away</span></h2>
+<p><span class="zh">提交 PR 的时候，我只沉浸在 AI 的能力里，认为只要通过 AI，就可以做好一个项目。可那时我对这个项目并不怎么了解，甚至不知道英文简历应该长什么样。AI 也没有检查出来。</span><span class="en">When I submitted the PR, I was caught up in what the AI could do. I believed that with AI, I could do a project well. But I didn’t really understand the project — I didn’t even know what an English résumé should look like. And the AI didn’t catch it either.</span></p>
+<p><span class="zh">事后我问 Claude 怎么看，它承认：补截图的时候，它确认的是“渲染正常、PDF 只有一页”，从来没有问过“这是一份好的英文简历吗”。它检查的是“做出来了没有”，而不是“做得对不对”。</span><span class="en">Afterwards I asked Claude about it, and it admitted that when it took the screenshots, it checked that the page rendered and the PDF was one page — it never asked whether this was a good English résumé. It checked whether the thing was <i>done</i>, not whether it was <i>right</i>.</span></p>
+<blockquote><p><span class="zh"><b>用 AI 做项目，重要的在于：使用者需要知道怎样才能用好 AI，去做出自己想要的东西；需要对项目有自己的判断。</b></span><span class="en"><b>When you build with AI, what matters is that you know how to use it well to make what you actually want — and that you have your own judgement about the project.</b></span></p></blockquote>
+
+<h2><span class="zh">使用者要负责什么</span><span class="en">What the human is responsible for</span></h2>
+<p><span class="zh">AI 最擅长的，是“给定一个标准，很快做出符合标准的东西”。最容易缺的，是“在这个领域里，什么才算好”这个标准本身。这一次，标准从一开始就错了：我把“把中文模板做成英文版”当成了目标。之后执行得再快、测试写得再全，也只是在错误的方向上走得更远。</span><span class="en">AI is best at taking a standard and quickly producing something that meets it. What tends to be missing is the standard itself — what counts as good in this field. This time the standard was wrong from the start: I made “turn the Chinese template into an English one” the goal. After that, however fast the work went and however thorough the tests were, we were just going further in the wrong direction.</span></p>
+<p><span class="zh">但我不觉得结论是“AI 靠不住，只能靠自己”。判断力也可以借助 AI 去积累，只是我跳过了这一步。动手之前，我本可以先让 AI：</span><span class="en">But I don’t think the conclusion is “AI can’t be trusted, rely only on yourself.” You can use AI to build judgement too — I just skipped that step. Before writing any code, I could have asked it to:</span></p>
+<ul>
+  <li><span class="zh">找十几份海外硕博、欧美求职用的真实英文简历，和中文简历逐项对比；</span><span class="en">collect a dozen real English CVs used for overseas graduate applications and Western job hunting, and compare them with Chinese résumés point by point;</span></li>
+  <li><span class="zh">读一读这个仓库已经合并的 PR 和维护者说过的话，看维护者在意什么；</span><span class="en">read the repository’s merged PRs and what the maintainer has said, to see what they care about;</span></li>
+  <li><span class="zh">先拿出两三种设计方向让我选，确定了再写代码。</span><span class="en">sketch two or three design directions for me to choose from before writing anything.</span></li>
+</ul>
+<p><span class="zh">所以我现在的理解是：用 AI 做项目，使用者要负责的不是每一行代码，而是<b>问对问题、定对标准、最后亲自验收</b>。AI 可以帮我建立判断，但它代替不了我去做判断。</span><span class="en">So here’s how I see it now: when you build with AI, you aren’t responsible for every line of code. You’re responsible for <b>asking the right questions, setting the right standard, and checking the result yourself</b>. AI can help me build judgement, but it can’t make the judgement for me.</span></p>
+
+<h2><span class="zh">一个对照</span><span class="en">A comparison</span></h2>
+<p><span class="zh">同一批里的 PR #8 方向就是对的。它补的是项目里真实存在的缺口：原来的 35 项测试里，有 20 项因为没有配置浏览器而一直被跳过；加上工作流之后，35 项全部能跑通。这是一个能被验证的结果，不存在“审美对不对”的问题。（写这篇文章时，它还在等维护者处理。）</span><span class="en">PR #8, from the same batch, went in the right direction. It filled a real gap: 20 of the project’s 35 tests were always skipped because no browser was configured; with the workflow, all 35 run and pass. That’s a result you can verify, with no question of taste. (As I write this, it’s still waiting for the maintainer.)</span></p>
+<p><span class="zh">两个 PR 都是和 AI 一起写的，差别不在“用不用 AI”，而在动手之前有没有先弄清楚：这个项目缺什么，什么才算好。</span><span class="en">Both PRs were written with AI. The difference wasn’t whether AI was used — it was whether I first understood what the project needed and what “good” meant.</span></p>
+
+<h2><span class="zh">被关掉也有价值</span><span class="en">Getting closed was worth it</span></h2>
+<p><span class="zh">很多第一次给开源项目提的 PR，根本没人回应。这次维护者明确告诉了我他们的标准，还给我指了参考的方向。这比一个被悄悄合并的 PR 教会我的更多。</span><span class="en">Plenty of first-time pull requests never get a reply at all. This maintainer told me exactly where the bar was and pointed me to where to look. That taught me more than a quietly merged PR would have.</span></p>
+<p><span class="zh">下一次，我会先弄清楚“好”长什么样，再让 AI 动手。</span><span class="en">Next time, I’ll work out what “good” looks like first — and only then let the AI start.</span></p>
+
+  </div></div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Rose</span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub ↗</a></span>
+  </div>
+</footer>
+</body>
+</html>
