@@ -636,7 +636,8 @@
     var cs = root.querySelectorAll('.count');
     for (var i = 0; i < cs.length; i++) {
       var c = cs[i], a = parseFloat(c.getAttribute('data-from')), b = parseFloat(c.getAttribute('data-to'));
-      var v = (a + (b - a) * p).toFixed(1) + (c.getAttribute('data-unit') || '');
+      var dec = c.hasAttribute('data-dec') ? +c.getAttribute('data-dec') : 1;
+      var v = (a + (b - a) * p).toFixed(dec) + (c.getAttribute('data-unit') || '');
       if (c.textContent !== v) c.textContent = v;
     }
   }
