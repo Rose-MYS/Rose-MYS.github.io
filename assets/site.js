@@ -619,6 +619,7 @@
       if (Math.abs(target - phase) < 0.0005) phase = target;
       slides[active].style.setProperty('--phase', phase.toFixed(4));
       updateShapeSound(slides[active].querySelector('.art'), phase);
+      updateCounts(slides[active], phase);
       for (var k = 0; k < n; k++) {
         var f = tabs[k].querySelector('.fill');
         if (f) f.style.width = (k === active ? phase * 100 : 0).toFixed(1) + '%';
@@ -626,6 +627,18 @@
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
+  }
+
+
+  // 插画里的数字跟着 --phase 变化（如用量面板 42.1M → 92.0M）
+  function updateCounts(root, p) {
+    if (!root) return;
+    var cs = root.querySelectorAll('.count');
+    for (var i = 0; i < cs.length; i++) {
+      var c = cs[i], a = parseFloat(c.getAttribute('data-from')), b = parseFloat(c.getAttribute('data-to'));
+      var v = (a + (b - a) * p).toFixed(1) + (c.getAttribute('data-unit') || '');
+      if (c.textContent !== v) c.textContent = v;
+    }
   }
 
   // 项目页大图、项目目录卡片：插画零件跟着页面滚动位置动
@@ -643,6 +656,7 @@
         p = Math.min(1, Math.max(0, p));
         el.style.setProperty('--phase', p.toFixed(4));
         updateShapeSound(el.querySelector('.art'), p);
+        updateCounts(el, p);
       });
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
