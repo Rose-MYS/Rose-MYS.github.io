@@ -120,7 +120,26 @@
       ctx.closePath(); ctx.fill();
     }
 
-    window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    // 鼠标：跟随指针。手指：单独用 touch 事件（很多手机浏览器在滚动时会取消 pointer 事件，或根本不支持 pointer 事件）
+    var touchOn = false, touchEnd = -1e9, usingTouch = false, act = 0;
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      usingTouch = false; mouse.x = e.clientX; mouse.y = e.clientY;
+    }, { passive: true });
+    function tpos(e, start) {
+      var p = e.touches && e.touches[0]; if (!p) return;
+      usingTouch = true; touchOn = true; mouse.x = p.clientX; mouse.y = p.clientY;
+      if (start) { mouse.sx = mouse.x; mouse.sy = mouse.y; }
+    }
+    window.addEventListener('touchstart', function (e) {
+      tpos(e, true);
+      if (!window.PointerEvent && !reduce && e.touches[0] && !(e.target.closest && e.target.closest('a, button, input, textarea, select, iframe, canvas, .fstage, .ftabs, .pcard, .dest, .demo')))
+        ripples.push({ x: e.touches[0].clientX, y: e.touches[0].clientY, t: performance.now() });
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) { tpos(e, false); }, { passive: true });
+    function tend(e) { if (!e.touches || !e.touches.length) { touchOn = false; touchEnd = performance.now(); } }
+    window.addEventListener('touchend', tend, { passive: true });
+    window.addEventListener('touchcancel', tend, { passive: true });
     document.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
     window.addEventListener('resize', build);
     window.addEventListener('pointerdown', function (e) {
@@ -137,7 +156,11 @@
       var tt = reduce ? 0 : t, A = light ? 0.55 : 1;
       if (mouse.sx < -9000) { mouse.sx = mouse.x; mouse.sy = mouse.y; }
       mouse.sx += (mouse.x - mouse.sx) * 0.12; mouse.sy += (mouse.y - mouse.sy) * 0.12;
-      var on = mouse.sx > -9000 && mouse.x > -9000;
+      // 手指松开后，光晕和临时星座停留一会儿再淡出
+      var want = mouse.x > -9000 ? (usingTouch ? (touchOn ? 1 : Math.max(0, 1 - (t - touchEnd) / 1500)) : 1) : 0;
+      act += (want - act) * 0.15;
+      if (usingTouch && !touchOn && t - touchEnd > 1700) { mouse.x = mouse.y = -9999; act = 0; }
+      var on = mouse.sx > -9000 && mouse.x > -9000 && act > 0.01;
       ctx.clearRect(0, 0, W, H);
       var c1 = cycleColor(tt, 0), c2 = cycleColor(tt, CYCLE / 2), c3 = cycleColor(tt, CYCLE / 4);
       var base = light ? [90, 70, 40] : [236, 232, 222];
@@ -156,7 +179,7 @@
       // 鼠标光晕
       if (on) {
         g = ctx.createRadialGradient(mouse.sx, mouse.sy, 0, mouse.sx, mouse.sy, 260);
-        g.addColorStop(0, rgb(c1, 0.14 * A)); g.addColorStop(1, rgb(c1, 0));
+        g.addColorStop(0, rgb(c1, (usingTouch ? 0.2 : 0.14) * A * act)); g.addColorStop(1, rgb(c1, 0));
         ctx.fillStyle = g; ctx.fillRect(mouse.sx - 260, mouse.sy - 260, 520, 520);
       }
       // 涟漪
@@ -172,7 +195,7 @@
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
         var x = s.x - px * 16 * s.z, y = s.y - py * 12 * s.z, boost = 0;
-        if (on) { var dx = x - mouse.sx, dy = y - mouse.sy, d2 = dx * dx + dy * dy; if (d2 < 52900) { boost = 1 - Math.sqrt(d2) / 230; if (d2 < 22500 && s.a > 0.1) near.push([x, y, boost]); } }
+        if (on) { var dx = x - mouse.sx, dy = y - mouse.sy, d2 = dx * dx + dy * dy; if (d2 < 52900) { boost = (1 - Math.sqrt(d2) / 230) * act; if (d2 < 22500 && s.a > 0.1) near.push([x, y, boost]); } }
         for (var rj = 0; rj < ripples.length; rj++) { var r2 = ripples[rj], dd = Math.abs(Math.hypot(x - r2.x, y - r2.y) - r2.R); if (dd < 30) s.kick = Math.max(s.kick, 1 - dd / 30); }
         s.kick *= 0.93;
         var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(tt / 1000 * s.sp + s.ph);
