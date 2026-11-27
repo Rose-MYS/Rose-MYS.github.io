@@ -8,15 +8,15 @@
 <meta name="title-en" content="Projects · Rose">
 <meta name="description" content="Rose 的项目目录。">
 <meta name="theme-color" content="#10131c">
-<link rel="icon" href="../assets/favicon.svg?v=202611270745" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/style.css?v=202611270745">
-<script src="../assets/site.js?v=202611270745"></script>
+<link rel="icon" href="../assets/favicon.svg?v=202611271530" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=202611271530">
+<script src="../assets/site.js?v=202611271530"></script>
 </head>
 <body class="">
 <header class="mast">
   <div class="wrap">
     <a class="brand" href="../"><svg class="brand-mark" width="30" height="30" viewBox="10 8 44 50" aria-hidden="true"><path d="M32 33 c3 0 4 -3 2 -5 c-3 -3 -8 0 -8 4 c0 6 7 9 12 6 c6 -4 5 -13 -1 -16 c-8 -4 -17 2 -17 10 c0 10 9 16 18 14" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path d="M32 46 V56" stroke="#7fbf8a" stroke-width="3.6" stroke-linecap="round"/><path d="M32 52 q-6 -1 -8 -6 q6 0 8 6z" fill="#7fbf8a"/></svg>Rose</a>
-    <nav class="nav"><a href="../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../projects/" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a><a href="../writing/"><span class="zh">文章</span><span class="en">Writing</span></a></nav>
+    <nav class="nav"><a href="../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../projects/" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
     <div class="mast-tools"><button class="theme-btn" type="button" aria-label="Switch light or dark theme" title="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><button class="lang-btn" type="button" aria-label="Switch language" title="Switch language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9M12 3c-2.6 2.6-3.8 5.6-3.8 9s1.2 6.4 3.8 9"/></svg><span class="lang-code">EN</span></button></div>
   </div>
 </header>
@@ -246,6 +246,39 @@
     <h3><span class="zh">Antigravity<br><em>用量面板</em></span><span class="en">Antigravity<br><em>Usage</em></span></h3>
     <p class="desc"><span class="zh">一个本地运行的网页面板，读取 Antigravity 留在电脑上的日志，统计每天、每个模型、每个会话用了多少 token、缓存命中率多少。无需安装依赖，可装成后台服务开机自启。</span><span class="en">A local web dashboard that reads the logs Antigravity leaves on your computer and shows token usage and cache hit rate by day, model and session. No dependencies to install, and it can run as a background service at login.</span></p>
     <div class="actions"><a class="btn" href="../projects/usage-dashboard/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a><a class="btn" href="https://github.com/Rose-MYS/antigravity-usage-dashboard">GitHub <i>↗</i></a></div>
+  </div>
+</article>
+<article class="pcard" style="--accent:#5fd1b6">
+  <a class="pcard-art" href="../projects/claude-fortress/" aria-label="Claude Fortress"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Claude Fortress" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(300 178)">
+  <g style="transform:scale(calc(.82 + var(--phase,0) * .18));opacity:calc(.35 + var(--phase,0) * .65)">
+    <rect x="-210" y="-128" width="420" height="256" rx="26" fill="none" stroke="#3a4560" stroke-width="2.5" stroke-dasharray="7 7"/>
+    <text x="-196" y="-108" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="#7c879f">HOST</text>
+  </g>
+  <g style="transform:scale(calc(.7 + var(--phase,0) * .3))">
+    <rect x="-150" y="-90" width="300" height="180" rx="20" fill="#141a26" stroke="var(--accent)" stroke-width="3"/>
+    <text x="-136" y="-70" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="var(--accent)">GATEWAY · DEFAULT DENY</text>
+  </g>
+  <g style="transform:scale(calc(.55 + var(--phase,0) * .45))">
+    <rect x="-82" y="-48" width="164" height="110" rx="14" fill="#1d2433" stroke="#efebe1" stroke-width="2.5"/>
+    <text x="-70" y="-30" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="#c9cfdd">VM</text>
+    <rect x="-24" y="-8" width="48" height="40" rx="7" fill="#efebe1"/>
+    <path d="M-15 -8 v-10 a15 15 0 0 1 30 0 v10" fill="none" stroke="#efebe1" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="10" r="5" fill="#1d2433"/><rect x="-2.5" y="12" width="5" height="11" rx="2" fill="#1d2433"/>
+  </g>
+  <g stroke="#ef8a6f" stroke-width="3" stroke-linecap="round" fill="none" style="opacity:calc(var(--phase,0) * 1.4 - .2)">
+    <path d="M-268 -60 L-162 -60"/><path d="M-172 -68 l10 8 -10 8"/><path d="M-158 -70 l12 20 M-146 -70 l-12 20"/>
+    <path d="M268 50 L162 50"/><path d="M172 42 l-10 8 10 8"/><path d="M158 40 l-12 20 M146 40 l12 20"/>
+  </g>
+  <path d="M40 -48 C40 -118 140 -128 222 -150" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1" pathLength="1" style="stroke-dashoffset:calc(1 - var(--phase,0))"/>
+  <circle r="6" fill="var(--accent)" style="offset-path:path('M40 -48 C40 -118 140 -128 222 -150');offset-distance:calc(var(--phase,0) * 100%)"/>
+</g></svg></a>
+  <div class="pcard-body">
+    <div class="pcard-top"><p class="meta"><span><span class="zh">安全 · Agent Skill</span><span class="en">Security · Agent Skill</span></span><span class="sep"></span><span class="st"><span class="zh">开源 · v1.2</span><span class="en">Open source · v1.2</span></span><span class="sep"></span><span class="st since"><span class="zh">始于</span><span class="en">Since</span> 2026-11-26</span></p></div>
+    <h3><span class="zh">Claude <em>堡垒</em></span><span class="en">Claude <em>Fortress</em></span></h3>
+    <p class="desc"><span class="zh">一套开源 Agent Skill 加中英交互式路线图：一步步把 AI Agent 关进隔离环境——专用虚拟机、默认拒绝的出口网关、操作分级确认，并在自己机器上做冷启动、热启动和断网自检。</span><span class="en">An open-source Agent Skill with a bilingual interactive roadmap that walks you through putting an AI agent in an isolated environment — a dedicated VM, a default-deny egress gateway, tiered approvals — and self-testing it on your own machine.</span></p>
+    <div class="actions"><a class="btn solid" href="https://rose-mys.github.io/claude-fortress/"><span class="zh">交互指南</span><span class="en">Guide</span> <i>↗</i></a><a class="btn" href="../projects/claude-fortress/"><span class="zh">项目介绍</span><span class="en">Details</span> <i>→</i></a><a class="btn" href="https://github.com/Rose-MYS/claude-fortress">GitHub <i>↗</i></a></div>
   </div>
 </article></div></section>
 </main>

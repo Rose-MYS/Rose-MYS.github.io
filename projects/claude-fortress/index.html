@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Fortress · Rose</title>
+<meta name="title-zh" content="Claude 堡垒 · Rose">
+<meta name="title-en" content="Claude Fortress · Rose">
+<meta name="description" content="一套开源 Agent Skill 加中英交互式路线图：一步步把 AI Agent 关进隔离环境——专用虚拟机、默认拒绝的出口网关、操作分级确认，并在自己机器上做冷启动、热启动和断网自检。">
+<meta name="theme-color" content="#10131c">
+<link rel="icon" href="../../assets/favicon.svg?v=202611271530" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css?v=202611271530">
+<script src="../../assets/site.js?v=202611271530"></script>
+</head>
+<body class="">
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="../../"><svg class="brand-mark" width="30" height="30" viewBox="10 8 44 50" aria-hidden="true"><path d="M32 33 c3 0 4 -3 2 -5 c-3 -3 -8 0 -8 4 c0 6 7 9 12 6 c6 -4 5 -13 -1 -16 c-8 -4 -17 2 -17 10 c0 10 9 16 18 14" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path d="M32 46 V56" stroke="#7fbf8a" stroke-width="3.6" stroke-linecap="round"/><path d="M32 52 q-6 -1 -8 -6 q6 0 8 6z" fill="#7fbf8a"/></svg>Rose</a>
+    <nav class="nav"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../../projects/" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a></nav>
+    <div class="mast-tools"><button class="theme-btn" type="button" aria-label="Switch light or dark theme" title="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><button class="lang-btn" type="button" aria-label="Switch language" title="Switch language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9M12 3c-2.6 2.6-3.8 5.6-3.8 9s1.2 6.4 3.8 9"/></svg><span class="lang-code">EN</span></button></div>
+  </div>
+</header>
+<main>
+<section class="phead detail-head" style="--accent:#5fd1b6"><div class="wrap dh-grid">
+  <div>
+    <a class="back" href="../../projects/" data-back><i>←</i> <span class="zh">返回</span><span class="en">Back</span></a>
+    <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> <span>/</span> <a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a> <span>/</span> <span class="zh">Claude 堡垒</span><span class="en">Claude Fortress</span></p>
+    <p class="meta"><span><span class="zh">安全 · Agent Skill</span><span class="en">Security · Agent Skill</span></span><span class="sep"></span><span class="st"><span class="zh">开源 · v1.2</span><span class="en">Open source · v1.2</span></span><span class="sep"></span><span class="st since"><span class="zh">始于</span><span class="en">Since</span> 2026-11-26</span></p>
+    <h1><span class="zh">Claude <em>堡垒</em></span><span class="en">Claude <em>Fortress</em></span></h1>
+    <p class="sub"><span class="zh">一套开源 Agent Skill 加中英交互式路线图：一步步把 AI Agent 关进隔离环境——专用虚拟机、默认拒绝的出口网关、操作分级确认，并在自己机器上做冷启动、热启动和断网自检。</span><span class="en">An open-source Agent Skill with a bilingual interactive roadmap that walks you through putting an AI agent in an isolated environment — a dedicated VM, a default-deny egress gateway, tiered approvals — and self-testing it on your own machine.</span></p>
+    <div class="actions"><a class="btn solid" href="https://rose-mys.github.io/claude-fortress/"><span class="zh">交互指南</span><span class="en">Guide</span> <i>↗</i></a><a class="btn" href="https://github.com/Rose-MYS/claude-fortress">GitHub <i>↗</i></a></div>
+  </div>
+  <div class="dh-art"><svg class="art" viewBox="0 0 600 360" role="img" aria-label="Claude Fortress" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="300" cy="318" rx="230" ry="26" fill="#000" opacity=".28"/>
+<g transform="translate(300 178)">
+  <g style="transform:scale(calc(.82 + var(--phase,0) * .18));opacity:calc(.35 + var(--phase,0) * .65)">
+    <rect x="-210" y="-128" width="420" height="256" rx="26" fill="none" stroke="#3a4560" stroke-width="2.5" stroke-dasharray="7 7"/>
+    <text x="-196" y="-108" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="#7c879f">HOST</text>
+  </g>
+  <g style="transform:scale(calc(.7 + var(--phase,0) * .3))">
+    <rect x="-150" y="-90" width="300" height="180" rx="20" fill="#141a26" stroke="var(--accent)" stroke-width="3"/>
+    <text x="-136" y="-70" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="var(--accent)">GATEWAY · DEFAULT DENY</text>
+  </g>
+  <g style="transform:scale(calc(.55 + var(--phase,0) * .45))">
+    <rect x="-82" y="-48" width="164" height="110" rx="14" fill="#1d2433" stroke="#efebe1" stroke-width="2.5"/>
+    <text x="-70" y="-30" font-family="Cascadia Mono, Consolas, monospace" font-size="11" fill="#c9cfdd">VM</text>
+    <rect x="-24" y="-8" width="48" height="40" rx="7" fill="#efebe1"/>
+    <path d="M-15 -8 v-10 a15 15 0 0 1 30 0 v10" fill="none" stroke="#efebe1" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="10" r="5" fill="#1d2433"/><rect x="-2.5" y="12" width="5" height="11" rx="2" fill="#1d2433"/>
+  </g>
+  <g stroke="#ef8a6f" stroke-width="3" stroke-linecap="round" fill="none" style="opacity:calc(var(--phase,0) * 1.4 - .2)">
+    <path d="M-268 -60 L-162 -60"/><path d="M-172 -68 l10 8 -10 8"/><path d="M-158 -70 l12 20 M-146 -70 l-12 20"/>
+    <path d="M268 50 L162 50"/><path d="M172 42 l-10 8 10 8"/><path d="M158 40 l-12 20 M146 40 l12 20"/>
+  </g>
+  <path d="M40 -48 C40 -118 140 -128 222 -150" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1" pathLength="1" style="stroke-dashoffset:calc(1 - var(--phase,0))"/>
+  <circle r="6" fill="var(--accent)" style="offset-path:path('M40 -48 C40 -118 140 -128 222 -150');offset-distance:calc(var(--phase,0) * 100%)"/>
+</g></svg></div>
+</div></section>
+<section class="wrap" style="--accent:#5fd1b6">
+  <dl class="facts"><div><dt><span class="zh">类型</span><span class="en">Type</span></dt><dd><span class="zh">Agent Skill + 交互式路线图</span><span class="en">Agent Skill + interactive roadmap</span></dd></div><div><dt><span class="zh">语言</span><span class="en">Language</span></dt><dd><span class="zh">中文 · English</span><span class="en">Chinese · English</span></dd></div><div><dt><span class="zh">内容</span><span class="en">Contents</span></dt><dd><span class="zh">SKILL.md · 9 篇参考 · 脚本 · 模板</span><span class="en">SKILL.md · 9 references · scripts · templates</span></dd></div><div><dt><span class="zh">版本</span><span class="en">Version</span></dt><dd>v1.2.0 · MIT</dd></div></dl>
+  
+  <div class="dlayout"><nav class="toc" aria-label="On this page"><div class="toc-in"><p class="toc-h"><span class="zh">本页目录</span><span class="en">On this page</span></p><ol></ol></div></nav>
+  <div class="prose"><h2><span class="zh">是什么</span><span class="en">What it is</span></h2>
+<p><span class="zh">让 AI Agent 帮你在电脑上干活很方便，但它能联网、能跑命令，一旦出错影响的是整台机器。Claude 堡垒把我自己搭隔离环境的经验整理成一套开源 Agent Skill：装好之后，Agent 会按规范一步步带你把它自己关进隔离环境，每一步先说清风险等级，高风险操作必须你本人确认。</span><span class="en">Letting an AI agent work on your computer is handy, but it can reach the network and run commands, so a mistake affects the whole machine. Claude Fortress turns my own isolation setup into an open-source Agent Skill: once installed, the agent walks you through sandboxing itself step by step, states the risk tier of each step, and needs your explicit approval for anything high-risk.</span></p>
+<p><a class="btn solid" href="https://rose-mys.github.io/claude-fortress/"><span class="zh">打开交互式路线图</span><span class="en">Open the interactive roadmap</span> <i>↗</i></a></p>
+<h2><span class="zh">三档风险，按步走</span><span class="en">Three risk tiers, one step at a time</span></h2>
+<ul>
+<li><span class="zh"><b>A 档 · 纯只读</b>：离线盘点机器配置，不写文件、不联网、不改网卡。</span><span class="en"><b>Tier A · read-only</b>: an offline inventory of the machine — no writes, no network, no adapter changes.</span></li>
+<li><span class="zh"><b>B 档 · 可逆</b>：中性的功能探测，随时能撤回。</span><span class="en"><b>Tier B · reversible</b>: neutral functional probes that can be undone.</span></li>
+<li><span class="zh"><b>C 档 · 高风险</b>：改网关规则、可能断网的动作，必须你本人逐项确认。</span><span class="en"><b>Tier C · high-risk</b>: gateway rules and anything that might cut the network — each needs your own sign-off.</span></li>
+</ul>
+<h2><span class="zh">几条路线</span><span class="en">Routes</span></h2>
+<ul>
+<li><span class="zh"><b>虚拟机堡垒</b>：Windows 虚拟机只接一个隔离网段，出口经过一台默认拒绝的 OpenWrt 网关，客机再加一层防火墙白名单。</span><span class="en"><b>VM fortress</b>: a Windows VM on a single isolated network, egress through a default-deny OpenWrt gateway, plus a firewall allow-list inside the guest.</span></li>
+<li><span class="zh"><b>本机轻量</b>：不开虚拟机，用独立浏览器配置和命令行做应用层隔离。</span><span class="en"><b>Lightweight local</b>: no VM; app-level isolation with separate browser profiles and the CLI.</span></li>
+<li><span class="zh"><b>远程开发机</b>：把 Agent 放在一台 Linux 服务器上，本机只连终端。</span><span class="en"><b>Remote dev box</b>: run the agent on a Linux server and only connect a terminal locally.</span></li>
+<li><span class="zh"><b>可选进阶：多 Agent 协作</b>：共享协作区、两层 Git、交接文档制度，和账号、网络无关，可以单独用。</span><span class="en"><b>Optional: multi-agent workflow</b>: a shared workspace, two-level Git and handoff documents — independent of accounts or networking.</span></li>
+</ul>
+<h2><span class="zh">先自检，再上线</span><span class="en">Self-test before going live</span></h2>
+<p><span class="zh">它不是"装了就安全"的黑盒。每台机器的系统、网卡和固件都不同，所以 Skill 会陪你在自己的机器上做四类实测：冷启动时网关默认不放行、重启或重载规则后边界依然闭合、主动断开上游时客机彻底断网不回退直连、DNS / IPv6 / UDP / WebRTC 没有泄漏。</span><span class="en">It is not a black box that makes you safe on install. Every machine differs, so the Skill has you run four checks on your own hardware: the gateway forwards nothing on a cold boot, the boundary stays closed after restarts and rule reloads, the guest goes fully offline (no fallback) when upstream is cut, and DNS / IPv6 / UDP / WebRTC do not leak.</span></p>
+<h2><span class="zh">怎么装</span><span class="en">Install</span></h2>
+<p><span class="zh">Claude Code 里输入：</span><span class="en">In Claude Code:</span> <code>/plugin marketplace add Rose-MYS/claude-fortress</code> <span class="zh">再</span><span class="en">then</span> <code>/plugin install fortress@rose-mys</code><span class="zh">。也可以 git clone 到 Skills 目录，或下载 Release 里的 zip 上传到 Claude 应用。</span><span class="en">. You can also git clone it into your Skills folder, or upload the release zip to the Claude app.</span></p>
+<p class="note"><span class="zh">多个 Agent 协作完成：经过两轮独立红队审阅并修复全部高优先级问题；仓库只放脱敏后的模板和文档，不含任何真实配置或账号信息。</span><span class="en">Built with several agents and two rounds of independent red-team review, with every high-priority issue fixed; the repo holds only sanitised templates and docs, with no real configs or account data.</span></p></div></div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Rose</span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub ↗</a></span>
+  </div>
+</footer>
+</body>
+</html>
