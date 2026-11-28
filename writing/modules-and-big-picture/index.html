@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modules, ports, and who owns the big picture · Rose</title>
+<meta name="title-zh" content="模块化、端口化：用 AI 做项目，全局要由人把关 · Rose">
+<meta name="title-en" content="Modules, ports, and who owns the big picture · Rose">
+<meta name="description" content="用 AI 做项目时，模块交给 AI 写和审，系统与全局由人把关；不做项目管理，AI 很容易写出屎山代码。附三个真实案例。">
+<meta name="theme-color" content="#10131c">
+<link rel="icon" href="../../assets/favicon.svg?v=202611270745" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/style.css?v=202611270745">
+<script src="../../assets/site.js?v=202611270745"></script>
+<script data-goatcounter="https://rose-mys.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body class="">
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="../../"><svg class="brand-mark" width="30" height="30" viewBox="10 8 44 50" aria-hidden="true"><path d="M32 33 c3 0 4 -3 2 -5 c-3 -3 -8 0 -8 4 c0 6 7 9 12 6 c6 -4 5 -13 -1 -16 c-8 -4 -17 2 -17 10 c0 10 9 16 18 14" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path d="M32 46 V56" stroke="#7fbf8a" stroke-width="3.6" stroke-linecap="round"/><path d="M32 52 q-6 -1 -8 -6 q6 0 8 6z" fill="#7fbf8a"/></svg>Rose</a>
+    <nav class="nav"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a><a href="../../about/"><span class="zh">关于</span><span class="en">About</span></a><a href="../../projects/"><span class="zh">项目</span><span class="en">Projects</span></a><a href="../../writing/" aria-current="page"><span class="zh">文章</span><span class="en">Writing</span></a></nav>
+    <div class="mast-tools"><button class="theme-btn" type="button" aria-label="Switch light or dark theme" title="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><button class="lang-btn" type="button" aria-label="Switch language" title="Switch language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9M12 3c-2.6 2.6-3.8 5.6-3.8 9s1.2 6.4 3.8 9"/></svg><span class="lang-code">EN</span></button></div>
+  </div>
+</header>
+<main>
+<section class="phead"><div class="wrap">
+  <a class="back" href="../../writing/" data-back><i>←</i> <span class="zh">返回</span><span class="en">Back</span></a>
+  <p class="crumb"><a href="../../"><span class="zh">首页</span><span class="en">Home</span></a> <span>/</span> <a href="../../writing/"><span class="zh">文章</span><span class="en">Writing</span></a></p>
+  <p class="meta"><span><span class="zh">AI + 工程</span><span class="en">AI &amp; engineering</span></span><span class="sep"></span><span class="st since">2026-11-28</span></p>
+  <h1><span class="zh">模块交给 AI，<em>全局留给自己</em></span><span class="en">Modules to the AI, <em>the big picture to me</em></span></h1>
+  <p class="sub"><span class="zh">学长提醒我要做模块化、端口化的开发。回头看自己的几个项目，我发现：不做好项目管理，AI 写得越快，屎山堆得越快。</span><span class="en">A senior student told me to build in modules with clear ports. Looking back at my own projects, I realised: without project management, the faster the AI writes, the faster the mess piles up.</span></p>
+</div></section>
+<section class="wrap">
+  <div class="dlayout"><nav class="toc" aria-label="On this page"><div class="toc-in"><p class="toc-h"><span class="zh">本页目录</span><span class="en">On this page</span></p><ol></ol></div></nav>
+  <div class="prose">
+
+<h2><span class="zh">学长的一句话</span><span class="en">One sentence from a senior student</span></h2>
+<p><span class="zh">今天一位学长跟我说：要做好<b>模块化、端口化</b>的开发。每个模块让 AI 自己去写、自己去审；系统和全局层面的东西，由我自己来把关。</span><span class="en">Today a senior student told me: build things in a <b>modular way, with clear ports between the modules</b>. Let the AI write and review each module by itself; the system-level, big-picture decisions are mine to own.</span></p>
+<p><span class="zh">我听完的第一反应是：这正好对上了我最近踩过的好几个坑。我也越来越确定一件事：<b>如果不做好项目管理这一步，AI 很容易写出屎山代码。</b></span><span class="en">My first reaction was that this explained several holes I’d fallen into recently. And it made me more sure of one thing: <b>without project management, AI will very easily write you a mountain of spaghetti code.</b></span></p>
+<p><span class="zh">这篇也算是对<a href="../first-pr-closed/">上一篇文章</a>的接续。那篇最后我说，用 AI 做项目时，“想法”和“结果”之间是个黑箱，我不知道该在哪里插手。学长这句话给了我一个答案的雏形：<b>在模块的边界上插手。</b></span><span class="en">This is also a follow-up to <a href="../first-pr-closed/">my last post</a>, which ended with the “black box” between my idea and the AI’s result — I didn’t know where to step in. This advice gives me the start of an answer: <b>step in at the boundaries between modules.</b></span></p>
+
+<h2><span class="zh">为什么 AI 特别容易写出屎山</span><span class="en">Why AI is especially good at making a mess</span></h2>
+<p><span class="zh">AI 写代码非常快。但速度是双向的：没有约束的时候，乱的速度也一样快。我总结了几个原因：</span><span class="en">AI writes code very fast. But speed cuts both ways: without constraints, the mess grows just as fast. Here’s why, as far as I can tell:</span></p>
+<ul>
+  <li><span class="zh"><b>只顾眼前这个需求。</b>你让它加一个功能，它会用最快的方式让这个功能跑起来，不会主动考虑以后好不好改。每一步都局部最优，加起来就是全局混乱。</span><span class="en"><b>It optimises for the request in front of it.</b> Ask for a feature and it takes the quickest path to make it work, without asking whether it’ll be easy to change later. Every step is locally optimal; together they add up to chaos.</span></li>
+  <li><span class="zh"><b>重复造轮子。</b>它看不到或记不住项目里已有的工具函数，同样的逻辑写三遍，每遍还略有不同。</span><span class="en"><b>It reinvents the wheel.</b> It can’t see, or doesn’t remember, helpers that already exist, so the same logic gets written three times — each slightly different.</span></li>
+  <li><span class="zh"><b>习惯打补丁，而不是改结构。</b>遇到问题时，它更可能加一个 if 绕过去，而不是回头想设计是不是错了。</span><span class="en"><b>It patches instead of restructuring.</b> When something breaks, it’s more likely to add another <code>if</code> than to ask whether the design is wrong.</span></li>
+  <li><span class="zh"><b>对话之间没有记忆。</b>这次定好的约定，换一个对话、换一个 agent 就不知道了。</span><span class="en"><b>It has no memory between sessions.</b> Whatever we agreed on in one conversation is gone in the next one, or with the next agent.</span></li>
+</ul>
+
+<h2><span class="zh">真实案例一：这个网站的导航丢了两次</span><span class="en">Case 1: this website lost its navigation twice</span></h2>
+<p><span class="zh">你现在看的这个网站，就是一个现成的例子。它有一部分页面是由一个 Python 生成器生成的，文章页则是手写的。好几个 AI agent 先后维护过它。</span><span class="en">The site you’re reading is a ready-made example. Some of its pages are produced by a Python generator; the articles are written by hand. Several AI agents have maintained it at different times.</span></p>
+<p><span class="zh">问题出在这里：有的 agent 直接手改了生成出来的 HTML（比如在导航里加上“文章”），另一个 agent 后来重新跑了一遍生成器，手改的内容就被整体覆盖掉了。导航里的“文章”入口就这样丢过两次。还有一次，一个提交用旧的页面头部覆盖了 10 个页面，同样把导航弄丢了，第二天才发现。</span><span class="en">Here’s what happened: one agent edited the generated HTML directly (for example, adding “Writing” to the nav), and later another agent re-ran the generator, which overwrote the hand edits wholesale. The “Writing” link vanished from the nav twice that way. Another time, a single commit pasted an old page header over 10 pages and dropped the link again — nobody noticed until the next day.</span></p>
+<p><span class="zh">每个 agent 单独看，做的事都“没错”：一个在加导航，一个在重新生成页面。错在<b>没有人规定清楚：页面头部到底归谁管</b>。同一份东西有两个来源，谁最后写，谁就赢。</span><span class="en">Looked at one by one, every agent did something “correct”: one added a nav item, the other regenerated pages. What was wrong was that <b>nobody had decided who owns the page header</b>. The same thing had two sources, and whoever wrote last won.</span></p>
+<p><span class="zh">最后的解决办法不是“让 AI 更小心”，而是一个结构上的决定：把所有手改的内容都并进生成器，让生成器成为这些页面<b>唯一的来源</b>；再在交接文档里写明“生成出来的页面不许手改，文章页生成器不碰”。边界划清楚之后，这个问题就没再出现过。</span><span class="en">The fix wasn’t “make the AI more careful.” It was a structural decision: fold every hand edit into the generator so it becomes the <b>single source</b> for those pages, and write down in the handoff doc that generated pages must not be hand-edited, while article pages are off-limits to the generator. Once the boundary was clear, the problem stopped.</span></p>
+
+<h2><span class="zh">真实案例二：用文件代替记忆</span><span class="en">Case 2: files instead of memory</span></h2>
+<p><span class="zh">我平时和几个 AI agent 在同一个共享文件夹里协作，同一个项目经常由不同的 agent 接力完成，比如我的 Antigravity 用量面板，就是从 Codex 交接给 Claude 的。</span><span class="en">I work with several AI agents in one shared folder, and the same project is often passed from one agent to another — my Antigravity usage dashboard, for instance, was handed over from Codex to Claude.</span></p>
+<p><span class="zh">为了解决“AI 没有记忆”的问题，我定了两条规矩：</span><span class="en">To deal with the “no memory” problem, I set two rules:</span></p>
+<ul>
+  <li><span class="zh"><b>每个项目都必须有一份交接文档</b>：现在是什么状态、先读哪些文件、怎么运行、有哪些坑。新来的 agent 第一件事就是读它，改完再更新它。上面导航丢失的教训，就写在这个网站的交接文档里。</span><span class="en"><b>Every project must have a handoff doc</b>: its current state, which files to read first, how to run it, and the known traps. A new agent reads it first and updates it when done. The lesson about the lost navigation above is written in this site’s handoff doc.</span></li>
+  <li><span class="zh"><b>共同的约定写进一份约定文件</b>，比如提交代码时用什么身份署名，哪些仓库只在本地、哪些要推到 GitHub。</span><span class="en"><b>Shared conventions go in a conventions file</b> — for example, which identity to sign commits with, and which repositories stay local versus get pushed to GitHub.</span></li>
+</ul>
+<p><span class="zh">这其实也是一种“端口”：交接文档就是项目和下一个 agent 之间的接口。接口写清楚了，换谁来接手都不容易跑偏。</span><span class="en">In a way, this is also a “port”: the handoff doc is the interface between a project and whichever agent comes next. When that interface is clear, it matters much less who picks the work up.</span></p>
+
+<h2><span class="zh">真实案例三：模块边界该由人来定</span><span class="en">Case 3: a human should draw the module boundaries</span></h2>
+<p><span class="zh">在我的 <a href="../../projects/claude-fortress/">Claude 堡垒</a>项目里，我们打算加一个自检工具，用来检查被隔离的机器是不是真的隔离好了。最直接的写法是在那台机器上装好运行环境，直接跑检查脚本。</span><span class="en">In my <a href="../../projects/claude-fortress/">Claude Fortress</a> project, we planned a self-check tool to verify that an isolated machine is really isolated. The obvious approach would be to install a runtime on that machine and run a checking script there.</span></p>
+<p><span class="zh">但这样做恰好违背了项目本身的目的：为了检查隔离，先往隔离的机器上装东西。最后定下的方案是拆成两个模块：<b>目标机器上只负责收集信息，评估放到主机或离线页面上去做</b>，两者之间只通过一份收集结果来交接。</span><span class="en">But that defeats the purpose of the project: installing things on an isolated machine in order to check its isolation. The design we settled on splits it into two modules: <b>the target machine only collects information, and the evaluation happens on the host or in an offline page</b>, with a single collected report passed between them.</span></p>
+<p><span class="zh">每个模块内部怎么写，AI 都能做得很好。但“这里要切一刀”这个决定，来自对整个项目目标的理解，这正是学长说的“全局由我把关”。</span><span class="en">The AI can do a fine job inside each module. But the decision to “cut here” comes from understanding what the whole project is for — exactly the “big picture is mine” part of the advice.</span></p>
+
+<h2><span class="zh">我现在的做法</span><span class="en">How I work now</span></h2>
+<p><span class="zh">把这些合在一起，我现在用 AI 做项目大概是这样分工的：</span><span class="en">Putting it together, this is roughly how I split the work with AI now:</span></p>
+<h3><span class="zh">我负责</span><span class="en">My part</span></h3>
+<ul>
+  <li><span class="zh"><b>开工前写一份架构说明</b>：有哪些模块，每个模块管什么，模块之间的接口长什么样。这份文件由我拍板，放进 git。</span><span class="en"><b>Write a short architecture note before starting</b>: which modules exist, what each one is responsible for, and what the interfaces between them look like. I sign off on it, and it lives in git.</span></li>
+  <li><span class="zh"><b>规定“谁拥有什么”</b>：每一份东西只能有一个来源。</span><span class="en"><b>Decide who owns what</b>: every piece of the project has exactly one source.</span></li>
+  <li><span class="zh"><b>验收时只看三件事</b>：接口有没有被改，模块边界有没有被越过，测试有没有通过。</span><span class="en"><b>Check three things on review</b>: were interfaces changed, were module boundaries crossed, do the tests pass.</span></li>
+</ul>
+<h3><span class="zh">AI 负责</span><span class="en">The AI’s part</span></h3>
+<ul>
+  <li><span class="zh"><b>以模块为单位接任务</b>，任务要小而具体：不是“做一个用户系统”，而是“在这个模块里加一个函数，输入什么，输出什么”。</span><span class="en"><b>Take tasks one module at a time</b>, small and specific: not “build a user system,” but “add a function to this module that takes X and returns Y.”</span></li>
+  <li><span class="zh"><b>不许擅自改接口</b>，要改先提出来，由我决定。</span><span class="en"><b>Never change an interface on its own</b> — propose it, and I decide.</span></li>
+  <li><span class="zh"><b>模块内部自己写、自己审</b>，并用自动化测试证明它做对了。光说一句“我检查过了”不算数。</span><span class="en"><b>Write and review the inside of the module</b>, and prove it works with automated tests. “I checked it” doesn’t count.</span></li>
+</ul>
+<h3><span class="zh">一些习惯</span><span class="en">A few habits</span></h3>
+<ul>
+  <li><span class="zh">小步提交 git。AI 把东西改乱了，就直接回滚，不在烂代码上继续修。</span><span class="en">Commit in small steps. If the AI makes a mess, roll back instead of patching on top of it.</span></li>
+  <li><span class="zh">每做完几个功能，专门花一轮让 AI 找重复代码和该拆的模块。只加不减，迟早会变成屎山。</span><span class="en">Every few features, spend a round just having the AI look for duplicated code and modules that should be split. Only ever adding things is how spaghetti happens.</span></li>
+  <li><span class="zh">看到 AI 第二次、第三次往同一个地方加特殊判断，就停下来。这通常说明设计本身有问题，该我回到全局去想。</span><span class="en">When the AI adds a special case to the same spot for the second or third time, stop. It usually means the design is wrong, and it’s my job to go back to the big picture.</span></li>
+</ul>
+
+<h2><span class="zh">还要补的一课：全局判断从哪来</span><span class="en">The lesson I still need: where big-picture judgement comes from</span></h2>
+<p><span class="zh">说“全局由我把关”很容易，难的是我真的要懂全局。作为一个大一学生，我的架构经验还很少。上面三个案例里，有两个都是先出了问题，我才知道那里该有一条边界。</span><span class="en">Saying “the big picture is mine” is easy; the hard part is actually understanding it. As a first-year student, I don’t have much architecture experience yet. In two of the three cases above, I only learned a boundary belonged there after something broke.</span></p>
+<p><span class="zh">所以我打算这样练：遇到需要做架构决定的时候，不让 AI 直接给一个方案，而是让它给两三种，分别说清楚好处和代价，由我来选，并且写下我为什么这么选。这样每一次把关，本身也是一次练习。</span><span class="en">So here’s how I plan to practise: whenever an architectural decision comes up, I won’t let the AI hand me one answer. I’ll ask for two or three options with their trade-offs, pick one myself, and write down why. That way every review is also practice.</span></p>
+<blockquote><p><span class="zh"><b>AI 是一个执行力极强、但没有长期判断的队友。代码质量的上限，取决于我给它搭的框架有多清楚。</b></span><span class="en"><b>AI is a teammate with enormous execution power and no long-term judgement. How good the code gets is capped by how clear the frame I build around it is.</b></span></p></blockquote>
+
+  </div></div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Rose</span>
+    <span><span class="zh">纯手写 HTML / CSS / JS · 托管于 GitHub Pages</span><span class="en">Hand-written HTML / CSS / JS · Hosted on GitHub Pages</span> · <a href="https://github.com/Rose-MYS">GitHub ↗</a></span>
+  </div>
+</footer>
+</body>
+</html>
