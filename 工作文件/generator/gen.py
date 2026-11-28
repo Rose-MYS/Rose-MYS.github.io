@@ -35,6 +35,7 @@ def page(path, depth, title_zh, title_en, current, body, desc_zh, body_cls=""):
 <link rel="icon" href="{up}assets/favicon.svg?v=202611271640" type="image/svg+xml">
 <link rel="stylesheet" href="{up}assets/style.css?v=202611271640">
 <script src="{up}assets/site.js?v=202611271640"></script>
+<script data-goatcounter="https://rose-mys.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body class="{body_cls}">
 <header class="mast">
